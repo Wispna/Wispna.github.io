@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Magical Tree</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content="A curse of raehn website." />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/OMuVeQA.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/rDQGgS0.png">
+
+    
+    <script type="module" crossorigin src="/assets/bootstrap.esm.7088dd46.js"></script>
+    <link rel="stylesheet" href="/assets/bootstrap.esm.1730bc0e.css">
+  </head>
+
+  <body class="homepage">
+    <!-- Your HTML goes here -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 font2 sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">CURSE OF RAEHN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="homedrop" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Home <span class="sr-only"></span></a>
+              <div class="dropdown-menu" aria-labelledby="homedrop">
+                <a class="dropdown-item" href="/index.html">Home</a>
+                <a class="dropdown-item" href="/rulespage.html">Rules + FAQ</a>
+                <a class="dropdown-item" href="/storypage.html">Story</a>
+                <a class="dropdown-item" href="https://www.deviantart.com/curse-of-raehn">deviantArt</a>
+              </div>
+            </li>
+        
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="worlddrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">World</a>
+              <div class="dropdown-menu" aria-labelledby="worlddrop">
+                <a class="dropdown-item" href="/mapspage.html">Maps</a>
+                <a class="dropdown-item" href="/regionspage.html">Regions</a>
+                <a class="dropdown-item" href="/godspage.html">Gods</a>
+                <a class="dropdown-item" href="/raehnpage.html">Raehn</a>
+              </div>
+            </li>
+    
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="chardrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">Character</a>
+              <div class="dropdown-menu" aria-labelledby="chardrop">
+                <a class="dropdown-item" href="/creationpage.html">Creation</a>
+                <a class="dropdown-item" href="/racespage.html">Races</a>
+                <a class="dropdown-item" href="/specialcharacterspage.html">Special Characters</a>
+                <a class="dropdown-item" href="/specialmagicpage.html">Special Magic</a>
+                <a class="dropdown-item" href="/mechanicspage.html">Mechanics</a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="otherdrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Other
+              </a>
+              <div class="dropdown-menu" aria-labelledby="otherdrop">
+                <a class="dropdown-item" href="/botcommandspage.html">Bot Commands</a>
+                <a class="dropdown-item" href="/craftingpage.html">Crafting</a>
+                <a class="dropdown-item" href="/calendarpage.html">Calendar</a>
+                <a class="dropdown-item" href="/plantpage.html">Plants</a>
+                <a class="dropdown-item" href="/monsterspage.html">Monsters</a>
+                <a class="dropdown-item" href="/glossarypage.html">Glossary</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+  
+  <!--Jumbotron-->
+  <div class="jumbotron-character container-fluid py-5 font2">
+    <div class="title-name">
+      <p class="text-center">Magical Tree</p>
+    </div>
+  </div>
+  
+   <!-- <section class="quote poiret center">
+      <h4>"What is this mark?..."</h4>
+    </section> -->
+
+    <div class="divider">
+      <picture>
+        <source type = "image/webp" srcset="/assets/purpledivider.aa4001b7.webp ">
+        <source type = "image/png" srcset="images/purpledivider.jpg">
+        <img src="/assets/purpledivider.16b4f723.png" alt="divider">
+      </picture>
+    </div>
+
+    <div class="racebuttons poiret">
+        <ul>
+            <li><a href="#basics">Basics</a></li>
+            <li><a href="#elements">Elements</a></li>
+            <li><a href="#circle">Magical Circle</a></li>
+            <li><a href="https://docs.google.com/spreadsheets/d/13U1Ia7liA1TdKymw3W4Qno8EamALBhpYi1bOsoEVP2Y/edit#gid=2099125012">Calculator</a></li>
+        </ul>
+      </div>
+
+      <section class="main-img">
+        <div class="info-box 2">
+            <div class="accordion accordion-flush info-accordion" id="examplespells">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="dreidalHeading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dreidal" aria-expanded="false" aria-controls="dreidal">
+                      Important Note
+                    </button>
+                  </h2>
+                  <div id="dreidal" class="accordion-collapse collapse" aria-labelledby="dreidalHeading" data-bs-parent="#examplespells">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>There will be no equipment available at the beginning of the group.</li>
+                        <li>CHECK <a href="/racespage.html">YOUR RACE</a> for your innate element to start with, if available.</li>
+                        <li>To learn a new element, you must reach at least 1 major rank in your first element.</li>
+                        <li>You don’t have to do ONLY magic, and can go into physical as well.</li>
+                        <li>Allocation point cost is next to the ability like this: Rank - Name (#)</li>
+                        <li>30 Allocation Points are available at the start!</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                
+
+              </div>
+        </div>
+    </section>
+  
+    <section>
+        <div class="info-box2">
+            
+            <h3 class="poiret" id="basics">Basics</h3>
+            <p>The Magic Tree is for magic combat and abilities, therefore any attacks will be using the SORC stat. You may use allocation points (30 to start with, and more earned through activity in the group) to buy these abilities. This section will describe magical abilities only.</p>
+            <p>With magic comes three components to each element: <em>Manipulation, Creation,</em> and <em>Sensing.</em> </p>
+            <ul>
+                <li>Manipulation: Be able to magically manipulate your chosen element, but not create it. This means the chosen element must be somewhere in your immediate environment for you to be able to magically use it. To be able to effectively attack with magic, one must have some degree of mastery in manipulation.</li>
+                <li>Creation: Create your chosen element with your own magical ability. </li>
+                <li>Sensing: Have a heightened magical awareness of your chosen element.</li>
+            </ul>
+
+            <p>There are also three ranks of mastery within each of these components - Minor, Moderate, and Major. To be able to reach a Major rank, one must first learn the Minor and then the Moderate ranks.</p>
+            <p>Any listed abilities in later ranks build on top of abilities that were learned in previous ranks, so if in a moderate manipulation ability you get +1 die to attack, and in the following major manipulation you receive +2 dice to attack, your character will then have a total of +3 dice to attack.</p>
+            <p>Magic is loosely defined so that you may have fun with how your character chooses to use it within rp. The abilities listed here show magic's mechanical use, but feel free to get creative with the aesthetics, and with what your character chooses to do with their element in their day to day life.</p>
+        </div>
+    </section>
+
+    <section class="main-img" id="elements">
+        <div class="info-box 2">
+            <h3 class="poiret">Elements</h3>
+            <br>
+            <br>
+            <h4><strong>Inner Circle</strong></h4>
+            <div class="accordion accordion-flush info-accordion" id="innercircle">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="airHeading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#air" aria-expanded="false" aria-controls="air">
+                      Air
+                    </button>
+                  </h2>
+                  <div id="air" class="accordion-collapse collapse" aria-labelledby="air" data-bs-parent="#innercircle">
+                    <div class="accordion-body">
+                        <div class="magic">
+                            <h4 class="font2 gray">Minor</h4>
+                            <h5 class="font2 gray">Manipulation (3)</h5>
+                            <p>Manipulate gusts of wind.</p>
+                            <h5 class="font2 gray">Creation (3)</h5>
+                            <p>Create pressurized air (damage) as big as your fist.</p>
+                            <h5 class="font2 gray">Sense (3)</h5>
+                            <p>Sense the weather and toxic fumes.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 gray">Moderate</h4>
+                            <h5 class="font2 gray">Manipulation (5)</h5>
+                            <p>Air magic attacks +1</p>
+                            <h5 class="font2 gray">Creation (5)</h5>
+                            <p>Create sustained winds of 50 mph. Can purify air. Initiative +1.</p>
+                            <h5 class="font2 gray">Sense (5)</h5>
+                            <p>Sense the weather and toxic fumes.+ Heightened sense of smell.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 gray">Major</h4>
+                            <h5 class="font2 gray">Manipulation (7)</h5>
+                            <p> Air magic attacks +2. </p>
+                            <h5 class="font2 gray">Creation (7)</h5>
+                            <p>Create sustained winds of 70 mph. Initiative +1.</p>
+                            <h5 class="font2 gray">Sense (7)</h5>
+                            <p>Sense the weather by the hour, can pinpoint smells and define fumes.</p>
+                
+                
+                        </div>
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="fireHeading">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fire" aria-expanded="false" aria-controls="fire">
+                        Fire
+                      </button>
+                    </h2>
+                    <div id="fire" class="accordion-collapse collapse" aria-labelledby="fireHeading" data-bs-parent="#innercircle">
+                      <div class="accordion-body">
+                        <div class="magic">
+                            <h4 class="font2 red">Minor</h4>
+                            <h5 class="font2 red">Manipulation (3)</h5>
+                            <p>Manipulate flames. Fire magic attacks +1.</p>
+                            <h5 class="font2 red">Creation (3)</h5>
+                            <p>Create small flames as big as your fist.</p>
+                            <h5 class="font2 red">Sense (3)</h5>
+                            <p>Sense heat up to 10 feet away.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 red">Moderate</h4>
+                            <h5 class="font2 red">Manipulation (5)</h5>
+                            <p>Fire magic attacks +1</p>
+                            <h5 class="font2 red">Creation (5)</h5>
+                            <p>Create flames up to 5ft wide and tall.</p>
+                            <h5 class="font2 red">Sense (5)</h5>
+                            <p>Sense heat up to 30 feet away, and be able to raise temperatures of yourself, the air around you, and objects by a few degrees.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 red">Major</h4>
+                            <h5 class="font2 red">Manipulation (7)</h5>
+                            <p> Fire magic attacks +2</p>
+                            <h5 class="font2 red">Creation (7)</h5>
+                            <p>Create flames up to 20ft wide and tall.</p>
+                            <h5 class="font2 red">Sense (7)</h5>
+                            <p>Sense heat up to 60 feet away, and be able to raise temperatures of yourself, the air around you, others that are still, and objects by up to 20 degrees.</p>
+                
+                
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                  <h2 class="accordion-header" id="natureHeading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nature" aria-expanded="false" aria-controls="nature">
+                      Nature
+                    </button>
+                  </h2>
+                  <div id="nature" class="accordion-collapse collapse" aria-labelledby="natureHeading" data-bs-parent="#innercircle">
+                    <div class="accordion-body">
+                        <div class="magic">
+                            <h4 class="font2 green">Minor</h4>
+                            <h5 class="font2 green">Manipulation (3)</h5>
+                            <p>Manipulate non sentient life to do your bidding.</p>
+                            <h5 class="font2 green">Creation (3)</h5>
+                            <p>Cause seeds to grow twice as fast. Heal wounds. </p>
+                            <h5 class="font2 green">Sense (3)</h5>
+                            <p>Sense life up to 10 feet away.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 green">Moderate</h4>
+                            <h5 class="font2 green">Manipulation (5)</h5>
+                            <p>Nature magic attacks +1</p>
+                            <h5 class="font2 green">Creation (5)</h5>
+                            <p>Cause seeds to grow at an incredibly rapid rate, though they can’t grow bigger than the general size of the actual plant. Heal wounds +1.</p>
+                            <h5 class="font2 green">Sense (5)</h5>
+                            <p>Sense life up to 30 feet away.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 green">Major</h4>
+                            <h5 class="font2 green">Manipulation (7)</h5>
+                            <p> Nature magic attacks +2.</p>
+                            <h5 class="font2 green">Creation (7)</h5>
+                            <p>Seeds grow at a very rapid rate, and can grow 4x larger than they would be normally. Heal wounds +2.</p>
+                            <h5 class="font2 green">Sense (7)</h5>
+                            <p>Sense life up to 60 feet away.</p>
+                
+                
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="waterHeading">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#water" aria-expanded="false" aria-controls="water">
+                        Water
+                      </button>
+                    </h2>
+                    <div id="water" class="accordion-collapse collapse" aria-labelledby="waterHeading" data-bs-parent="#innercircle">
+                      <div class="accordion-body">
+                        <div class="magic">
+                            <h4 class="font2 blue">Minor</h4>
+                            <h5 class="font2 blue">Manipulation (3)</h5>
+                            <p>Manipulate water or ice.</p>
+                            <h5 class="font2 blue">Creation (3)</h5>
+                            <p>Create an amount of water as big as your fist. Heal wounds +0. </p>
+                            <h5 class="font2 blue">Sense (3)</h5>
+                            <p>Sense bodies of water up to 20 ft away. Can freeze water.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 blue">Moderate</h4>
+                            <h5 class="font2 blue">Manipulation (5)</h5>
+                            <p>Water magic attacks +1</p>
+                            <h5 class="font2 blue">Creation (5)</h5>
+                            <p>Create an amount of water up to 5ft wide and tall. Heal wounds +0. </p>
+                            <h5 class="font2 blue">Sense (5)</h5>
+                            <p>Sense bodies of water up to 60 feet away, and be able to lower the temperature of yourself, objects, and others that are still by a few degrees. You can freeze water.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 blue">Major</h4>
+                            <h5 class="font2 blue">Manipulation (7)</h5>
+                            <p>Water magic attacks +2</p>
+                            <h5 class="font2 blue">Creation (7)</h5>
+                            <p>Create an amount of water up to 20ft wide and tall. Heal wounds +0 </p>
+                            <h5 class="font2 blue">Sense (7)</h5>
+                            <p>Sense bodies of water up to 120 feet away, and be able to lower the temperature of yourself, objects, others that are still, and water to the point of freezing it.</p>
+                
+                
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </div> <!--end accordion-->
+
+              <div class="centered-img">
+                <picture>
+                  <source type = "image/webp" srcset="/assets/purpledivider.aa4001b7.webp ">
+                  <source type = "image/png" srcset="images/purpledivider.jpg">
+                  <img src="/assets/purpledivider.16b4f723.png" alt="divider">
+                </picture>
+              </div>
+
+
+              <h4><strong>Outer Circle</strong></h4>
+
+              <div class="accordion accordion-flush info-accordion" id="outercircle">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="lightHeading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#light" aria-expanded="false" aria-controls="light">
+                      Light
+                    </button>
+                  </h2>
+                  <div id="light" class="accordion-collapse collapse" aria-labelledby="lightHeading" data-bs-parent="#outercircle">
+                    <div class="accordion-body">
+                        <div class="magic">
+                            <h4 class="font2 gray">Minor</h4>
+                            <h5 class="font2 gray">Manipulation (3)</h5>
+                            <p>Manipulate light to create small illusions and burning attacks.</p>
+                            <h5 class="font2 gray">Creation (3)</h5>
+                            <p>Create small pockets of light as big as your fist. Heal wounds.</p>
+                            <h5 class="font2 gray">Sense (3)</h5>
+                            <p>Sense nearby magic and magical objects up to 10 feet away.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 gray">Moderate</h4>
+                            <h5 class="font2 gray">Manipulation (5)</h5>
+                            <p>Light magic attacks +1</p>
+                            <h5 class="font2 gray">Creation (5)</h5>
+                            <p>Create light up to 5ft wide and tall. Heal wounds +1. </p>
+                            <h5 class="font2 gray">Sense (5)</h5>
+                            <p>Sense nearby magic and magical objects up to 30 feet away.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 gray">Major</h4>
+                            <h5 class="font2 gray">Manipulation (7)</h5>
+                            <p>Light magic attacks +2</p>
+                            <h5 class="font2 gray">Creation (7)</h5>
+                            <p>Create light up to 20ft wide and tall. Heal wounds +2 </p>
+                            <h5 class="font2 gray">Sense (7)</h5>
+                            <p>Sense nearby magic and magical objects up to 60 feet away.</p>
+                
+                
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="darkHeading">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dark" aria-expanded="false" aria-controls="dark">
+                        Dark
+                      </button>
+                    </h2>
+                    <div id="dark" class="accordion-collapse collapse" aria-labelledby="darkHeading" data-bs-parent="#outercircle">
+                      <div class="accordion-body">
+                        <div class="magic">
+                            <h4 class="font2 indigo">Minor</h4>
+                            <h5 class="font2 indigo">Manipulation (3)</h5>
+                            <p>Create shapes from shadow that can attack people.</p>
+                            <h5 class="font2 indigo">Creation (3)</h5>
+                            <p>Create small pockets of darkness as big as your fist. Can defend yourself or one of your allies against spells (Spell attacks -1 for the next round).</p>
+                            <h5 class="font2 indigo">Sense (3)</h5>
+                            <p>Can see in the dark.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 indigo">Moderate</h4>
+                            <h5 class="font2 indigo">Manipulation (5)</h5>
+                            <p>Dark magic attacks +1</p>
+                            <h5 class="font2 indigo">Creation (5)</h5>
+                            <p>Create darkness up to 5ft wide and tall. (Defend 4 people of your choosing) (Spell attacks -2 for the next round)</p>
+                            <h5 class="font2 indigo">Sense (5)</h5>
+                            <p>Can see in the dark, can slightly sense what’s in the dark up to 30 ft away. Nullifies bonus of surprise attacks against them.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 indigo">Major</h4>
+                            <h5 class="font2 indigo">Manipulation (7)</h5>
+                            <p>Dark magic attacks +2</p>
+                            <h5 class="font2 indigo">Creation (7)</h5>
+                            <p>Create darkness up to 20ft wide and tall. (defend 4 people) (Spell attacks -2 for the next round)  Can remove magic from select objects.</p>
+                            <h5 class="font2 indigo">Sense (7)</h5>
+                            <p>Sense surprise attacks up to 60 feet away and have the opportunity to counter attack the attacker with a single attack.</p>
+                
+                
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="accordion-item">
+                  <h2 class="accordion-header" id="lightningHeading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#lightning" aria-expanded="false" aria-controls="lightning">
+                      Lightning
+                    </button>
+                  </h2>
+                  <div id="lightning" class="accordion-collapse collapse" aria-labelledby="lightningHeading" data-bs-parent="#outercircle">
+                    <div class="accordion-body">
+                        <div class="magic">
+                            <h4 class="font2 yellow">Minor</h4>
+                            <h5 class="font2 yellow">Manipulation (3)</h5>
+                            <p>Manipulate lightning. Lightning attacks +1.</p>
+                            <h5 class="font2 yellow">Creation (3)</h5>
+                            <p>Create a small charged area. </p>
+                            <h5 class="font2 yellow">Sense (3)</h5>
+                            <p>Impeccable sense of direction. (think like a compass. Lightning sense is an awareness of the world's magnetic field, so one with minor lightning sense will always know which way is north, south, east, or west).</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 yellow">Moderate</h4>
+                            <h5 class="font2 yellow">Manipulation (5)</h5>
+                            <p>Lightning magic attacks +1.</p>
+                            <h5 class="font2 yellow">Creation (5)</h5>
+                            <p>Create a charged area. Create a magnetic field-like shield (when your character uses a sorcery defense, defense +1. This is passive).</p>
+                            <h5 class="font2 yellow">Sense (5)</h5>
+                            <p>Impeccable sense of direction + refined hearing.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 yellow">Major</h4>
+                            <h5 class="font2 yellow">Manipulation (7)</h5>
+                            <p>Lightning magic attacks +2.</p>
+                            <h5 class="font2 yellow">Creation (7)</h5>
+                            <p>Create a charged area. When your character uses a sorcery defense, defense +2. This is passive. When you are attacked by a physical attack while defending with sorcery, if you have 3 LIGHTNING successes (blessings do not count) you have a chance to paralyze. (Your opponent misses their next action). Paralysis does not stack.</p>
+                            <h5 class="font2 yellow">Sense (7)</h5>
+                            <p>Impeccable sense of direction + refined hearing + can magnetize objects.</p>
+                
+                
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="mineralHeading">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mineral" aria-expanded="false" aria-controls="mineral">
+                        Mineral
+                      </button>
+                    </h2>
+                    <div id="mineral" class="accordion-collapse collapse" aria-labelledby="mineralHeading" data-bs-parent="#outercircle">
+                      <div class="accordion-body">
+                        <div class="magic">
+                            <h4 class="font2 orange">Minor</h4>
+                            <h5 class="font2 orange">Manipulation (3)</h5>
+                            <p>Manipulate minerals.</p>
+                            <h5 class="font2 orange">Creation (3)</h5>
+                            <p>Create 1 type mineral as big as your fist. This type of mineral will be your character's chosen main mineral. Can also create minerals that buff magic. (Buffs up to four people’s future magic attacks, or heals. Spells + 1). </p>
+                            <h5 class="font2 orange">Sense (3)</h5>
+                            <p>Sense what small, organic objects are made of through tactile means. </p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 orange">Moderate</h4>
+                            <h5 class="font2 orange">Manipulation (5)</h5>
+                            <p>Mineral magic attacks +1</p>
+                            <h5 class="font2 orange">Creation (5)</h5>
+                            <p>Create 5 chosen minerals up to 5ft wide and tall. Can also create minerals that buff magic. (Buffs up to four people’s future magic attacks, or heals. Spells + 1) </p>
+                            <h5 class="font2 orange">Sense (5)</h5>
+                            <p>Can sense what organic and nonorganic objects are made of through tactile means.</p>
+                
+                            <p>----</p>
+                
+                            <h4 class="font2 orange">Major</h4>
+                            <h5 class="font2 orange">Manipulation (7)</h5>
+                            <p>Mineral magic attacks +2.</p>
+                            <h5 class="font2 orange">Creation (7)</h5>
+                            <p>Create any mineral up to 20ft wide and tall. Can create minerals that buff magic (Buffs up to four people’s magic attacks, or heals, for the next round. Spells + 2). Can change the makeup of an INANIMATE OBJECT to something else.</p>
+                            <h5 class="font2 orange">Sense (7)</h5>
+                            <p>Know what everything around them is made out of, no need to touch. Must LOOK at it.</p>
+                
+                
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </div> <!--end accordion-->
+        </div>
+    </section>
+
+    <section class="main-img" id="circle">
+        <div class="info-box2">
+            <h3 class="poiret">Magical Circle</h3>
+            <div class="centered-img">
+                <picture>
+                    <source type = "image/webp" srcset="/assets/magic-circle.ff8158ef.webp ">
+                    <source type = "image/png" srcset="images/magic-circle.jpg">
+                    <img src="/assets/magic-circle.960a8d94.png" alt="divider">
+                </picture>
+            </div>
+            <p>Your reference element is your innate element determined by your race. This element will be the easiest for your character to learn. The further away another element is from your innate element on this circle, the more difficult that element becomes to learn. This means more allocation points will need to be spent to specialize in these other elements. Note that the first magical element you choose to specialize in does not have to be the same as your innate element.</p>
+            <p>You don't have to calculate the allocation point cost yourself. Use the Magical Tree calculator linked at the top of this page to determine the total amount of allocation points you need to spend.</p>
+        </div>
+    </section>
+
+    <section class="main-img">
+        <div class="info-box 2">
+            <div class="accordion accordion-flush info-accordion" id="pointexample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="pointHeading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#point" aria-expanded="false" aria-controls="point">
+                      Example
+                    </button>
+                  </h2>
+                  <div id="point" class="accordion-collapse collapse" aria-labelledby="pointHeading" data-bs-parent="#pointexample">
+                    <div class="accordion-body">
+                        <div class="centered-img">
+                            <picture>
+                                <source type = "image/webp" srcset="/assets/magpointexample.ee5dffdc.webp ">
+                                <source type = "image/png" srcset="/assets/magpointexample.54126a89.png ">
+                                <img src="/assets/magpointexample.54126a89.png" alt="divider">
+                            </picture>
+                        </div>
+                        <p><strong>What do those numbers mean?</strong></p>
+                        <p>The numbers are the extra allocation points needed on top of the original cost when buying an ability in a new branch. So, in your main branch, all costs are kept original (+0). In the neighboring branches, it is +1. If the branch is 2 spots away, then it is +2. If the branch is your direct opposite, it’s +3.  NOTE: You cannot travel through the light grey outer circle. </p>
+                    </div>
+                  </div>
+                </div>
+
+                
+
+              </div>
+        </div>
+    </section>
+  
+    
+    
+  </body>
+</html>

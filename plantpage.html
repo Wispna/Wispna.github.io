@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plants</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content="A curse of raehn website." />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/OMuVeQA.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/rDQGgS0.png">
+
+    
+    <script type="module" crossorigin src="/assets/bootstrap.esm.7088dd46.js"></script>
+    <link rel="stylesheet" href="/assets/bootstrap.esm.1730bc0e.css">
+  </head>
+
+  <body class="homepage">
+    <!-- Your HTML goes here -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 font2 sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">CURSE OF RAEHN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="homedrop" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Home <span class="sr-only"></span></a>
+              <div class="dropdown-menu" aria-labelledby="homedrop">
+                <a class="dropdown-item" href="/index.html">Home</a>
+                <a class="dropdown-item" href="/rulespage.html">Rules + FAQ</a>
+                <a class="dropdown-item" href="/storypage.html">Story</a>
+                <a class="dropdown-item" href="https://www.deviantart.com/curse-of-raehn">deviantArt</a>
+              </div>
+            </li>
+        
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="worlddrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">World</a>
+              <div class="dropdown-menu" aria-labelledby="worlddrop">
+                <a class="dropdown-item" href="/mapspage.html">Maps</a>
+                <a class="dropdown-item" href="/regionspage.html">Regions</a>
+                <a class="dropdown-item" href="/godspage.html">Gods</a>
+                <a class="dropdown-item" href="/raehnpage.html">Raehn</a>
+              </div>
+            </li>
+    
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="chardrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">Character</a>
+              <div class="dropdown-menu" aria-labelledby="chardrop">
+                <a class="dropdown-item" href="/creationpage.html">Creation</a>
+                <a class="dropdown-item" href="/racespage.html">Races</a>
+                <a class="dropdown-item" href="/specialcharacterspage.html">Special Characters</a>
+                <a class="dropdown-item" href="/specialmagicpage.html">Special Magic</a>
+                <a class="dropdown-item" href="/mechanicspage.html">Mechanics</a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="otherdrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Other
+              </a>
+              <div class="dropdown-menu" aria-labelledby="otherdrop">
+                <a class="dropdown-item" href="/botcommandspage.html">Bot Commands</a>
+                <a class="dropdown-item" href="/craftingpage.html">Crafting</a>
+                <a class="dropdown-item" href="/calendarpage.html">Calendar</a>
+                <a class="dropdown-item" href="/plantpage.html">Plants</a>
+                <a class="dropdown-item" href="/monsterspage.html">Monsters</a>
+                <a class="dropdown-item" href="/glossarypage.html">Glossary</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+  
+  <!--Jumbotron-->
+  <div class="jumbotron-other container-fluid py-5 font2">
+    <div class="title-name">
+      <p class="text-center">Plants</p>
+    </div>
+  </div>
+  
+   <!-- <section class="quote poiret center">
+      <h4>"What is this mark?..."</h4>
+    </section> -->
+
+    <div class="divider">
+      <picture>
+        <source type = "image/webp" srcset="/assets/purpledivider.aa4001b7.webp ">
+        <source type = "image/png" srcset="images/purpledivider.jpg">
+        <img src="/assets/purpledivider.16b4f723.png" alt="divider">
+      </picture>
+    </div>
+  
+    <section>
+      <div class="info-box2">
+        <p>A variety of useful plants have sprouted up in the botanical garden! For your character to recognize them, they must roll a lore of one. Alternatively, if your character has worked in an apothecary in their background, they will be able to recognize the apothecary plants.</p>
+      </div>
+    </section>
+
+    <section class="main-img">
+      <div class="info-box2">
+          <div class="container mt-5"> 
+              <ul class="m-0 nav nav-fill nav-justified nav-tabs" id="myTab" role="tablist"> 
+                  <li class="nav-item" role="presentation"> <button class="active nav-link" id="botanical-tab" data-bs-toggle="tab" data-bs-target="#botanical" type="button" role="tab" aria-controls="botanical" aria-selected="true"> <i class="fas fa-home"></i> Botanical Garden Plants </button> </li> 
+                  <li class="nav-item" role="presentation"> <button class="nav-link" id="other-tab" data-bs-toggle="tab" data-bs-target="#other" type="button" role="tab" aria-controls="other" aria-selected="false"> <i class="fas fa-user-astronaut"></i> Other</button> </li> 
+              </ul> 
+              <div class="border-grey bg-white p-3 tab-content clearfix mb-3"> 
+                  <div class="tab-pane active" id="botanical" role="tabpanel" aria-labelledby="botanical-tab">
+                      <h3 class="poiret">General Plants</h3> 
+                      <br>
+                      <br>
+                      <div class="accordion accordion-flush info-accordion" id="minorgods">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="adoraHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#adora" aria-expanded="false" aria-controls="adora">
+                              Ederlin Tree
+                            </button>
+                          </h2>
+                          <div id="adora" class="accordion-collapse collapse" aria-labelledby="adoraHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>The giant tree that grows in the center of the botanical gardens. Its branches are laden with golden fruit, and each fruit glows with a soft light. It’s said that as long as it’s well taken care of, its presence strengthens the growth of other plants.</p>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="baorhaHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#baorha" aria-expanded="false" aria-controls="baorha">
+                                Ederlin
+                              </button>
+                            </h2>
+                            <div id="baorha" class="accordion-collapse collapse" aria-labelledby="baorhaHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/ederlin.dfcd4888.webp ">
+                                  <source type = "image/png" srcset="/assets/ederlin.17e63c4f.png ">
+                                  <img src="/assets/ederlin.17e63c4f.png" alt="round golden fruit">
+                                </picture>
+                                <p> The golden fruit that grows on the giant tree in the center of botanical gardens. The fruit glows with a soft golden light, and when plucked, will glow for 12 hours when before fading. It will glow indefinitely if regularly refreshed with Nature Creation magic. When eaten, it has a light sweet taste.</p>
+                              </div>
+                            </div>
+                          </div>
+                
+                          <div class="accordion-item clearfix">
+                          <h2 class="accordion-header" id="fakianHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fakian" aria-expanded="false" aria-controls="fakian">
+                              Mierberry
+                            </button>
+                          </h2>
+                          <div id="fakian" class="accordion-collapse collapse" aria-labelledby="fakianHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <picture class="sailorsmark">
+                                <source type = "image/webp" srcset="/assets/mierberry.e2950f03.webp ">
+                                <source type = "image/png" srcset="/assets/mierberry.eef196cb.png ">
+                                <img src="/assets/mierberry.eef196cb.png" alt="small red berries">
+                              </picture>
+                              <p>Tiny red berries that are incredibly spicy. When not used as spice, it can also dye cloth yellow if steeped with cloth for a short time, or orange if steeped with cloth for a long time, though be careful not to burn your hands when using it.</p>
+                            </div>
+                          </div>
+                        </div>
+                
+                        <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="gramharaHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gramhara" aria-expanded="false" aria-controls="gramhara">
+                                Messenger Rose
+                              </button>
+                            </h2>
+                            <div id="gramhara" class="accordion-collapse collapse" aria-labelledby="gramharaHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/messengerrose.10a7f912.webp ">
+                                  <source type = "image/png" srcset="/assets/messengerrose.693771b1.png ">
+                                  <img src="/assets/messengerrose.693771b1.png" alt="pink rose">
+                                </picture>
+                                <p>Adora's favorite plant, this rose with a pink center and white outside symbolizes love and purity. It can dye cloth pink with its outer petals, and red with its inner petals. Otherwise, it’s just a universal message of love.</p>
+                              </div>
+                            </div>
+                          </div>
+                
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="midoHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mido" aria-expanded="false" aria-controls="mido">
+                                Raplin
+                              </button>
+                            </h2>
+                            <div id="mido" class="accordion-collapse collapse" aria-labelledby="gramharaHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/raplin.68132720.webp ">
+                                  <source type = "image/png" srcset="/assets/raplin.a38cd686.png ">
+                                  <img src="/assets/raplin.a38cd686.png" alt="purple root">
+                                </picture>
+                                <p>A leafy plant with wide, sour leaves. Digging it up reveals a purplish root. The root can be eaten on its own, or its juices can be used to flavor things and make them sweet. Alternatively the root can be used to dye cloth purple, while the leaves can be used to dye things green.</p>
+                              </div>
+                            </div>
+                          </div>
+                
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="nahiteHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nahite" aria-expanded="false" aria-controls="nahite">
+                                Nightbelles
+                              </button>
+                            </h2>
+                            <div id="nahite" class="accordion-collapse collapse" aria-labelledby="nahiteHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/nightbelles.a644675e.webp ">
+                                  <source type = "image/png" srcset="/assets/nightbelles.feaef0ec.png ">
+                                  <img src="/assets/nightbelles.feaef0ec.png" alt="blue flowers">
+                                </picture>
+                                <p>In the quiet of a moonless night, sometimes you can hear a low chime from the flower known as the nightbelles. One of these blooms in your room is said to give you good dreams for the night. Alternatively, night belles can be used as a blue dye.</p>
+                              </div>
+                            </div>
+                          </div>
+                
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="nakallasHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nakallas" aria-expanded="false" aria-controls="nakallas">
+                                Bubblepop
+                              </button>
+                            </h2>
+                            <div id="nakallas" class="accordion-collapse collapse" aria-labelledby="nakallasHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/bubblepop.136d56fe.webp ">
+                                  <source type = "image/png" srcset="/assets/bubblepop.03b2e8ee.png ">
+                                  <img src="bubblepop.png" alt="purple fruit">
+                                </picture>
+                                <p>This fruit is one of the juiciest and most delicious fruits, however, it's said to cause terrible gas, stinkiness, and odors.</p>
+                              </div>
+                            </div>
+                          </div>
+                
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="saiphinaHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#saiphina" aria-expanded="false" aria-controls="saiphina">
+                                Lamore
+                              </button>
+                            </h2>
+                            <div id="saiphina" class="accordion-collapse collapse" aria-labelledby="saiphinaHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/lamore.3c5ce2dd.webp ">
+                                  <source type = "image/png" srcset="/assets/lamore.f3f6a853.png ">
+                                  <img src="lamore.png" alt="white and red flower">
+                                </picture>
+                                <p>This flower is popular in luxury perfumes due to its seductive scent.
+
+                                  It is said a person is more attractive when they smell like this flower.</p>
+                              </div>
+                            </div>
+                          </div>
+                
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="streiyaHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#streiya" aria-expanded="false" aria-controls="streiya">
+                                Dewdrops
+                              </button>
+                            </h2>
+                            <div id="streiya" class="accordion-collapse collapse" aria-labelledby="saiphinaHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/dewdrops.f0521c2e.webp ">
+                                  <source type = "image/png" srcset="/assets/dewdrops.01ae8e45.png ">
+                                  <img src="dewdrops.png" alt="white flower">
+                                </picture>
+                                <p>​Crushing these blossoms into a tea will temporarily relieve you of your sorrows. Too much ingestion results in dependency, and will result in hard crashes of depression when withdrawn from them. They constantly look like they’re wet with dew.</p>
+                              </div>
+                            </div>
+                          </div>
+                
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="tornHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#torn" aria-expanded="false" aria-controls="torn">
+                                Torchtail
+                              </button>
+                            </h2>
+                            <div id="torn" class="accordion-collapse collapse" aria-labelledby="tornHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/torchtail.ef3847d6.webp ">
+                                  <source type = "image/png" srcset="/assets/torchtail.64fb1016.png ">
+                                  <img src="torchtail.png" alt="red root">
+                                </picture>
+                                <p>A plant that can hold a fire for 5 hours when lit. Things that could normally douse a campfire can still douse the flame it holds.</p>
+                              </div>
+                            </div>
+                          </div>
+                
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="keeperofthelostHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#keeperofthelost" aria-expanded="false" aria-controls="keeperofthelost">
+                                Torberry
+                              </button>
+                            </h2>
+                            <div id="keeperofthelost" class="accordion-collapse collapse" aria-labelledby="keeperofthelostHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/torberry.b33ecd9f.webp ">
+                                  <source type = "image/png" srcset="/assets/torberry.65689f06.png ">
+                                  <img src="torberry.png" alt="yellow berry">
+                                </picture>
+                                <p>Little yellow berries that grow on a bush. They’re sweet, and often used on pastries.</p>
+                              </div>
+                            </div>
+                          </div>
+                
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="wyvernHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#wyvern" aria-expanded="false" aria-controls="wyvern">
+                                Naier
+                              </button>
+                            </h2>
+                            <div id="wyvern" class="accordion-collapse collapse" aria-labelledby="wyvernHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/naier.a5a22910.webp ">
+                                  <source type = "image/png" srcset="/assets/naier.d8eac3ef.png ">
+                                  <img src="naier.png" alt="green branchlike plant.">
+                                </picture>
+                                <p>An herb with a pleasant soapy smell and a savory taste. An excellent hair rinse can be made with Naier, and myths say if you place Naier under your pillow you’ll remember your dreams.</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="crystalHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#crystal" aria-expanded="false" aria-controls="crystal">
+                                Crystalfruit
+                              </button>
+                            </h2>
+                            <div id="crystal" class="accordion-collapse collapse" aria-labelledby="crystalHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/crystalfruit.fdd0f529.webp ">
+                                  <source type = "image/png" srcset="/assets/crystalfruit.4fef8357.png ">
+                                  <img src="crystalfruit.png" alt="egg shaped fruit with white crystals on it.">
+                                </picture>
+                                <p>This small, white round fruit grows from bushes. The fruits would look almost like eggs, if not for the small crystals that seem to sprout from its surface. These crystals are actually chunks of salt that can be harvested and used on foods. The fruit itself can also be eaten, but it’s quite salty, has a tough texture, and is in general rather unpleasant to eat on its own.</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="woolHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#wool" aria-expanded="false" aria-controls="wool">
+                                Woolplant
+                              </button>
+                            </h2>
+                            <div id="wool" class="accordion-collapse collapse" aria-labelledby="woolHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/woolplant.7d723b9c.webp ">
+                                  <source type = "image/png" srcset="/assets/woolplant.175844b6.png ">
+                                  <img src="woolplant.png" alt="egg shaped fruit with white crystals on it.">
+                                </picture>
+                                <p>Woody nuts seem to grow from this plant, but when opened, soft balls of pale fibers can be found within. The fibers come in whites, off whites, pale greens, and pale browns, and can be woven into thread with a spinning wheel, then woven into cloth on a loom.</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="nakarisHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nakaris" aria-expanded="false" aria-controls="nakaris">
+                                Nakaris
+                              </button>
+                            </h2>
+                            <div id="nakaris" class="accordion-collapse collapse" aria-labelledby="nakarisHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/nakaris.b50eb8c5.webp ">
+                                  <source type = "image/png" srcset="/assets/nakaris.ff0ccc99.png ">
+                                  <img src="nakaris.png" alt="pink iris like flower.">
+                                </picture>
+                               <p>Certain virtuous people put the bloom of this flower on their tongue to stave off lust.</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="accordion-item clearfix">
+                            <h2 class="accordion-header" id="lemonHeading">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#lemon" aria-expanded="false" aria-controls="lemon">
+                                Totally Normal Lemon Tree
+                              </button>
+                            </h2>
+                            <div id="lemon" class="accordion-collapse collapse" aria-labelledby="lmeonHeading" data-bs-parent="#minorgods">
+                              <div class="accordion-body">
+                                <picture class="sailorsmark">
+                                  <source type = "image/webp" srcset="/assets/lemontree.673851bf.webp ">
+                                  <source type = "image/png" srcset="/assets/lemontree.3c596f66.png ">
+                                  <img src="lemontree.png" alt="lemon tree.">
+                                </picture>
+                                <p>The branches sag from the bountiful fruit.</p>
+                              </div>
+                            </div>
+                          </div>
+                
+                
+                
+                
+                
+                      </div> <!--end of accordion-->
+
+                      <br>
+                      <br>
+                      <h3 class="poiret">Apothecary Plants</h3>
+                      <p>Note: Plants marked with an asterisk* require the apothecary to be completed before certain effects can be used.</p>
+                      <br>
+                      <br>
+
+                      <div class="accordion accordion-flush info-accordion" id="plants">
+
+                        <div class="accordion-item clearfix">
+                          <h2 class="accordion-header" id="agHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ag" aria-expanded="false" aria-controls="ag">
+                              Alorel's Grace
+                            </button>
+                          </h2>
+                          <div id="ag" class="accordion-collapse collapse" aria-labelledby="agHeading" data-bs-parent="#plants">
+                            <div class="accordion-body">
+                              <picture class="sailorsmark">
+                                <source type = "image/webp" srcset="/assets/alorelsgrace.7ee142e5.webp ">
+                                <source type = "image/png" srcset="/assets/alorelsgrace.f59c7f5c.png ">
+                                <img src="alorelsgrace.png" alt="white flower.">
+                              </picture>
+                              <p>A useful flower, that when mashed into a pulp, mixed with water, and applied to a wound it can prevent infection. It can also numb some pain for an hour or so. It's said Alorel herself invented the flower in an act of mercy.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item clearfix">
+                          <h2 class="accordion-header" id="rbHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#rb" aria-expanded="false" aria-controls="rb">
+                              Redbloom*
+                            </button>
+                          </h2>
+                          <div id="rb" class="accordion-collapse collapse" aria-labelledby="rbHeading" data-bs-parent="#plants">
+                            <div class="accordion-body">
+                              <picture class="sailorsmark">
+                                <source type = "image/webp" srcset="/assets/redbloom.0a81db5a.webp ">
+                                <source type = "image/png" srcset="/assets/redbloom.209dd3f9.png ">
+                                <img src="redbloom.png" alt="white flower.">
+                              </picture>
+                              <p>This plant is toxic, but when distilled with tools from a completed apothecary, it can cure any wound as long as the substance is poured directly on the wound, and as long as the recipient has a night’s rest.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item clearfix">
+                          <h2 class="accordion-header" id="ubHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ub" aria-expanded="false" aria-controls="ub">
+                              Unicorn's Blessing*
+                            </button>
+                          </h2>
+                          <div id="ub" class="accordion-collapse collapse" aria-labelledby="ubHeading" data-bs-parent="#plants">
+                            <div class="accordion-body">
+                              <picture class="sailorsmark">
+                                <source type = "image/webp" srcset="/assets/unicornsblessing.ade77e67.webp ">
+                                <source type = "image/png" srcset="/assets/unicornsblessing.ae966a5d.png ">
+                                <img src="unicornsblessing.png" alt="white flower.">
+                              </picture>
+                              <p>This blue flower was said to have been created when a unicorn touched its horn to a common weed. When distilled with tools from a completed apothecary, it can act as the antidote for any poison. The antidote must be used right away, as the effectiveness fades an hour after distillation. There are only a few blooms, however, so it’s best not to pick them all at once without getting a nature mage to refresh their numbers. ​</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item clearfix">
+                          <h2 class="accordion-header" id="sbHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sb" aria-expanded="false" aria-controls="sb">
+                              Spineberry
+                            </button>
+                          </h2>
+                          <div id="sb" class="accordion-collapse collapse" aria-labelledby="sbHeading" data-bs-parent="#plants">
+                            <div class="accordion-body">
+                              <picture class="sailorsmark">
+                                <source type = "image/webp" srcset="/assets/spineberry.65dc2d46.webp ">
+                                <source type = "image/png" srcset="/assets/spineberry.6daf782c.png ">
+                                <img src="spineberry.png" alt="white flower.">
+                              </picture>
+                              <p>This spiked red berry looks unpleasant, but when peeled, and boiled with juice from raplin root, it can be set out to harden into a lozenge that when sucked on is quite good at soothing sore throats and coughs.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item clearfix">
+                          <h2 class="accordion-header" id="belgoHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#belgo" aria-expanded="false" aria-controls="belgo">
+                              Belgo
+                            </button>
+                          </h2>
+                          <div id="belgo" class="accordion-collapse collapse" aria-labelledby="belgoHeading" data-bs-parent="#plants">
+                            <div class="accordion-body">
+                              <picture class="sailorsmark">
+                                <source type = "image/webp" srcset="/assets/belgo.c0f8f081.webp ">
+                                <source type = "image/png" srcset="/assets/belgo.899b8bb5.png ">
+                                <img src="belgo.png" alt="white flower.">
+                              </picture>
+                              <p>This plant has a garlicky taste, and an unpleasant sour smell. It can give you quite the stomach ache when eaten, but is believed to have the power to treat a wide variety of diseases far worse than a stomach ache. Not all the diseases it can treat are known, but when someone has an infected wound, or a sore throat that won’t let up, Belgo is always issued as a treatment.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item clearfix">
+                          <h2 class="accordion-header" id="cbHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cb" aria-expanded="false" aria-controls="cb">
+                              Common Buttonbloom
+                            </button>
+                          </h2>
+                          <div id="cb" class="accordion-collapse collapse" aria-labelledby="cbHeading" data-bs-parent="#plants">
+                            <div class="accordion-body">
+                              <picture class="sailorsmark">
+                                <source type = "image/webp" srcset="/assets/buttonbloom.1c1de166.webp ">
+                                <source type = "image/png" srcset="/assets/buttonbloom.7f7fcc87.png ">
+                                <img src="buttonbloom.png" alt="white flower.">
+                              </picture>
+                              <p>
+	
+                                This pleasant plant can commonly be seen throughout Tiranthe, and has little pink blooms. It’s more effective before it has bloomed, however, and if you eat the leaves, or brew the leaves into a tea, it is said to ward off fever, and treat headaches.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item clearfix">
+                          <h2 class="accordion-header" id="spicoriHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#spicori" aria-expanded="false" aria-controls="spicori">
+                              Spicori
+                            </button>
+                          </h2>
+                          <div id="spicori" class="accordion-collapse collapse" aria-labelledby="spicoriHeading" data-bs-parent="#plants">
+                            <div class="accordion-body">
+                              <picture class="sailorsmark">
+                                <source type = "image/webp" srcset="/assets/spicori.bcaee126.webp ">
+                                <source type = "image/png" srcset="/assets/spicori.5c30b9dc.png ">
+                                <img src="spicori.png" alt="white flower.">
+                              </picture>
+                              <p>Insects dislike the oils this plant produces, and when ingested, it’s said spicori can rid you of internal parasites. </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item clearfix">
+                          <h2 class="accordion-header" id="terimHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#terim" aria-expanded="false" aria-controls="terim">
+                              Terim
+                            </button>
+                          </h2>
+                          <div id="terim" class="accordion-collapse collapse" aria-labelledby="terimHeading" data-bs-parent="#plants">
+                            <div class="accordion-body">
+                              <picture class="sailorsmark">
+                                <source type = "image/webp" srcset="/assets/terim.af642ff9.webp ">
+                                <source type = "image/png" srcset="/assets/terim.186754c9.png ">
+                                <img src="terim.png" alt="white flower.">
+                              </picture>
+                              <p>A pretty orange flower that can be brewed into a calming tea. When dried before being brewed, it can also act as a sleep aid. Some are resistant to its properties, however, much to the chagrin of poor sleepers.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item clearfix">
+                          <h2 class="accordion-header" id="ehtelluHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ehtellu" aria-expanded="false" aria-controls="ehtellu">
+                              Ehtellu
+                            </button>
+                          </h2>
+                          <div id="ehtellu" class="accordion-collapse collapse" aria-labelledby="ehtelluHeading" data-bs-parent="#plants">
+                            <div class="accordion-body">
+                              <picture class="sailorsmark">
+                                <source type = "image/webp" srcset="/assets/ethellu.8eeef357.webp ">
+                                <source type = "image/png" srcset="/assets/ethellu.5402dff9.png ">
+                                <img src="ethellu.png" alt="white flower.">
+                              </picture>
+                              <p>The leaves of this bush produce a pungent oil. When the leaves are steamed, and the steam is breathed in, it’s said to ease breathing problems. When dried, and placed in a sachet, some say it acts as a charm to ward off evil. It can also be used to remove dye.</p>
+                            </div>
+                          </div>
+                        </div>
+                
+                
+                      </div> <!--end of accordion-->
+                      
+                          
+                          
+      
+                  </div> 
+                  <div class="tab-pane" id="other" role="tabpanel" aria-labelledby="other-tab"> 
+                    <div class="accordion accordion-flush info-accordion" id="otherplants">
+
+                      <div class="accordion-item clearfix">
+                        <h2 class="accordion-header" id="nnHeading">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nn" aria-expanded="false" aria-controls="nn">
+                            Noro Noro Fruit
+                          </button>
+                        </h2>
+                        <div id="nn" class="accordion-collapse collapse" aria-labelledby="nnHeading" data-bs-parent="#otherplants">
+                          <div class="accordion-body">
+                            <picture class="sailorsmark">
+                              <source type = "image/webp" srcset="/assets/noronoro.b82cfebf.webp ">
+                              <source type = "image/png" srcset="/assets/noronoro.379302da.png ">
+                              <img src="noronoro.png" alt="round dried purple fruit.">
+                            </picture>
+                            <p>Many travelers know about noro noro fruit, particularly in its dried form. It was originally a popular travel food in Dethi, but quickly spread to other regions due to its ability to grow in great multitudes in noro noro trees, and due to its nutritional value, and its filling nature. It's said that one can live on noro noro fruit and water alone. When dried, noro noro fruit can last for months, and still retain its healthful benefits. Despite this, many still turn their nose up at eating the fruit due to its incredibly bitter taste</p>
+                          </div>
+                        </div>
+                      </div>
+              
+              
+                    </div> <!--end of accordion-->
+                  </div> 
+                 
+
+                  
+    
+              </div>
+          </div>
+      </div>
+     
+
+  </section>
+
+
+  
+    
+    
+  </body>
+</html>

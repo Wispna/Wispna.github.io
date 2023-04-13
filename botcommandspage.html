@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bot Commands</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content="A curse of raehn website." />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/OMuVeQA.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/rDQGgS0.png">
+
+    
+    <script type="module" crossorigin src="/assets/bootstrap.esm.7088dd46.js"></script>
+    <link rel="stylesheet" href="/assets/bootstrap.esm.1730bc0e.css">
+  </head>
+
+  <body class="homepage">
+    <!-- Your HTML goes here -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 font2 sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">CURSE OF RAEHN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="homedrop" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Home <span class="sr-only"></span></a>
+              <div class="dropdown-menu" aria-labelledby="homedrop">
+                <a class="dropdown-item" href="/index.html">Home</a>
+                <a class="dropdown-item" href="/rulespage.html">Rules + FAQ</a>
+                <a class="dropdown-item" href="/storypage.html">Story</a>
+                <a class="dropdown-item" href="https://www.deviantart.com/curse-of-raehn">deviantArt</a>
+              </div>
+            </li>
+        
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="worlddrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">World</a>
+              <div class="dropdown-menu" aria-labelledby="worlddrop">
+                <a class="dropdown-item" href="/mapspage.html">Maps</a>
+                <a class="dropdown-item" href="/regionspage.html">Regions</a>
+                <a class="dropdown-item" href="/godspage.html">Gods</a>
+                <a class="dropdown-item" href="/raehnpage.html">Raehn</a>
+              </div>
+            </li>
+    
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="chardrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">Character</a>
+              <div class="dropdown-menu" aria-labelledby="chardrop">
+                <a class="dropdown-item" href="/creationpage.html">Creation</a>
+                <a class="dropdown-item" href="/racespage.html">Races</a>
+                <a class="dropdown-item" href="/specialcharacterspage.html">Special Characters</a>
+                <a class="dropdown-item" href="/specialmagicpage.html">Special Magic</a>
+                <a class="dropdown-item" href="/mechanicspage.html">Mechanics</a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="otherdrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Other
+              </a>
+              <div class="dropdown-menu" aria-labelledby="otherdrop">
+                <a class="dropdown-item" href="/botcommandspage.html">Bot Commands</a>
+                <a class="dropdown-item" href="/craftingpage.html">Crafting</a>
+                <a class="dropdown-item" href="/calendarpage.html">Calendar</a>
+                <a class="dropdown-item" href="/plantpage.html">Plants</a>
+                <a class="dropdown-item" href="/monsterspage.html">Monsters</a>
+                <a class="dropdown-item" href="/glossarypage.html">Glossary</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+  
+  <!--Jumbotron-->
+  <div class="jumbotron-other container-fluid py-5 font2">
+    <div class="title-name">
+      <p class="text-center">Bot Commands</p>
+    </div>
+  </div>
+  
+   <!-- <section class="quote poiret center">
+      <h4>"What is this mark?..."</h4>
+    </section> -->
+
+    <div class="divider">
+      <picture>
+        <source type = "image/webp" srcset="/assets/purpledivider.aa4001b7.webp ">
+        <source type = "image/png" srcset="images/purpledivider.jpg">
+        <img src="/assets/purpledivider.16b4f723.png" alt="divider">
+      </picture>
+    </div>
+
+    <section>
+      <div class="magic">
+        <p>We will be using a variety of bots in the Curse of Raehn Discord to aid with combat, the store, and money/xp earning. As more bots and commands are added, more instructions will be added as well.</p>
+      </div>
+    </section>
+  
+    <section>
+        <div class="info-box2">
+          <picture>
+            <source type = "image/webp" srcset="/assets/quasi-bot.e9aa6c97.webp ">
+            <source type = "image/png" srcset="/assets/quasi-bot.801f7dd0.png ">
+            <img src="/assets/quasi-bot.801f7dd0.png" alt="a sparrow">
+          </picture>
+          <h3 class="poiret">Quasi-bot</h3>
+
+          <br>
+          <br>
+          <div class="accordion accordion-flush info-accordion" id="examplespells">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="dreidalHeading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#dreidal" aria-expanded="false" aria-controls="dreidal">
+                  Adding and Editing Character Cards
+                </button>
+              </h2>
+              <div id="dreidal" class="accordion-collapse collapse" aria-labelledby="dreidalHeading" data-bs-parent="#examplespells">
+                <div class="accordion-body">
+                  <h5>To Add a new Character:</h5>
+                  <p>!addchar &lt;character name&gt; : Note that every character name has to be unique, and cannot contain spaces. If there is a space, everything after the space will automatically be added to the character's description.</p>
+                  <h5>To Delete a Character:</h5>
+                  <p>!deletechar &lt;character name&gt; : Note that the character name has to be case sensitive when deleting. Use this command with caution.</p>
+                  <h5>Change image:</h5>
+                  <p>!charimage &lt;charname&gt; &lt;img url&gt; : it must be a url and cannot simply be uploaded along with the command. (don't actually put &lt;&gt; around the url as it will break the card)</p>
+                  <h5>Change character description:</h5>
+                  <p>!editchar &lt;charname&gt; &lt;description&gt;</p>
+                  <h5>Change magic type:</h5>
+                  <p>!charmagic &lt;charname&gt; &lt;magic type&gt;</p>
+                  <h5>Change stats:</h5>
+                  <p>!charstats &lt;charname&gt; 0 0 0 0 0 0 : Note that your replace the 0's with the corresponding stat number, and they must be in order of vitality &gt; physical &gt; sorcery &gt; academics &gt; lore &gt; blessings (the same order they are on the card). There must also be spaces in between each separate stat number.</p>
+                  <h5>Change skills:</h5>
+                  <p>!charskills &lt;charname&gt; &lt;character skills&gt;</p>
+                  <h5>Other page skills:</h5>
+                  <p>!charskillsm &lt;charname&gt; ----- then press return &lt;charskills&gt; : Note that this is for magic skills</p>
+                  <p>!charskillsp &lt;charname&gt; ----- then press return &lt;charskills&gt; : Note that this is for physical skills</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="harvestHeading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#harvest" aria-expanded="false" aria-controls="harvest">
+                  Creating harvesting Locations and Custom Items
+                </button>
+              </h2>
+              <div id="harvest" class="accordion-collapse collapse" aria-labelledby="harvestHeading" data-bs-parent="#examplespells">
+                <div class="accordion-body">
+                  <p>To create a harvesting location you must have first bought a business license in the shop. People may then enter your business thread to harvest ingredients for craftable items.</p>
+                  <p>!addlocation &lt;locationName&gt;: This will create the initial location where your items can be harvested from. The location name must be one word without spaces. Try to make it something simple to type.</p>
+                  <p>!createitem &lt;itemName&gt;: This will create a custom item that can be potentially harvested from your location, or crafted using those harvested items. The name can contain spaces, and its properties can be edited in commands shown below.</p>
+                  <p>!itemdescription &lt;description&gt;: This will create the description for your item that is viewed when your item is looked up with the !item command.</p>
+                  <p>!itemtype &lt;type&gt;: This will explain what kind of item it is so it can be filtered when viewed in the inventory. Currently only consumables (potion), materials (material), miscellaneous (misc), and magic (magic) items are allowed to be created. Custom weapons/accessories/armor or anything that gives a permanent stat boost cannot be made.</p>
+                  <p>Consumables are items that give a temporary boost, materials are items that can be harvested, miscellaneous is non magical misc items, and magic are items with rp flavor magical effects.</p>
+                  <p>!itemimage &lt;imageurl&gt;: Do not actually include &lt;&gt; when inserting the url. This will make the url not work when accessed by the bot. This will provide the image for when the item is looked up.</p>
+                  <p>!itememoji &lt;emojiName&gt;: This will add an emoji next to your custom item that can be viewed when the item is looked at in the inventory. This emoji MUST be from the Curse of Raehn server/must be a default discord emoji. Quasi is unable to access emojis from other servers.</p>
+                  <p>!itemlocation &lt;location name&gt;: This is for harvestable materials only! The location name must be a location that you have already created in the bot, and must have the same capitalization. This will make it so that when the &lt;!harvest&gt; command is used, this item can be harvested from the right location.</p>
+                  <p>!harvest &lt;location name&gt;: This command will harvest harvestable materials in the location. It will randomly choose from all of the materials that were added from that location. This command can only be used every 6 hours, and has a 20% chance of finding nothing. You cannot harvest from multiple locations each 6 hours, so one location must be chosen.</p>
+                  <p>!itemingredient &lt;ingredient number (1-5)&gt; | &lt;craftable item name&gt; | &lt;ingredient item name&gt; | &lt;amount of this ingredient needed&gt;: This is for craftable items only. Craftable items may have up to 5 different ingredients. For example, if one wanted to craft an umbrella using 3 twigs and 2 cloth, then the commands would be:</p>
+                  <p>!itemingredient 1 | umbrella | twig | 3</p>
+                  <p>!itemingredient 2 | umbrella | cloth | 2</p>
+                  <p>This would set the first ingredient needed as twig, and the second ingredient needed as cloth. Once this is set up, the item will be able to be crafted with the !craft command.</p>
+                  <p>!iteminfo &lt;itemname&gt;: This command will show a simple profile card that will display the information that you inputted. It can show you what you have the location set as, as well as what you have the ingredients set as.</p>
+                  <p>!uci &lt;itemname&gt;: uci stands for use custom item. This will delete a single one of an item in your custom item inventory.</p>
+                  <p>!bag: custom user items will display in a different inventory. This command will show you your custom user items inventory, as opposed to your normal inventory.</p>
+                  <p>!tci &lt;@user&gt; &lt;itemname&gt;: tci stands for transfer custom item. This will transfer an item from your bag to another user's bag.</p>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div><!--accordion end-->
+          <br>
+          <br>
+          <p>This is a custom bot that will aid with much of the system and combat. Important CoR commands to know are:</p>
+          <p>!skill - using !skill &lt;skill #&gt; will roll the specified amount of d6's for you, count every 5 and 6, and will then let you know how many successes you got.</p>
+          <p>!init - using !init &lt;phys #&gt; will automatically add the results of your d6's to calculate your initiative.</p>
+          <p>!atk - !atk &lt;atk #&gt; &lt;bless #&gt; will calculate the successes, along with the blessing critical multiplier. It will then tell you the total amount of damage you managed to do.</p>
+          <p>!heal - !heal &lt;sorc #&gt; &lt;bless #&gt; This is the same as !atk, except it's for healing.</p>
+          <p>!def - !def &lt;def #&gt; &lt;bless #&gt; This is the same as !atk, except it's for defending.</p>
+          <p>!multiatk - !multiatk &lt;atk #&gt; &lt;bless #&gt; &lt;monster amount&gt; This lets you quickly attack with multiple monsters at once.</p>
+          <p>!profile - !profile &lt;character name&gt; or !char &lt;character name&gt; will let you view a small character profile card that lets you know their basic combat information.</p>
+          <p>!build - !build &lt;buildingname&gt; will let you add progress to building select buildings. Sometimes random events will happen. You can use this command every 12 hours.</p>
+          <p>!explore - currently only &lt;!explore death&gt; is available. This command can be used once per day and will reveal a section of Raehn's underground!</p>
+          <p>!search - !search &lt;item name&gt;. This command lets you look more closely at items that particularly stand out when exploring.</p>
+          <p>!buildings - Shows the build progress of and lists the buildable buildings.</p>
+          <p>!inv - Shows your character's in character inventory.</p>
+          <p>!balance - Shows how many glass sparrows you have. Glass sparrows can be earned through building, or through certain store items.</p>
+          <p>!balances - Shows how many glass sparrows everyone has.</p>
+          <p>!chars - Lists all the characters currently apped for Curse of Raehn.</p>
+          <p>!reps - Shows the reputation of every character.</p>
+          <p>!levels - Shows how much experience every character has earned.</p>
+          <p>!item - !item &lt;item name&gt; will give you info about that particular item.</p>
+          <p>!help - Shows extra bot commands.</p>
+          <p>!transfer - !transfer &lt;@recipient&gt; &lt;amount&gt; will transfer an amount of birds from your balance that you specify to a chosen person.</p>
+          <p>!transferitem - !transferitem &lt;@recipient&gt; &lt;item name&gt; will transfer a single item of your choice from your inventory to that of a chosen person's.</p>
+          <p>!useitem - !useitem &lt;item name&gt; will delete a single instance of the named item from your inventory.</p>
+          <p>!xppotion - !xppotion &lt;character name&gt; &lt;# of potions&gt; will use any xp potions in your inventory to give xp to a chosen character.</p>
+            
+        </div>
+    </section>
+
+    <section>
+        <br>
+    </section>
+
+    <section>
+      <div class="info-box2">
+        <picture>
+          <source type = "image/webp" srcset="/assets/unbelievaboat.ee47eb6a.webp ">
+          <source type = "image/png" srcset="/assets/unbelievaboat.72c97706.png ">
+          <img src="/assets/unbelievaboat.72c97706.png" alt="a sparrow">
+        </picture>
+        <h3 class="poiret">Unbelievaboat</h3>
+
+        <br>
+        <br>
+        <p>Official website here: <a href="https://unbelievaboat.com/">https://unbelievaboat.com/</a></p>
+        <p>This is a bot we will be using to manage much of our economy. It will handle rp and art earnings, as well as the server's store.</p>
+        <p>&gt;store - This command will allow you to view the store.</p>
+        <p>&gt;buy-item - &gt;buy-item  &lt;item name&gt; will allow you to purchase an item from the store.</p>
+        <p>&gt;use-item - &gt;use-item  &lt;item name&gt; uses an item from the store. This mostly just deletes the item from your inventory.</p>
+        <p>&gt;add-money @discordname &lt;#&gt; - This command will add money to your balance.</p>
+        <p>&gt;remove-money @discordname &lt;#&gt; - This command will remove from your balance.</p>
+
+          
+      </div>
+  </section>
+  
+    
+    
+  </body>
+</html>

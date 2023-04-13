@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Combat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content="A curse of raehn website." />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/OMuVeQA.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/rDQGgS0.png">
+
+    
+    <script type="module" crossorigin src="/assets/bootstrap.esm.7088dd46.js"></script>
+    <link rel="stylesheet" href="/assets/bootstrap.esm.1730bc0e.css">
+  </head>
+
+  <body class="homepage">
+    <!-- Your HTML goes here -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 font2 sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">CURSE OF RAEHN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="homedrop" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Home <span class="sr-only"></span></a>
+              <div class="dropdown-menu" aria-labelledby="homedrop">
+                <a class="dropdown-item" href="/index.html">Home</a>
+                <a class="dropdown-item" href="/rulespage.html">Rules + FAQ</a>
+                <a class="dropdown-item" href="/storypage.html">Story</a>
+                <a class="dropdown-item" href="https://www.deviantart.com/curse-of-raehn">deviantArt</a>
+              </div>
+            </li>
+        
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="worlddrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">World</a>
+              <div class="dropdown-menu" aria-labelledby="worlddrop">
+                <a class="dropdown-item" href="/mapspage.html">Maps</a>
+                <a class="dropdown-item" href="/regionspage.html">Regions</a>
+                <a class="dropdown-item" href="/godspage.html">Gods</a>
+                <a class="dropdown-item" href="/raehnpage.html">Raehn</a>
+              </div>
+            </li>
+    
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="chardrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">Character</a>
+              <div class="dropdown-menu" aria-labelledby="chardrop">
+                <a class="dropdown-item" href="/creationpage.html">Creation</a>
+                <a class="dropdown-item" href="/racespage.html">Races</a>
+                <a class="dropdown-item" href="/specialcharacterspage.html">Special Characters</a>
+                <a class="dropdown-item" href="/specialmagicpage.html">Special Magic</a>
+                <a class="dropdown-item" href="/mechanicspage.html">Mechanics</a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="otherdrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Other
+              </a>
+              <div class="dropdown-menu" aria-labelledby="otherdrop">
+                <a class="dropdown-item" href="/botcommandspage.html">Bot Commands</a>
+                <a class="dropdown-item" href="/craftingpage.html">Crafting</a>
+                <a class="dropdown-item" href="/calendarpage.html">Calendar</a>
+                <a class="dropdown-item" href="/plantpage.html">Plants</a>
+                <a class="dropdown-item" href="/monsterspage.html">Monsters</a>
+                <a class="dropdown-item" href="/glossarypage.html">Glossary</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+  
+  <!--Jumbotron-->
+  <div class="jumbotron-character container-fluid py-5 font2">
+    <div class="title-name">
+      <p class="text-center">Combat</p>
+    </div>
+  </div>
+  
+   <!-- <section class="quote poiret center">
+      <h4>"What is this mark?..."</h4>
+    </section> -->
+
+    <div class="divider">
+      <picture>
+        <source type = "image/webp" srcset="/assets/purpledivider.aa4001b7.webp ">
+        <source type = "image/png" srcset="images/purpledivider.jpg">
+        <img src="/assets/purpledivider.16b4f723.png" alt="divider">
+      </picture>
+    </div>
+  
+    <section>
+        <div class="info-box2">
+            <h3 class="poiret">What do I do during combat?</h3>
+            <p>Our combat system involves opponents taking turns to attack, defend, and heal against each other until the opposing side is reduced to 0 HP or incapacitated. We use bots to roll d6 dice to determine this.</p>
+
+        </div>
+    </section>
+
+    <div class="racebuttons poiret">
+        <ul>
+            <li><a href="#stats">Vital Stats</a></li>
+            <li><a href="#turns">Turn Actions</a></li>
+            <li><a href="#blessings">Blessings</a></li>
+            <li><a href="#exacombat">Example Combat</a></li>
+        </ul>
+      </div>
+
+      <section id="stats">
+        <div class="info-box2">
+            <h3 class="poiret">Vital Stats</h3>
+            <p><strong>HP:</strong> During combat, keep track of your HP. Each point of VIT is 1 point of HP.</p>
+            <p><strong>> What does this mean for me?</strong></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-If you have 6 Vitality, you will need 6 SUCCESSES against you to be beaten*</p>
+            <p>*If you don’t heal or defend yourself</p>
+            <br>
+            <br>
+            <p><strong>Initiative:</strong> A fancy word for turn order. You roll your PHYS stat and add the total together. The higher the score, the faster your turn comes.</p>
+            <p><strong>> What does this mean for me?</strong></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-If you have 5 PHYS, you roll 5d6. EX. You roll and get the numbers (2, 4, 3, 1, 6). Your initiative would be 16.</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-BOT COMMAND: !init <physical number></physical></p>
+
+        </div>
+    </section>
+
+    <section id="turns">
+        <div class="info-box2">
+            <h3 class="poiret">What can I do during my turn?</h3>
+            <p><strong>Attack roll:</strong> You roll PHYS atk or SORC atk. Every 5 and 6, which is a success, counts as 1 point of damage onto your target. Roll your blessings along with your attacks when rolling.</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-Physical Attack:</strong> Every point in PHYS is how many d6’s you can roll to inflict damage. Any bonus rolls come from the Physical Tree branches you take or equipment.</p>
+            <p><strong>> What does this mean for me?</strong></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-If you have 4 in PHYS, you roll 4d6 when doing a Physical Attack.</p>
+            <br>
+            <br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>-Sorcery Attack:</strong> Every point in SORC is how many d6’s you can roll to inflict damage. Any bonus rolls come from the Magic Tree branches you take or equipment.</p>
+            <p><strong>> What does this mean for me?</strong></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-If you have 4 in SORC, you roll 4d6 when doing a Sorcery Attack.*</p>
+            <p>*You need Manipulation in an element to attack</p>
+            <br>
+            <br>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-BOT COMMAND: !atk &lt;skill number&gt; &lt;blessings number&gt;</p>
+            <br>
+            <br>
+            <p><strong>Healing:</strong> On your turn, if you have healing capabilities, you can Heal instead of Attack. Roll SORC. Every success is 1 point of healed HP on your target. Roll your blessings along with your defenses when rolling.</p>
+            <p><strong>> What does this mean for me?</strong></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-You have 5 points in SORC, you roll 5d6 when healing.</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-BOT COMMAND: !heal &lt;sorcery number&gt; &lt;blessings number&gt;</p>
+            <br>
+            <br>
+            <p><strong>Defense Roll:</strong> In addition to attacking or healing, you can defend yourself. You don't have to wait for your turn, you can defend any time someone is attacking you, but only once per round. This resets when the turn order restarts, and you can use your SORC or PHYS stat. For every success, deduct one success from the enemy’s attack. Remember to use your blessings along with your defenses when rolling.</p>
+            <p><strong>> What does this mean for me?</strong></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-An enemy attacks you with 4 successes. You immediately react with a defense roll and get 3 successes. You take 1 damage.</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-BOT COMMAND: !def &lt;skill number&gt; &lt;blessings number&gt;</p>
+            
+            
+
+        </div>
+    </section>
+
+    <section id="blessings">
+        <div class="info-box2">
+            <h3 class="poiret">Pray for Help</h3>
+            <p><strong>Blessings:</strong> BLESS is different from the other stats. This is an assisting stat. Blessings can boost your attacks, defenses, and heals. This ONLY happens when you roll a 6 on your blessings roll. Each success, your action is multiplied. A single success is x2, and every blessing after it increases the multiplier by 1. </p>
+            <p><strong>> What does this mean for me?</strong></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;-You roll to attack. You roll 6 of your attack dice, and 3 of your blessing dice. Your attack is (5, 4, 6, 5, 3, 6), so you succeed 4 times. Your blessing is (6, 4, 6), so you succeeded 2 times. Your total damage is 12.*</p>
+            <p>*No need to get caught up in the math, we have a bot that will be doing this for you.</p>
+
+        </div>
+    </section>
+
+    <section class="main-img" id="exacombat">
+        <div class="info-box 2">
+            <h3 class="poiret">Example Combat</h3>
+            <br>
+            <br>
+            <div class="accordion accordion-flush info-accordion" id="examplecombat">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="excombatHeading">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#excombat" aria-expanded="false" aria-controls="excombat">
+                      Example Combat
+                    </button>
+                  </h2>
+                  <div id="excombat" class="accordion-collapse collapse" aria-labelledby="excombatHeading" data-bs-parent="#examplecombat">
+                    <div class="accordion-body">
+                      <p>DM: . . . Suddenly, Caviar(P2) senses another magic- the vase in Joe's(DM) arms. As he turns left, it shakes, and regardless of magic ability, everyone around him can tell something is up when the vase starts letting out a high-pitched scream:</p>
+                      <p>aaaaAAAAAAAAAAAAAAAaaaaaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.</p>
+                      <br>
+                      <p><strong>INITIATIVE ROLL!</strong></p>
+                      <br>
+                      <p>P1: TheOnceler(EdHelms) winced at the horrible scream and shared a look with the elf lady(P3). "Shall we go?"</p>
+                      <p>He shrugged and headed after the group.</p>
+                      <p><em>TheOnceler(EdHelms) does not roll initiative, due to their character having 0 in PHYS</em></p>
+                      <p>P2: !init 4</p>
+                      <p>Quasi-bot: 5 5 3 5</p>
+                      <p>@P2’s initiative is 18.</p>
+                      <p>P3: !init 5</p>
+                      <p>Quasi-bot: 6 4 4 4 1</p>
+                      <p>@P3’s initiative is 19.</p>
+                      <p>P4: !init 5</p>
+                      <p>Quasi-bot: 3 2 1 6 2</p>
+                      <p>DM: !init 3</p>
+                      <p>Quasi-bot: 4 4 4</p>
+                      <p>@DM’s initiative is 12.</p>
+                      <p>DM: !init 5</p>
+                      <p>Quasi-bot: 5 3 1 5 1</p>
+                      <p>@DM’s initiative is 15.</p>
+                      <br>
+                      <p>DM:</p>
+                      <p>ORDER FOR COMBAT:</p>
+                      <ul>
+                        <li>Yierene (P3)</li>
+                        <li>Big Knight (DM)</li>
+                        <li>Caviar (P2)</li>
+                        <li>Knight 1 (DM)</li>
+                        <li>Knight 2 (DM)</li>
+                        <li>Indras (P4)</li>
+                        <li>Joe (DM)</li>
+                        <li>The Onceler(EdHelms) (P1)</li>
+                      </ul>
+                      <p>(Previously, Caviar had taken some damage before combat from a knight)</p>
+                      <p>P3: Yierene decides to use plants to heal Caviar. (Nature Creation: Major)</p>
+                      <p>Quasi-bot: 6 6 2 1 3 1 2 3</p>
+                      <p>2 heal successes</p>
+                      <p>6</p>
+                      <p>1 Blessing success</p>
+                      <p>@P3 healed 4 points of health</p>
+                      <p>P3: Caviar was healed for 4 vitality points!</p>
+
+                      <p>P2: After Caviar was healed, he was ready for battle and roared.</p>
+                      <p>Action used to aggro the enemy. (The Stalwart: Aggro)</p>
+                      <p>@DM</p>
+                      <br>
+                      <p>DM: The knight swings at Caviar!</p>
+                      <p>!atk 9 1</p>
+                      <p>Quasi-bot: 6 6 2 1 3 1 2 3 5 5</p>
+                      <p>4 attack successes</p>
+                      <p>6</p>
+                      <p>1 Blessing success</p>
+                      <p>@DM did 8 damage.</p>
+                      <p>DM: It hits and deals 8. Do you defend?</p>
+                      <br>
+                      <p>P2: !def 4 3</p>
+                      <p>Quasi-bot: 4 3 4 5</p>
+                      <p>1 defense successes</p>
+                      <p>1 blessing successes</p>
+                      <p>@P2 is protected against 2 damage</p>
+                      <p>P2: defend 2, calcify heal 1, 3 dmg negated (The Stalwart: Calcify)</p>
+                      <br>
+                      <p>P4: Indras runs over and does a dual wielding attack!!! (The Nimble: Dual Wielding)</p>
+                      <p>!atk 4 5</p>
+                      <p>Quasi-bot: 3 3 4 6</p>
+                      <p>1 attack successes </p>
+                      <p>1 6 5 1 1</p>
+                      <p>1 blessing successes</p>
+                      <p>@P4 did 2 damage</p>
+                      <p>P4: !atk 4 5</p>
+                      <p>Quasi-bot: 2 2 3 5</p>
+                      <p>1 attack successes </p>
+                      <p>5 1 2 6 4</p>
+                      <p>1 blessing successes</p>
+                      <p>@P4 did 2 damage</p>
+                      <p>P4: Indras does 4 damage</p>
+                      <br>
+                      <p>DM: The Knight doesn't see the attack coming through the wood. It takes the full 4 damage.</p>
+                      <p>Joe screams back at the vase. He's distracted.</p>
+                      <p>There’s more clamoring… </p>
+                      <br>
+                      <p>P1: TheOnceler(EdHelms) puts his hands together and does some hand signals and shoots a ball of dark energy (Dark Manipulation: Major) at the Knight.</p>
+                      <p>!atk 11 2</p>
+                      <p>Quasi-bot: 1 3 6 4 3 5 1 4 6 6 1</p>
+                      <p>4 attack successes</p>
+                      <p>2 2</p>
+                      <p>0 blessing successes</p>
+                      <p>@P1 did 4 damage</p>
+                      <p>P1: The shadow ball goes nomnom on the knight-chan for 4 damage</p>
+                      <br>
+                      <p>And that’s just one of combat! As you can see, there are many options you can take in 1 round. </p>
+                      <p>Thanks for reading</p>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+        </div>
+    </section>
+  
+    
+    
+  </body>
+</html>

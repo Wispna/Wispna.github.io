@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Crafting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow" />
+    <meta name="description" content="A curse of raehn website." />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/OMuVeQA.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/rDQGgS0.png">
+
+    
+    <script type="module" crossorigin src="/assets/bootstrap.esm.7088dd46.js"></script>
+    <link rel="stylesheet" href="/assets/bootstrap.esm.1730bc0e.css">
+  </head>
+
+  <body class="homepage">
+    <!-- Your HTML goes here -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light p-2 font2 sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">CURSE OF RAEHN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item active dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="homedrop" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Home <span class="sr-only"></span></a>
+              <div class="dropdown-menu" aria-labelledby="homedrop">
+                <a class="dropdown-item" href="/index.html">Home</a>
+                <a class="dropdown-item" href="/rulespage.html">Rules + FAQ</a>
+                <a class="dropdown-item" href="/storypage.html">Story</a>
+                <a class="dropdown-item" href="https://www.deviantart.com/curse-of-raehn">deviantArt</a>
+              </div>
+            </li>
+        
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="worlddrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">World</a>
+              <div class="dropdown-menu" aria-labelledby="worlddrop">
+                <a class="dropdown-item" href="/mapspage.html">Maps</a>
+                <a class="dropdown-item" href="/regionspage.html">Regions</a>
+                <a class="dropdown-item" href="/godspage.html">Gods</a>
+                <a class="dropdown-item" href="/raehnpage.html">Raehn</a>
+              </div>
+            </li>
+    
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="chardrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">Character</a>
+              <div class="dropdown-menu" aria-labelledby="chardrop">
+                <a class="dropdown-item" href="/creationpage.html">Creation</a>
+                <a class="dropdown-item" href="/racespage.html">Races</a>
+                <a class="dropdown-item" href="/specialcharacterspage.html">Special Characters</a>
+                <a class="dropdown-item" href="/specialmagicpage.html">Special Magic</a>
+                <a class="dropdown-item" href="/mechanicspage.html">Mechanics</a>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="otherdrop" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Other
+              </a>
+              <div class="dropdown-menu" aria-labelledby="otherdrop">
+                <a class="dropdown-item" href="/botcommandspage.html">Bot Commands</a>
+                <a class="dropdown-item" href="/craftingpage.html">Crafting</a>
+                <a class="dropdown-item" href="/calendarpage.html">Calendar</a>
+                <a class="dropdown-item" href="/plantpage.html">Plants</a>
+                <a class="dropdown-item" href="/monsterspage.html">Monsters</a>
+                <a class="dropdown-item" href="/glossarypage.html">Glossary</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+  
+  <!--Jumbotron-->
+  <div class="jumbotron-other container-fluid py-5 font2">
+    <div class="title-name">
+      <p class="text-center">Crafting</p>
+    </div>
+  </div>
+  
+   <!-- <section class="quote poiret center">
+      <h4>"What is this mark?..."</h4>
+    </section> -->
+
+    <div class="divider">
+      <picture>
+        <source type = "image/webp" srcset="/assets/purpledivider.aa4001b7.webp ">
+        <source type = "image/png" srcset="images/purpledivider.jpg">
+        <img src="/assets/purpledivider.16b4f723.png" alt="divider">
+      </picture>
+    </div>
+  
+    <section>
+        <div class="info-box2">
+            <p>Crafting is now available for all characters! What's available to craft will be listed here.</p>
+            <p>To craft an item, use the &lt;!craft itemname&gt; command. If you have the necessary items in your inventory, it will automatically make it for you.</p>
+            <p>Seeing what's available may also be viewed in the bot with the &lt;!craft recipes&gt; command.</p>
+            <p>You may see what's exactly needed to craft the item desired with the &lt;!item itemname&gt; command. If the item is craftable, a recipe should be listed at the bottom.</p>
+            <p>Note: The weapon does not have to appear the same way it does in the pixel rendition when searched in the bot. In art you may draw the weapon differently/describe it differently in RP.</p>
+
+        </div>
+    </section>
+
+    <section>
+      <div class="info-box2">
+          <h3 class="poiret">Craftable Items</h3>
+          <div class="container mt-5"> 
+              <ul class="m-0 nav nav-fill nav-justified nav-tabs" id="myTab" role="tablist"> 
+                  <li class="nav-item" role="presentation"> <button class="active nav-link" id="summonbasic-tab" data-bs-toggle="tab" data-bs-target="#summonbasic" type="button" role="tab" aria-controls="summonbasic" aria-selected="true"> <i class="fas fa-home"></i> Weapons </button> </li> 
+                  <!--<li class="nav-item" role="presentation"> <button class="nav-link" id="cr-tab" data-bs-toggle="tab" data-bs-target="#cr" type="button" role="tab" aria-controls="cr" aria-selected="false"> <i class="fas fa-user-astronaut"></i> The Chaos Realm </button> </li> -->
+                  
+              </ul> 
+              <div class="border-grey bg-white p-3 tab-content clearfix mb-3"> 
+                  <div class="tab-pane active" id="summonbasic" role="tabpanel" aria-labelledby="summonbasic-tab"> 
+                    <div class="accordion accordion-flush info-accordion" id="minorgods">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="adoraHeading">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#adora" aria-expanded="false" aria-controls="adora">
+                            Barbed Whip
+                          </button>
+                        </h2>
+                        <div id="adora" class="accordion-collapse collapse" aria-labelledby="adoraHeading" data-bs-parent="#minorgods">
+                          <div class="accordion-body">
+                            <p>A leather whip with bits of metal in it. </p>
+                            <p>OOC: Add 1 success of phys damage ON TOP of what you have already rolled. </p>
+                            <p>Recipe: Rusty Sword x3, Satchels Satchel x3</p>
+                            
+                          </div>
+                        </div>
+                      </div>
+      
+                      <div class="accordion-item">
+                          <h2 class="accordion-header" id="baorhaHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#baorha" aria-expanded="false" aria-controls="baorha">
+                              Burnished Handbell
+                            </button>
+                          </h2>
+                          <div id="baorha" class="accordion-collapse collapse" aria-labelledby="baorhaHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>This golden bell rings with a clear, sweet sound.</p>
+                              <p>OOC: Gain +2d6 to init. Gain +1d6 to magical attacks. </p>
+                              <p>Recipe: Rusty Sword x1, Old Wand x3</p>
+                              
+                            </div>
+                          </div>
+                        </div>
+      
+                        <div class="accordion-item">
+                        <h2 class="accordion-header" id="fakianHeading">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#fakian" aria-expanded="false" aria-controls="fakian">
+                            Chakram
+                          </button>
+                        </h2>
+                        <div id="fakian" class="accordion-collapse collapse" aria-labelledby="fakianHeading" data-bs-parent="#minorgods">
+                          <div class="accordion-body">
+                            <p>This circular blade can be thrown at an enemy, or be hoeld to use in close combat.</p>
+                            <p>OOC: Gain +1d6 when normally physically attacking. Gain +2d6 to attacks, and +1d6 to bless when physically attacking while throwing the weapon, but if doing a throwing attack, your character loses their action on their next turn.​</p>
+                            <p>Recipe: Rusty Sword x5, Earring of Disguise x1</p>
+                            
+                          </div>
+                        </div>
+                      </div>
+      
+                      <div class="accordion-item">
+                          <h2 class="accordion-header" id="gramharaHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gramhara" aria-expanded="false" aria-controls="gramhara">
+                              Crystal Focus
+                            </button>
+                          </h2>
+                          <div id="gramhara" class="accordion-collapse collapse" aria-labelledby="gramharaHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>It shines with an inner light.</p>
+                              <p>OOC: Add +2 when casting a mineral creation buff.</p>
+                              <p>Recipe: Stone 3 x2, Gem of Knowledge x2</p>
+                            </div>
+                          </div>
+                        </div>
+      
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="midoHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#mido" aria-expanded="false" aria-controls="mido">
+                              Fine Axe
+                            </button>
+                          </h2>
+                          <div id="mido" class="accordion-collapse collapse" aria-labelledby="gramharaHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>It's a little heavy. The blade is of polished steel.</p>
+                              <p>OOC: Lose -1d6 to defense, and lose -2d6 to init. Gain +3d6 to physical attacks.</p>
+                              <p>Recipe: Old Wand x1, Rusty Sword x4</p>
+                              
+                            </div>
+                          </div>
+                        </div>
+      
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="nahiteHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nahite" aria-expanded="false" aria-controls="nahite">
+                              Fine Bow
+                            </button>
+                          </h2>
+                          <div id="nahite" class="accordion-collapse collapse" aria-labelledby="nahiteHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>The wood is polished, and the string is taut.</p>
+                              <p>OOC: Gain +1d6 when physically attacking. Gain +1d6 when using healing magic. When an attack from this weapon is blocked by a lightning defense, resist paralysis.</p>
+                              <p>Recipe: Old Wand x4, Healing Potion x3</p>
+                              
+                            </div>
+                          </div>
+                        </div>
+      
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="nakallasHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nakallas" aria-expanded="false" aria-controls="nakallas">
+                              Fine Dagger
+                            </button>
+                          </h2>
+                          <div id="nakallas" class="accordion-collapse collapse" aria-labelledby="nakallasHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>A well balanced blade. ​</p>
+                              <p>OOC: Gain +2d6 init, and gain +1d6 to physical attacks.  ​</p>
+                              <p>Recipe: Rusty Sword x4</p>
+                            </div>
+                          </div>
+                        </div>
+      
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="saiphinaHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#saiphina" aria-expanded="false" aria-controls="saiphina">
+                              Fine Halberd
+                            </button>
+                          </h2>
+                          <div id="saiphina" class="accordion-collapse collapse" aria-labelledby="saiphinaHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>This weapon is heavy, but powerful. It slices as quickly as the wind. ​</p>
+                              <p>OOC: Lose -1d6 when physically defending. Lose -1d6 when rolling initiative. When physically attacking, add +2d6 to your attacks. When attacking, add +1 wind damage ON TOP of what you have already rolled.​</p>
+                              <p>Recipe: Rusty Sword x2, Old Wand x2, Stone 1 x1</p>
+                            </div>
+                          </div>
+                        </div>
+      
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="streiyaHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#streiya" aria-expanded="false" aria-controls="streiya">
+                              Fine Spear
+                            </button>
+                          </h2>
+                          <div id="streiya" class="accordion-collapse collapse" aria-labelledby="saiphinaHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>The haft is of strong oak, and the blade is of polished steel.​ ​</p>
+                              <p>OOC: Gain +1d6 to physical attacks. When physically defending, add 1 success of a physical defense ON TOP of what you have already rolled.</p>
+                              <p>Recipe: Old Wand x2, Rusty Sword x3</p>
+                            </div>
+                          </div>
+                        </div>
+      
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="tornHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#torn" aria-expanded="false" aria-controls="torn">
+                              Fine Staff
+                            </button>
+                          </h2>
+                          <div id="torn" class="accordion-collapse collapse" aria-labelledby="tornHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>You can feel the tingle of magic when touching this weapon. It's topped with a red gem.  ​ ​</p>
+                              <p>OOC: Lose -1d6 to defense. Lose -2d6 to init. Gain +3d6 to magical attacks.</p>
+                              <p>Recipe: Old Wand x4, Gem of Knowledge x1</p>
+                            </div>
+                          </div>
+                        </div>
+      
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="keeperofthelostHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#keeperofthelost" aria-expanded="false" aria-controls="keeperofthelost">
+                              Fine Sword
+                            </button>
+                          </h2>
+                          <div id="keeperofthelost" class="accordion-collapse collapse" aria-labelledby="keeperofthelostHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>A well balanced blade. </p>
+                              <p>OOC: Gain +2d6 to physical attacks. </p>
+                              <p>Recipe: Rusty Sword x5</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="finewandHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#finewand" aria-expanded="false" aria-controls="finewand">
+                              Fine Wand
+                            </button>
+                          </h2>
+                          <div id="finewand" class="accordion-collapse collapse" aria-labelledby="finewandHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>This wand looks almost like a flower about to bloom. </p>
+                              <p>OOC: Gain +2d6 to magical attacks.</p>
+                              <p>Recipe: Old Wand x4, Adora Bathwater x1, Stone 3 x1</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="icerapierHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#icerapier" aria-expanded="false" aria-controls="icerapier">
+                              Ice Rapier
+                            </button>
+                          </h2>
+                          <div id="icerapier" class="accordion-collapse collapse" aria-labelledby="icerapierHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>A thin, light sword that's cool to the touch, and glows with magic.</p>
+                              <p>OOC: Gain +1d6 when rolling init. Gain +1d6 when attacking. When attacking, add +1 water damage ON TOP of what you have already rolled.</p>
+                              <p>Recipe: Rusty Sword x4, Stone 4 x2</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="kusarigamaHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kusarigama" aria-expanded="false" aria-controls="kusarigama">
+                              Kusarigama
+                            </button>
+                          </h2>
+                          <div id="kusarigama" class="accordion-collapse collapse" aria-labelledby="kusarigamaHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>This kama is attached to a metal chain. It can be thrown at enemies at a distance. </p>
+                              <p>OOC: Gain +2d6 when rolling init. Gain +3d6 when physically attacking. After attacking with this weapon, it is lost for one turn.</p>
+                              <p>Recipe: Rusty Sword x4, XP Potion x2</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="oldrebecHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#oldrebec" aria-expanded="false" aria-controls="oldrebec">
+                              Old Rebec
+                            </button>
+                          </h2>
+                          <div id="oldrebec" class="accordion-collapse collapse" aria-labelledby="oldrebecHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>A lovely stringed instrument.</p>
+                              <p>OOC: Gain +2d6 to healing. </p>
+                              <p>Recipe: Miku Guqin x4, Healing Potion x2</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="scytheHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#scythe" aria-expanded="false" aria-controls="scythe">
+                              Scythe
+                            </button>
+                          </h2>
+                          <div id="scythe" class="accordion-collapse collapse" aria-labelledby="scytheHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>This weapon has gained new strength when infused with the power of the gem.</p>
+                              <p>OOC: Gain +1d6 when magically attacking. When defending with magic, add +1 of a physical defense ON TOP of what you have already rolled.</p>
+                              <p>Recipe: Rusty Sword x3, XGem of Knowledge x1</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="tofHeading">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#tof" aria-expanded="false" aria-controls="tof">
+                              Tome of Flames
+                            </button>
+                          </h2>
+                          <div id="tof" class="accordion-collapse collapse" aria-labelledby="tofHeading" data-bs-parent="#minorgods">
+                            <div class="accordion-body">
+                              <p>When its pages turn, it almost sounds like the crackling of flames. </p>
+                              <p>OOC: Gain +1d6 when attacking with sorcery. When defending with sorcery, add +1 of a success of a fire defense ON TOP of what you have already rolled.</p>
+                              <p>Recipe: Musical Score x2, Stone 2 x2</p>
+                            </div>
+                          </div>
+                        </div>
+      
+      
+      
+      
+      
+                    </div>
+
+      
+                  </div> 
+                  
+              </div>
+
+
+          </div>
+      </div>
+  </section>
+  
+    
+    
+  </body>
+</html>
