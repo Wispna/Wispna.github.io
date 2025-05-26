@@ -10,8 +10,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/rDQGgS0.png">
 
     
-    <script type="module" crossorigin src="/assets/bootstrap.esm.7088dd46.js"></script>
-    <link rel="stylesheet" href="/assets/bootstrap.esm.15a4abfb.css">
+    <script type="module" crossorigin src="/assets/main.74c4b88e.js"></script>
+    <link rel="stylesheet" href="/assets/main.a7dd5e7d.css">
   </head>
 
   <body class="homepage">
@@ -99,26 +99,28 @@
     <section class="tab-box">
         <div class="container mt-5"> 
             <ul class="m-0 nav nav-fill nav-justified nav-tabs" id="myTab" role="tablist"> 
-                <li class="nav-item" role="presentation"> <button class="active nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"> <i class="fas fa-home"></i> Map </button> </li> 
-                <li class="nav-item" role="presentation"> <button class="nav-link" id="regional-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"> <i class="fas fa-user-astronaut"></i> Regional Map </button> </li> 
-                <li class="nav-item" role="presentation"> <button class="nav-link" id="travel-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false"> <i class="far fa-envelope-open"></i> Travel Map</button> </li> 
+                <li class="nav-item" role="presentation"> <button class="active nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true"> <i class="fas fa-profile"></i>Tiranthe Regional Map </button> </li> 
+                <li class="nav-item" role="presentation"> <button class="nav-link" id="regional-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="false"> <i class="fas fa-user-astronaut"></i>Tiranthe Map </button> </li> 
+                <li class="nav-item" role="presentation"> <button class="nav-link" id="travel-tab" data-bs-toggle="tab" data-bs-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false"> <i class="far fa-envelope-open"></i>Tiranthe Travel Map</button> </li> 
+                <li class="nav-item" role="presentation"> <button class="nav-link" id="raehn-tab" data-bs-toggle="tab" data-bs-target="#raehn" type="button" role="tab" aria-controls="raehn" aria-selected="false"> <i class="far fa-raehn"></i>Raehn Map</button> </li> 
+                <li class="nav-item" role="presentation"> <button class="nav-link" id="underground-tab" data-bs-toggle="tab" data-bs-target="#underground" type="button" role="tab" aria-controls="underground" aria-selected="false"> <i class="far fa-underground"></i>Underground</button> </li> 
             </ul> 
             <div class="border-grey bg-white p-3 tab-content"> 
-                <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="map-tab"> 
-                    <div class="map">
-                        <picture>
-                          <source type = "image/webp" srcset="/assets/tiranthemap.0ad25203.webp ">
-                          <source type = "image/png" srcset="/assets/tiranthemap.1f5dbd4c.png ">
-                          <img src="/assets/tiranthemap.1f5dbd4c.png" alt="map of tiranthe">
-                        </picture>
-                      </div>
-                </div> 
-                <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="regional-tab"> 
+                    <div class="tab-pane active" id="profile" role="tabpanel" aria-labelledby="regional-tab"> 
                     <div class="map">
                         <picture>
                           <source type = "image/webp" srcset="/assets/regionalmap.07d93326.webp ">
                           <source type = "image/png" srcset="/assets/regionalmap.bb21f6f2.png ">
                           <img src="/assets/regionalmap.bb21f6f2.png" alt="map of tiranthe">
+                        </picture>
+                      </div>
+                </div> 
+                <div class="tab-pane" id="home" role="tabpanel" aria-labelledby="map-tab"> 
+                    <div class="map">
+                        <picture>
+                          <source type = "image/webp" srcset="/assets/tiranthemap.0ad25203.webp ">
+                          <source type = "image/png" srcset="/assets/tiranthemap.1f5dbd4c.png ">
+                          <img src="/assets/tiranthemap.1f5dbd4c.png" alt="map of tiranthe">
                         </picture>
                       </div>
                 </div> 
@@ -143,6 +145,22 @@
                         <p>Dragons and Feroxi can get exhausted during flight.</p>
                         <p>For dragons this is based on their physical. Each point in physical represents a day that a dragon can fly before complete and utter exhaustion.</p>
                         <p>For Feroxi this is based on their magic. Each point in magic represents half of a day a Feroxi can fly in their transformed state before complete and utter exhaustion. </p>
+                </div> 
+                  <div class="tab-pane" id="raehn" role="tabpanel" aria-labelledby="map-tab"> 
+                    <div class="map">
+                        <picture>
+                          <source type = "image/webp" srcset="/assets/raehn.478527c1.webp ">
+                          <source type = "image/png" srcset="/assets/raehn.5b6e00d9.png ">
+                          <img src="/assets/raehn.5b6e00d9.png" alt="map of tiranthe">
+                        </picture>
+                      </div>
+                </div> 
+                     <div class="tab-pane" id="underground" role="tabpanel" aria-labelledby="map-tab"> 
+                    <div class="map">
+                      <br>
+                      <br>
+                       <p class="text-center"> Interactive Map made by Rune: <a href="https://ruanooki.github.io/sindariel-s-caves-map/">Sindariel's Caves</a></p>
+                      </div>
                 </div> 
   
             </div>
