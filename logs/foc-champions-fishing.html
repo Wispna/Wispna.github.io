@@ -1,0 +1,3111 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Curse of Raehn - champions-fishing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/713174908011806753/3b890ca05f3258fa67d1add0304540a5.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Curse of Raehn</div>
+        <div class="preamble__entry">Feast of Champions / champions-fishing</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/228739411875987457/46e2a8a588695599d5f49346fd90b27f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="xhiro#7597" data-user-id="228739411875987457" style="color: rgb(151,119,218)">Chirp |DG|Cubus Mama|Holdy</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 12:49 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="821651533765935137" id="message-821651533765935137">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The bright sunny rays shine down on the river, cast a sparkling gleam off its surface. Kobe gave extra detailed maps to this area, along with several spots along the river’s edge for resting. Upon arrival at one of these circled spots, you find a few fishing rods and chairs. Seems Kobe wants to cook up some fish for the Feast!
+
+<div class="pre pre--multiline nohighlight">Task: Good Will Fishing</div>
+<em>Roll either an Aca or Bless Skill check. The number of successes is the number of fishes you are able to catch! You can do one check per hour. Please try to allow time for others to use these channels to interact and skill check!</em> 
+
+<em>Once you’ve finished your interactions, count up your success and report them to the tally channel!</em></span>
+
+                                <span class="chatlog__edited-timestamp" title="17-Mar-21 12:49 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127907;" title="&#127907;" src="https://twemoji.maxcdn.com/2/72x72/1f3a3.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/240979167900991488/b75da64fcecbe0e790637e6ea5b3d673.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wispna#7109" data-user-id="240979167900991488" style="color: rgb(151,119,218)">NEW BORN POET | eamon | value</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 07:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="821929144975097906" id="message-821929144975097906">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Eamon considered himself a talented fisher, and decided to go here to get that hour of fishing skillcheck before he headed off somewhere else.
+
+Of course, a few things had changed since he&#39;d last gone fishing, and he waded into the river, a stick sharpened into a spear held awkwardly in his left hand. 
+
+It was plunged into the surface of the water uselessly the first few times, but then... finally, a decently sized fish was speared through.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821929396699922502" id="message-821929396699922502">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">off to harvest where the people are</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/1dca17594214de5c15fba88743128ea5.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Circi#0000" data-user-id="821931008231342080" style="">Circi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 07:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="821931009213464646" id="message-821931009213464646">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Circi did not consider themselves a talented fisher, but Cy wanted to put their bless to good use for once. 
+
+They walked to the edge of the water, thinking about how they should catch fishes without bait, when suddenly— two fishes jumped out of the water and landed right by their feet. 
+
+“Huh.” That worked out, somehow. They took the two fishes, one in one hand and went off to the prep table place.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="prayerpepe" title="prayerpepe" src="https://cdn.discordapp.com/emojis/805089236251705394.gif">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="yuda" title="yuda" src="https://cdn.discordapp.com/emojis/731245959199195289.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263169858391244800/e1df860721ea1d4f15ed0a6e7b4362b3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="asahikaru#5505" data-user-id="263169858391244800" style="color: rgb(235,172,38)">bottom feeder pissa&#127925;</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 07:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="821931717199003678" id="message-821931717199003678">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">fish be ehehe foot. streiya bless u circi</div></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/713971662894268518.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/989ef79c1581a571ed5d3589f725ed92.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Albert#0000" data-user-id="821931008231342080" style="">Albert</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 07:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="821940363324424203" id="message-821940363324424203">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Albert comes here only to fish a little <img class="emoji " alt="ureshi" title="ureshi" src="https://cdn.discordapp.com/emojis/733765296392765521.png"> He&#39;s not sure how it works, but he found some line and uses a stick he made to try to fish, using a little berry at the end...
+
+O!! And suddenly, he doesn&#39;t only get one fishes! But two!! This is amazing!
+
+He enjoys the sun by the river for a little longer, before Lily runs off somewhere with one of the fishes stolen. No Lily-- that&#39;s for the feast!!!</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="LOOK" title="LOOK" src="https://cdn.discordapp.com/emojis/737072403037028423.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128153;" title="&#128153;" src="https://twemoji.maxcdn.com/2/72x72/1f499.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128154;" title="&#128154;" src="https://twemoji.maxcdn.com/2/72x72/1f49a.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="lucahold" title="lucahold" src="https://cdn.discordapp.com/emojis/761191053272547350.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/185391261555884033/f58e283bd28667426bfd66f7fa05b9ad.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="VividWisp#1313" data-user-id="185391261555884033" style="color: rgb(244,127,255)">Sleepy Baby | Albert / Kim</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 07:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="821940400516104243" id="message-821940400516104243">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 09:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="821956979978534932" id="message-821956979978534932">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Tada, Niveus is here by the river. He stares at the fishes swimming gaily in the water. He usually fished with his feet, but perhaps that wasn&#39;t the best option when other people were trying to eat? He bumbles his way over to the fishing rods and picks one up to fiddle with. He had absolutely no idea how these worked.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128150;" title="&#128150;" src="https://twemoji.maxcdn.com/2/72x72/1f496.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/237149005685981184/cbf181ffd0887a35ab2eade2caeaebbe.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Aetlas#1313" data-user-id="237149005685981184" style="color: rgb(235,172,38)">tea :naksafetydance: | niv</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 09:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="821957210460389406" id="message-821957210460389406">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <img class="emoji " alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/770933409920974859.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 09:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="821959722835378196" id="message-821959722835378196">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Just as some may me blessed by the gods in the hunt, others find themselves not so lucky. Soren is absolutely fcked in terms of blessings. He is used to fishing with his hands, or even through teeth. But today, the fish know to avoid spotted feet in the water, and even a single pounce before earns him a face full of water and a very drenched neighbour and a sleeping figure(?). Niveus. He stares at the other who&#39;d been the casualty of his mini frustration bout. &quot;Sorry.&quot;  He says first. &quot;Is that a rod-&quot; Yes, that is a rod. <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span> <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="headpat" title="headpat" src="https://cdn.discordapp.com/emojis/713973204955430974.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="821973289249275944" id="message-821973289249275944">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Huuuffff</em>.
+
+In between the long cat tails lightly swaying, laid Kanon who let out a long hot breath. Arms behind his head, eyes closed, his sleepy voice spoke out to the two who decided to have a conversation near his sleeping spot—
+
+“... I’ve got a big rod righhhtt here~”
+<span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="chuunon" title="chuunon" src="https://cdn.discordapp.com/emojis/761331891021938790.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="wiggle" title="wiggle" src="https://cdn.discordapp.com/emojis/722774713201459220.gif">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/255873629580034051/bcaffb5c1da143eadea0940f0cb8ce25.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jelw#6488" data-user-id="255873629580034051" style="color: rgb(151,119,218)">court jester | id fraud albert</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 10:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="821974695091896342" id="message-821974695091896342">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji " alt="🐟" title="🐟" src="https://twemoji.maxcdn.com/2/72x72/1f41f.png"> <img class="emoji " alt="🗨" title="🗨" src="https://twemoji.maxcdn.com/2/72x72/1f5e8.png">️ ❗</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="pika" title="pika" src="https://cdn.discordapp.com/emojis/713973898076487830.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="821975705151733771" id="message-821975705151733771">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">And he’s drenched. He blinks. Turning to look, he sees the jaguar he recognizes. ... He shakes his head to indicate it wasn’t a big deal before vigorously shaking off the water.   And yes, it was a rod. He nods.
+
+His attention snaps over to a red figure. ...It was the dragon. A vague memory of Yuda and the dragon crosses his mind and it was immediately wiped the next second. He looks to Soren, trying to see if the jaguar knew how to act around the fellow.
+
+Also this fishing rod was really hard to use...
+
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127907;" title="&#127907;" src="https://twemoji.maxcdn.com/2/72x72/1f3a3.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="821977773505511444" id="message-821977773505511444">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Silent as ever that one. With head movements that Soren may only guess what it means. But even he&#39;s learnt by now to read them just a little. Right. A single nod is returned. 
+
+On the other hand, the apparently still sleeping red figure speaks up and Soren looks. Apparently a fish looks too. Interested in the <em>big rod</em>? 
+
+&quot;In his fcking dreams apparently.&quot; He says, more for those who are actually awake to hear. 
+
+He turns back to see Niveus still... fiddling? holding? the fishing rod. &quot;You don&#39;t know how to use that?&quot; He guesses once more, an eyebrow raise follows.
+<span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="821982167961042955" id="message-821982167961042955">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There was silence from the dragon, before he lets out a low, rumbling chuckle. 
+
+The ends of his tail flickered, lightly brushing against the surface of the water. 
+“... I can show ya~”
+He did not specify what he was showing— his big rod, or how to use the rod. 
+<span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="wiggle" title="wiggle" src="https://cdn.discordapp.com/emojis/722774713201459220.gif">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="821983212011388959" id="message-821983212011388959">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">..Dreams? Was the dragon still asleep?
+
+Niveus shakes his head. He hadn’t the slightest clue how to use a fishing rod. Anyone could tell by his he was holding the rod horizontally. 
+
+...
+
+He does not look over to the dragon, stare fixed on Soren instead. The dragon was most likely a not so friendly(?) one. <img class="emoji " alt="notgood" title="notgood" src="https://cdn.discordapp.com/emojis/734918644731215993.png">
+
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="kermityell" title="kermityell" src="https://cdn.discordapp.com/emojis/714153616428105799.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/1dca17594214de5c15fba88743128ea5.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Circi#0000" data-user-id="821931008231342080" style="">Circi</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="821983533450657792" id="message-821983533450657792">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Circi interrupts this moment to walk in, confused like that travolta gif, then what back out without any fishes.
+No Streiya bless while Kanon here, apparently.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/720331070846795817.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/212188937416867841/bda2d1d846f6001ff4d106b0e99080e3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="⚠ warning cyn ⚠#1803" data-user-id="212188937416867841" style="color: rgb(235,172,38)">cyfkfjvn | Circi | Kanon</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 10:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="821983587355197440" id="message-821983587355197440">
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="https://cdn.discordapp.com/attachments/821650497605730334/821983587074965534/image0.gif">
+                                        <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/821650497605730334/821983587074965534/image0.gif" alt="Image attachment" title="Image: image0.gif (1.69 MB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="821985358031224852" id="message-821985358031224852">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji " alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/770933409920974859.png"> . . . Even if Niveus shakes his head, the fact that he&#39;s holding the rod horizontally.... pretty much sums it up. 
+
+Soren picks up the next murmured sleep talk, spoken in a tone that he&#39;s sure of what its implying but he will pretend not to. <img class="emoji " alt="tiredav" title="tiredav" src="https://cdn.discordapp.com/emojis/732677497723814019.png">  &quot;Don&#39;t think we wanna fcking know, do we.&quot; He nudges Niveus as he gets feet out of the water, over to pick a fishing rod of his own and plop next to the other Feroxi. 
+
+&quot;M&#39;guessing you never fished watch.&quot; And he goes over the motions of how to set the bait before correcting Niveus on holding it vertically. Even if he knows about fishing though, it doesn&#39;t mean he&#39;ll be blessed with fish. [0] <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span> <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="821986733884309545" id="message-821986733884309545">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A sleepy grin, not giving another response to the lack of interesting responses. 
+
+His tail swishes the edge of the waters, chasing away the fishes that would’ve bitten Soren’s bait. 
+Back to dream land for this dragon...~
+
+(Feel free to continue w/o me I’ll just interrupt if there’s an opening <img class="emoji " alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png"> ) <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/720331070846795817.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129309;" title="&#129309;" src="https://twemoji.maxcdn.com/2/72x72/1f91d.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="FrogPrayz" title="FrogPrayz" src="https://cdn.discordapp.com/emojis/731840762924367913.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="821988758354264106" id="message-821988758354264106">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">If Soren says so, he won’t bother..? He’s really not sure how to deal with the dragon. There were always lots of peculiar people around.. technically he was one of them but surely everyone thought themselves were normal!
+
+His eyes fixed on the way Soren was demonstrating, he gives him a nod. Then the fishes zoomed away because of the dragon’s tail. .... Did the dragon not like fishes? <img class="emoji " alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/821264738829991956.png"> He stares at the dragon.
+
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="821989200056156161" id="message-821989200056156161">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The stare was met with a “<em>Snnzzzzzzzzz”</em> <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/821264738829991956.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/770933409920974859.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="821991702646489129" id="message-821991702646489129">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji " alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/770933409920974859.png">  He also stares at the dragon&#39;s tail swishing idly in the water. <em>Is he sleeping</em> The snore makes him think otherwise. With the end of the fishing rod, he pokes the dreaming dragon&#39;s tail to see if it would swish else fcking where.
+
+ &quot;We might need to cast it a whole lot fcking farther.&quot; <img class="emoji " alt="tired" title="tired" src="https://cdn.discordapp.com/emojis/713973749484879973.png">  he tells Niveus. &quot; <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="821992798785372171" id="message-821992798785372171">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The snore does make Niveus think that the dragon is sleeping. Oh well. He nods at Soren before winding his rod back and trying to cast it further away.. only to fall short. It was much harder than he expected.
+
+He looks at Soren then, to see how he’d try to cast it, not at all noticing that the jaguar had poked the dragon’s tail just prior. 
+
+<span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="dekermit" title="dekermit" src="https://cdn.discordapp.com/emojis/765174505235546113.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="821995169305460756" id="message-821995169305460756">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Swish, swish. Swish, swish.</em>
+
+A peaceful sleeping expression on his face, as his tail twirled around the rod, holding it tight. (1 phys success ) 
+<span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="orange" title="orange" src="https://cdn.discordapp.com/emojis/711091290091290685.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="821999353677742112" id="message-821999353677742112">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He watches the fishing line fall flat for Niveus. “....” cough no cough he cough didn’t go cough Pfft. “Fck- really-.” Ahem. “Just reel it in and try again.” 
+
+<img class="emoji " alt="wth" title="wth" src="https://cdn.discordapp.com/emojis/551076388166434817.png">  “okay this fucker can’t be asleep.” He says looking at Niveus like do you see this fuckery then looking back at fishing rod caught by tail. He gives it a hard YANK.(4 phys success) 
+
+<span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="orange" title="orange" src="https://cdn.discordapp.com/emojis/711091290091290685.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 12:01 AM</span>
+
+            <div class="chatlog__message " data-message-id="822001683361824779" id="message-822001683361824779">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He stares at Soren. <img class="emoji " alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/770933409920974859.png"> There was a long pause before he eventually nods his head and starts reeling in the rod.
+
+&quot;...&quot; Finally noticing the big tail around the rod, he gives the jaguar a blank look. Must be hard to fish like that.. 
+
+<span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 12:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="822007235537535028" id="message-822007235537535028">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Just as Soren points out that he can’t be asleep, Kanon’s eyes open, gives a wink, before closing them back.
+
+The rod was successfully released from the tail— not before the tail giving the jaguar’s face a little smack. Face full of dragon tail fur. Tickle tickle~
+<span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="skeletonny" title="skeletonny" src="https://cdn.discordapp.com/emojis/722345842790629417.gif">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="orange" title="orange" src="https://cdn.discordapp.com/emojis/750412298870325489.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 12:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="822012322599272459" id="message-822012322599272459">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji " alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/770933409920974859.png"> . 
+. . .
+&quot;Did you fucking see tha-&quot; He turns his head toward Niveus, a hand on shoulder to get attention, probably disturbing any fishing concentration the other Feroxi may have had. Unfortunately, Soren also got tail fur in his mouth soon after as tail goes splat in his face- He doesn&#39;t <em>need</em> to know if the dragon were sleeping at all anymore <em>now</em>. 
+
+He slaps the tail away, spitting the taste of fur and dirt off his tongue. He sees you bastard <img class="emoji " alt="wth" title="wth" src="https://cdn.discordapp.com/emojis/551076388166434817.png">. &quot;You can stop playing sleeping piece of shit now fcker.&quot; <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 12:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="822016182584213514" id="message-822016182584213514">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He sure did. He saw many things. <img class="emoji " alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/770933409920974859.png"> You don&#39;t have to tap him, he&#39;s staring right at you. Tail fur. That probably wouldn&#39;t taste very nice and most likely didn&#39;t have any nutritional value. But dragon&#39;s beard candy on the other hand..
+
+..Were things going to evolve into a fight? He sure hopes not.. He goes back to trying to cast his rod. The hook soars through the air.. and lands on the dragon. Ah.
+
+<span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 01:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="822018980666540062" id="message-822018980666540062">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Hmmm~? I dunno whatcha talkin’ bout~ Snzzzzz~” Tail slapped off of Grumpy’s face, it fell back to the water, swishing once more. 
+
+Feeling something small and sharp landing on his big chest, Kanon’s eyes opened to peek. A hook? Must have a fish at the other end then—
+His arm pulled away from cushioning his head, and instead pulled at the string attached to the rod.  Pulling as if beckoning the other to come closer.
+
+“Ya wanna sleep with me then~? <img class="emoji " alt="😘" title="😘" src="https://twemoji.maxcdn.com/2/72x72/1f618.png">”
+<span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 01:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="822022136780423198" id="message-822022136780423198">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Don&#39;t fcking know what I&#39;m talking about yeah right fckin bullshit&quot; Soren continues to grumble while eyeing the not at all sleeping dragon with a stern eye. 
+
+He casts the fishing line into the water and waits. He simply waits because there is no success. There&#39;s a line between him and the water, connecting the Niveus&#39; fishing pole beside him to the lolling dragon. <img class="emoji " alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/770933409920974859.png"> 
+
+&quot;Niveus, you&#39;ve caught something rotten.&quot; <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 01:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="822023258315554859" id="message-822023258315554859">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Sorry.&quot; He uttered an apology rather quickly for someone slow in his actions. ... He awkwardly shakes his head. What kind of offer was that? Weren&#39;t they supposed to be getting food for the feast in the first place?
+
+Turning to Soren with yet another blank look, he slowly puts down the rod he was holding. Maybe the dragon wanted that. He shifts to grab another fishing rod, attempting to cast it once more.
+
+<span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 01:32 AM</span>
+
+            <div class="chatlog__message " data-message-id="822024609477820416" id="message-822024609477820416">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kanon let out another rumbling chuckle at Grumpy&#39;s grumble. All the curses really caughthis attention. &quot;...Ya really wanna wake up this sleeping dragon, huh? What? Ya wanna play~?&quot;
+
+As for the Janitor, such a weak presence. Free rod though, sweeet. Kanon grabbed it with a whistle and began poking Soren who was nearer. 
+<span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 01:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="822028455205011456" id="message-822028455205011456">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;We&#39;re not fcking playing, we&#39;re fishing.&quot; He responds shortly after. &quot;and if you&#39;re gonna scare all the fcking fish away then do it some fuck where else.&quot; 
+
+Niveus earns a stare when he offers the dragon a fishing rod. Soren never understands what crosses through Niveus&#39; brain. is he trying to be <em>nice</em>? The thought gets forgotten when he&#39;s poked by the end of the rod Niveus left. Not thinking much for the fish, and with no luck catching anything anyway, Soren knocks the end of the pole away with his own. <img class="emoji " alt="wtf" title="wtf" src="https://cdn.discordapp.com/emojis/506925423137914940.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/182490516393426944/f21b2670acac6676d5473b310e652358.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Rizei#7649" data-user-id="182490516393426944" style="color: rgb(235,172,38)">badonkadonks udderi | Soren ✨</span>
+
+
+        <span class="chatlog__timestamp">18-Mar-21 01:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="822028501158592542" id="message-822028501158592542">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 01:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="822030069492613120" id="message-822030069492613120">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Oh.. oops(?) Did he cause this situation? Unsure what to do, he sits in his place, unmoving. <img class="emoji " alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/821264738829991956.png"> Just staring.
+
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 02:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="822031779275341865" id="message-822031779275341865">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hm~? But tryna see if I&#39;m awake and then teasin&#39; me so much~ Clearly, ya wanna <em>play</em> ~<img class="emoji " alt="♥" title="♥" src="https://twemoji.maxcdn.com/2/72x72/2665.png">️ &quot; He turns his head to look at Soren, flashing him a toothy grin.
+
+The rod was smacked away, but still holding onto it, Kanon brought the tip of the rod close to his lips and blew on it.
+Blowing a breath of fire, mind you. The rod was now on fire!
+
+&quot;Do kitties like fire~? Or water~? <img class="emoji " alt="noel" title="noel" src="https://cdn.discordapp.com/emojis/713972718994980886.png"> &quot; he said, attempting to poke Grumpy with the now, hot rod.
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 02:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="822037348179116063" id="message-822037348179116063">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji " alt="eugh" title="eugh" src="https://cdn.discordapp.com/emojis/726318149213093958.png">  Tease? Him tease this fcker??? What&#39;s he on?  &quot;I think you&#39;ve got a fcking screw loose is what it is.&quot; He comments. Or maybe he isn&#39;t high, maybe the fella was just the sort of person. 
+
+Fire catches upon the first fishing rod- &quot;Oi- Caref-. What the fvcgdkk-&quot; Soren had attempted to knock the rod away again but it reaches through enough to poke burn a hole through sleeve. Which then catches on fire itself. <img class="emoji " alt="thisisfine" title="thisisfine" src="https://cdn.discordapp.com/emojis/405648277778989066.png"> Fck fck fcj the jaguar feroxi cusses as he dips into the lake once more.
+
+This one definitely has a fucking screw loose, and the sort of fella he fcking avoids. &quot;Fcking shit stirrer aren&#39;t you?&quot; He snatches a passing fish and throws it at Kanon&#39;s face. (1 Success) <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 02:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="822038335639519282" id="message-822038335639519282">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Oh Nakallas. 
+
+Using the winds, he directs it over to the rod. A strong quick gust of wind to extinguish the fire like snuffing out a candle. With that, he peers over to look at Soren. &quot;Are you okay?&quot; Niveus glances over to the dragon. ...He supposes the dragon was more of the.. &#39;not good&#39; types?
+
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="notgood" title="notgood" src="https://cdn.discordapp.com/emojis/734918644731215993.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 02:44 AM</span>
+
+            <div class="chatlog__message " data-message-id="822042662483918848" id="message-822042662483918848">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ahaahaa~ So I&#39;ve heard, loose up here and loose down there~&quot; He gives a small shrug, sitting up to watch as Mr.Grumpypants do a little dance and have a little dip. 
+&quot;So kitties like ta get hot and bothered, and then reaalll wet, huh? <img class="emoji " alt="noel" title="noel" src="https://cdn.discordapp.com/emojis/713972718994980886.png"> &quot; 
+
+As he feels the gaze on the another on him, he gives a wink at the Janitor. &quot;If ya want some, ya can get some too~ <img class="emoji " alt="😘" title="😘" src="https://twemoji.maxcdn.com/2/72x72/1f618.png"> &quot;
+But his flirting(?) was interrupted by a fish slap to his face. Which of course, made him laugh.
+&quot;Maybe if ya cleaned ya insides, I wouldn&#39;t hav ta stir that in ya!&quot; Another laugh, as he tossed the fish between his two hands. 
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="scumnon" title="scumnon" src="https://cdn.discordapp.com/emojis/762532007103430660.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 03:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="822049095597162526" id="message-822049095597162526">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji " alt="wtf" title="wtf" src="https://cdn.discordapp.com/emojis/506925423137914940.png"> &quot;Could be fcking better.&quot; He says first to Niveus. The one calm space in this.. whatever the fck this is. He pays zero fucks to the dragon being loose all over, feeling as though a migraine may come upon him any moment. 
+
+&quot;Not by my fcking choice.&quot; He feels his expression turn down to some disgust. Where comments like that doesn&#39;t necessarily affect him, this one feels. ew. 
+
+At least the fish slap feels as though karma were listening just a bit.
+
+ <img class="emoji " alt="eww" title="eww" src="https://cdn.discordapp.com/emojis/728542100140064798.png">  &quot;How bout you clean your shit brain first before you open your fcking mouth.&quot;  <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 03:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="822050676137656320" id="message-822050676137656320">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">..Could be better, but okay, right? Seeing the wink from the dragon, he immediately shakes his head. No need. He didn’t have a want for it.
+
+Having Caeruleus be here would have been nice.. Letting her beep all of their questionable words. Then again, it was much better that she wasn’t here. While he knew Soren didn’t mind the little popillon, the dragon was a different story. <img class="emoji " alt="notgood" title="notgood" src="https://cdn.discordapp.com/emojis/734918644731215993.png"> Not good. Like tetanus, according to Vale.
+
+<span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 03:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="822057689744015400" id="message-822057689744015400">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hm? Janitor doesn&#39;t want some~? A shame, a threesome would be a real wake-me-up <img class="emoji " alt="♥" title="♥" src="https://twemoji.maxcdn.com/2/72x72/2665.png">️ &quot;
+
+But the bigger fish to catch was the little kitty, as Kanon watched his face turned into disgust. While Kanon grinned.
+&quot;Huuuuh~? Ya want me ta do whaaaatt~? Ya all big talk for a guy who&#39;s fraid&#39; of gettin burnt! Can&#39;t handle a lil heat? Why don&#39;tcha try and shove my tongue right inta the back of my throat? Shove it reaaal hard inta me? <img class="emoji " alt="noel" title="noel" src="https://cdn.discordapp.com/emojis/713972718994980886.png"> &quot;
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 03:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="822060164311679056" id="message-822060164311679056">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Why the fuck does he call you Janitor?&quot; He looks at Niv, then looks back, disgust now a permanent feature to his face whenever he has the red dragon in sight, a vile vile piece of work even by his standards. 
+
+&quot;Fuck no, you&#39;d like that wouldn&#39;t you.&quot; Lest he end up participating in some shit kink he&#39;s trying to get.  &quot;You want something stuck hard in your shit throat how bout you deep that fcking fish right down it.&quot; As if he&#39;ll ever put his fingers anywhere near this fcker&#39;s disgusting tongue. <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 03:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="822061091546464266" id="message-822061091546464266">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">...Whenever the red dragon was concerned, certainly foul words filled the air. Not to mention just back at the townhall where Yuda and Vasil had been with them. ... ... He really didn’t want to recall anymore.
+
+He looks towards Soren, his usual complete neutral face was now that of slight confusion. Perhaps it was the way he looked at him. Either way, he was just as lost as the jaguar was. He never understood why the dragon called him that. Maybe it’s because he picked food off the ground? He had been doing that a lot. Maybe the dragon saw him doing that. 
+
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822061247046483998" id="message-822061247046483998">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Was of concern? What are words.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 04:36 AM</span>
+
+            <div class="chatlog__message " data-message-id="822071055216541738" id="message-822071055216541738">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">That look of disgust whenever Grumpypants looks his way, ah, it’s gonna make him blush <img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png"> . 
+
+“D’awwww, ya already lookin’ at me so closely~? I’m all for ya to observe, inside and out~ <img class="emoji " alt="😘" title="😘" src="https://twemoji.maxcdn.com/2/72x72/1f618.png">” He tosses the fish around once more, before giving it a reaaalll tight squeeze, it’s eyeballs popping out, blood and other body fluids dripping...
+“Fish is too soft! I like somethin’ hard and stiff... like ya fist, Grumpypants~ <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"> “
+
+Though the question still remains, why was he called Janitor? Kanon barely remembers the origin. “Aint ya cleanin’ stuff? Ain’t that what Janitors do? “ he paused, trying to think. But thinking was no good. No good at all.
+“I know!” He claps his fish bled hands together. “Why don’t I give ya a new nickname~?” He said with a cheerful grin, getting up from his spot.
+“Why don’t I call ya...” Walking closer to Ex-Janitor, stopping right in front of him.
+
+“Bait?”
+
+His arm shot out, holding Niveus up by the collar.
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span>  <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="nonono" title="nonono" src="https://cdn.discordapp.com/emojis/726318256507584553.gif">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="nivno" title="nivno" src="https://cdn.discordapp.com/emojis/730848722505957528.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 04:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="822075794637193248" id="message-822075794637193248">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Teeth grind as the other ruins a perfectly good fish, eyeballs popped and innards now mush against everything else, spilling out through any orifice. &quot;Deal with it. Maybe if we&#39;re fcking lucky you&#39;ll choke on a bone.&quot;
+
+Cleaning stuff? True enough Niveus seemed like the kind that could eat almost anything, if meal times were a true enough testament... Soren watches the Dragon saunter over to the other Feroxi, bloodied hands dripping more guts where they move. 
+
+Then they&#39;re on the lammergeier, staining collar. &quot;Hey-&quot; Even if Soren had seen the shift of hand, feet had kicked out of the water no second later, he only makes it over after the bird is lifted. &quot;The fuck are you doing?&quot; Hand grips Kanon&#39;s forearm hard, exerting force to bring it down. &quot;Let go.&quot;  <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span> <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="sweatsnervously" title="sweatsnervously" src="https://cdn.discordapp.com/emojis/504315414357213184.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="look" title="look" src="https://cdn.discordapp.com/emojis/713972412055814145.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 05:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="822080147619446804" id="message-822080147619446804">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Somehow the way the dragon squeezed the fish reminded him of Yuda squeezing stuff... like the time they had fought beasts. Flesh and bone and all. Could make those into a meal, really.
+
+..Was he cleaning stuff? He didn’t think he was at the time.. or was he? Honestly, he couldn’t remember at all. Totally nothing to do with the mun being unable to recall either. Niveus watches with unblinking eyes, staring at the dragon as he sauntered nearer and nearer..
+
+...
+
+And like it was the most normal thing, he was lifted up from the ground. Had this happen before? At least he wasn’t choking him.. yet. 
+
+He hadn’t expected Soren to help him out and it was sure a surprise to him. Pausing for a moment, he raises a hand to tap on the dragon’s hand. “Please let go?” As much as he was a bird that could fly in the sky, sometimes the ground was better.
+
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="headpat" title="headpat" src="https://cdn.discordapp.com/emojis/761960568470503474.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 06:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="822095330300002324" id="message-822095330300002324">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah, if only I were so lucky~ But! I ain&#39;t! So now we&#39;re here.&quot;
+
+Standing, hand holding up a Bird Feroxi, as the other Jaguar Feroxi tries to get him to let go. What a nice scene to walk into! A nice, lively scene that will surely get the blood pumping.
+
+&quot;<em>Please?</em>&quot; He quirked an eyebrow. &quot;Yanno, if only we could get what we want by sayin&#39; &#39;please&#39;, I would&#39;ve gotten what I wanted a llllooooonnnggg time ago. A long long LONG time ago! Probably longer than you youngins&#39; been alive~&quot; He gives Niveus a little shake as he goes on a tangent.
+
+&quot;But who&#39;s hearin this &#39;please&#39;? Me? You? Huh? Who&#39;s suppose ta grant it? Me? Surely it can&#39;t be me? Have ya seen me? Ya want <em>me</em> ta grant ya &#39;please&#39;? Do ya need ya eyes checked? I could rub it for ya, give ya a little one-two poke, maybe that&#39;ll clear ya vision, maybe it&#39;ll give ya pink eye if its ya lucky day!&quot; 
+A harder shake as he goes on. If Niveus had a small stone inside of him, it would rattle.
+
+&quot;But it&#39;s not ya lucky day! It&#39;s not my lucky day either! Then who&#39;s lucky day is it?&quot;
+<em>...Circi sneezes from somewhere.</em>
+&quot;If ya want somethin&#39;, ya gotta get it with ya own hands. Ya hear this, Bait?&quot; <em>Shake shake.</em> &quot;And if ya want me ta let go, tell ya what, I&#39;ll make ya one of Siggy&#39;s infamouuuss trades, but in my way!&quot;
+
+His hand holding Bait&#39;s collar suddenly burst into flames.
+&quot;Make me bleed and I&#39;ll let ya go~&quot;
+<span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 07:51 AM</span>
+
+            <div class="chatlog__message " data-message-id="822119982107721748" id="message-822119982107721748">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It&#39;s a rare enough moment that Niveus speaks up, but Soren understands the whole shitty please makes no shit difference shtick. And listening to Kanon spiel it while keeping Niveus in the air only grates at agitation, annoyance flares under skin as gaze narrows while the Dragon goes on and on and on.... The fuck is his problem-
+
+No, Soren knows that the fucker doesn&#39;t <em>have</em> a fucking problem with either of them, he&#39;s just trying to make one. A shit piss assed fucker who <em>wants</em> to get hit for the fuck of it. His grip on Kanon hardens but the other&#39;s definitely not listening.
+
+The scowl on Soren&#39;s face deepens for gritted teeth, gaze snaps toward hand that catches ablaze near Niveus&#39; neck and Soren doesn&#39;t think twice before snapping hand toward it despite the fire. Biting down the singe his own skin to twist wrist as leg shifts, hooks against Kanon&#39;s ankle to sweep him down. <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="sweatsnervously" title="sweatsnervously" src="https://cdn.discordapp.com/emojis/504315414357213184.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 08:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="822136014788755526" id="message-822136014788755526">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Despite feeling uncomfortable, he barely shows any signs of resistance, body languidly shaking along with the motion of the dragon&#39;s hand. In fact, he was being rattled rather hard to the point he doesn&#39;t quite catch what the man was saying. All he heard was something about a lucky day.. and the sound of someone possibly sneezing? Or was that just his imagination? 
+
+..He was being shaken so much. It was much worse than trying to fly in a storm where there was turbulence. If anything, he feels like throwing up.. which probably wasn&#39;t a good thing. Then, the man&#39;s hand was set ablaze and the flames burned near his face. It was disturbingly hot-
+
+Before he could make any action, Soren had stepped in. Instead of trying to lash out at the dragon as well and accidentally clashing with the jaguar, he decides to support. Without flute in hand, and obviously not wanting to put his flute near a fire anyway, he begins to whistle.
+
+A tune that wasn&#39;t the most joyous. It was a single melody, but oddly sounded cacophonous to the dragon. It flowed and echoed in the air, the vibrations jarring and it seeped right through, digging deep into the dragon&#39;s cerebral cortex.
+
+<span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 09:26 AM</span>
+
+            <div class="chatlog__message " data-message-id="822143837144350750" id="message-822143837144350750">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Kanon&#39;s gaze switched over to Grumpypants, smirking as he sees such an annoyed scowl almost teetering on hatred for him. Him, and only him.
+Truly, Bait was living up to his name.
+
+Though Kanon&#39;s leg was sturdy (and the added weight from his big tiddies) helped ground him, he was pulled back, arms twisting to Soren&#39;s command. The fire began to flicker, but Kanon was enjoying the roughness of Grumpypants&#39; moves--
+
+Until a single note shot through his ears and pierced into his brain. 
+
+Kanon winced, stumbling back even further, and went quiet for a moment.
+&quot;....&quot;
+An eerily long moment, before the sound of  knuckle cracking could be heard.
+<em>Crack. Crack.</em>
+Then the sound of neck cracking.
+<em>Crack. Crack.</em>
+Finally, his face finally lifted. And he was no longer smiling.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/212188937416867841/bda2d1d846f6001ff4d106b0e99080e3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="⚠ warning cyn ⚠#1803" data-user-id="212188937416867841" style="color: rgb(235,172,38)">cyfkfjvn | Circi | Kanon</span>
+
+
+        <span class="chatlog__timestamp">18-Mar-21 09:26 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="822144040753561602" id="message-822144040753561602">
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="https://cdn.discordapp.com/attachments/821650497605730334/822144040597585930/unknown.png">
+                                        <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/821650497605730334/822144040597585930/unknown.png" alt="Image attachment" title="Image: unknown.png (47.73 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="shaketurt" title="shaketurt" src="https://cdn.discordapp.com/emojis/718684420294574191.gif">
+                                <span class="chatlog__reaction-count">11</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="flushblock" title="flushblock" src="https://cdn.discordapp.com/emojis/711536621513605190.png">
+                                <span class="chatlog__reaction-count">11</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="kermityell" title="kermityell" src="https://cdn.discordapp.com/emojis/713972278525820959.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 09:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="822144078438203433" id="message-822144078438203433">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With two quick long strides, he reached Niveus&#39; vicinity in no time, and immediately grabbed the Bird Feroxi&#39;s face. But he didn&#39;t stop and continued to move forward, before bashing the whole bird into the ground. 
+Deeper. And deeper.
+
+Until the dirt below the bird&#39;s face made a dent.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/212188937416867841/bda2d1d846f6001ff4d106b0e99080e3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="⚠ warning cyn ⚠#1803" data-user-id="212188937416867841" style="color: rgb(235,172,38)">cyfkfjvn | Circi | Kanon</span>
+
+
+        <span class="chatlog__timestamp">18-Mar-21 09:27 AM</span>
+
+            <div class="chatlog__message " data-message-id="822144111825387604" id="message-822144111825387604">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 10:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="822152578908946482" id="message-822152578908946482">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He’s a sturdy big guy, a heavy weight that Soren knows would’ve taken more to down. But at the very least he manages to free the other Feroxi. Claws were ready to lash out once more when a light whistle follows. 
+
+The Big Bad Bara fucker stumbles back and for a moment things seem alright, whatever the fuck it is that Niveus had done seemed to disturb enough of the dragon’s attention. In Soren’s opinion, they should fuck out of here. But things don’t simply work out the way they do in one’s head. 
+
+“Let’s-”
+
+The crack crack cuts through words, turning blue orbs back toward the dragon, smug smirk no longer gracing his features. Something inside Soren rises with hostility, instincts standing him alert. 
+
+But Kanon isn’t looking at him. 
+
+The hand that lashes out doesn’t even touch him. 
+
+Insead its’ Niveus. Sound of head hitting ground leaves a sicking CRunCH, Two.. Three-
+“Fcker--” 
+
+It’s a full body tackle against the dragon before Soren allows himself to hear anymore, shoving the mad man off of his target with a low growl, claws lunging out after to crush throat down.
+
+<span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="sobyblush" title="sobyblush" src="https://cdn.discordapp.com/emojis/785743975075151908.png">
+                                <span class="chatlog__reaction-count">7</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="oklit" title="oklit" src="https://cdn.discordapp.com/emojis/450740994372141059.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="blobsweat" title="blobsweat" src="https://cdn.discordapp.com/emojis/578994306279407616.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="flat" title="flat" src="https://cdn.discordapp.com/emojis/798068504191959060.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/212188937416867841/bda2d1d846f6001ff4d106b0e99080e3.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="⚠ warning cyn ⚠#1803" style="color: rgb(235,172,38)">cyfkfjvn | Circi | Kanon</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;822144040753561602&#39;)">
+                    <span class="chatlog__reference-content">
+                            <em>Click to see original message</em>
+                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/198088120854380544/aa259d44cb9d3c4be80109f4151d4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Noel#8908" data-user-id="198088120854380544" style="color: rgb(151,119,218)">D!ck Diversity | Iwao | Tansom</span>
+
+
+        <span class="chatlog__timestamp">18-Mar-21 03:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="822234189402865714" id="message-822234189402865714">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pinned a message.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 11:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="822358212342054932" id="message-822358212342054932">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">..Did it work? He sees the dragon backing away. Soren&#39;s words distract him ever so briefly and that was all it took. Darkness filled his vision, his breathing all wrong as the pressure of pain merely increased more and more. He laid unmoving with a paralyzing fear, his muscles cramped and unable to move, only moving in tandem with every slam. But he knew his eyes were there. He could still subtly feel himself blink. Fear didn’t shut him down. It only woke him up further, but he made no move to resist. He simply took the pain as is, bloody spit drooling from his slackened jaws.
+
+He remembered something. Someone&#39;s voice that sounded so happy as it hummed away. A tinge of joy, something carefree about the notes, as they fall into the drumming air. Thud, thud. Yet, one with such dulcet tones, creating a wordless song. A deranged melody echoing..
+
+His eyes glaze over. The shadows of a beating casting over his heart. An odd memory. Then, someone else speaks. He knew it was Soren.. ..where was he again? The pain that had been ignored whilst his mind had been dissociating came back in surges, rewiring to recognize what was happening. He was a bloody mess, eyes almost shut with swelling. Wincing as the dragon&#39;s grip seemingly eases off, he struggles to get off the ground, unable to move with grace and his movements jerky.
+
+His vision blurry, his eyes sluggishly trail after the two silhouettes. One lankier, one bulkier. One blue, one red. That was all he could perceive, and that was enough. His jaw refused to move and he was unable to use his air magic like he used to. Going back to the basics, he guides the wind as it is, to simply create a strong gust to knock the dragon off balance. Now, he truly knew that the dragon was not good™️.
+
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="soby" title="soby" src="https://cdn.discordapp.com/emojis/713974282828513300.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="sweatsnervously" title="sweatsnervously" src="https://cdn.discordapp.com/emojis/504315414357213184.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 06:34 AM</span>
+
+            <div class="chatlog__message " data-message-id="822463122526568448" id="message-822463122526568448">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Once the small dust of dirt settles, his hand slowly releases from the beaten down body. Blood on his palm, his pupils darts around, seemingly unfocused. 
+In that brief moment of pause, he was quickly knocked to the ground from the mixture of a shove and a strong gust of wind.
+But still, his eyes were unfocused.
+
+Even when the man was clawing at his throat, the veins around his neck sliced and bled, his windpipe being squeezed tighter and tighter, his breaths became gasps of air, his hand slowly crawling, grabbing the hand that crushes him.
+Still, his eyes were unfocused.
+
+Until finally. Everything clicked.
+It was time for him to wait.
+And so he waits.
+<span class="mention" title="Rizei#7649">@badonkadonks udderi | Soren ✨</span> <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="concernedcoffee" title="concernedcoffee" src="https://cdn.discordapp.com/emojis/714155464400699393.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="staree" title="staree" src="https://cdn.discordapp.com/emojis/770933409920974859.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/142f4e8388cbffd354bfc0f727679428.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Soren#0000" data-user-id="821931008231342080" style="">Soren</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 08:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="822485409924644945" id="message-822485409924644945">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hands continue their vice grip around Kanon’s throat after finding a solid hold, after the dragon’s body had been knocked down through wind and force and those red hands that’d bludgeoned Niveus moments ago grasped his wrist. 
+
+But that’s all they do.
+
+He could hear his heartbeat thundering through eardrums, feel his fingers grow slick with blood where claws had dug deep into flesh as he pins the dragon hard against the ground. His nerves were still alert for danger, hairs on end, malice glowing in his gaze yet… There’s no push back… Those dangerous hands don’t struggle to pry his hold off, legs don’t shift to kick him. The male’s attention lays elsewhere… Not here.
+
+Something feels very wrong…. A nagging feeling far off that Soren doesn’t listen to because every other instinct inside him screams to not let up. They will hold to grow tighter, strangle while they have the chance, before murderous eyes make a return. He can’t risk it.. They can’t risk it.
+
+It’s not till Kanon’s grasp on his hands loosen that he lets go… When the dragon seems to have lost breath for the while. Legs spring up, withdraw swift and careful for sudden movements, jumping back where Niveus sits dazed. He only takes his eyes off Kanon momentarily to eye wounds, a crease forms between his brows. 
+
+“Let’s fcking go.” Soren doesn’t give Niveus a moment for verbal response, picks him up as though a potato sack and makes way to exit the fishing area. He only looks back at the red fcker once before he leaves, a heavy feeling sitting deep in his gut.
+<span class="mention" title="⚠ warning cyn ⚠#1803">@cyfkfjvn | Circi | Kanon</span> <span class="mention" title="Aetlas#1313">@tea :naksafetydance: | niv</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="sobyblush" title="sobyblush" src="https://cdn.discordapp.com/emojis/785743975075151908.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="look" title="look" src="https://cdn.discordapp.com/emojis/713972412055814145.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/717592da979b9beb6f7616525c1ec5d2.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Niveus#0000" data-user-id="821931008231342080" style="">Niveus</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 08:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="822486502297698314" id="message-822486502297698314">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Niveus becomes potato sack.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="kermityell" title="kermityell" src="https://cdn.discordapp.com/emojis/714153616428105799.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129364;" title="&#129364;" src="https://twemoji.maxcdn.com/2/72x72/1f954.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821931008231342080/235fb355ee6f1f4000f649e5fffc8306.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kanon#0000" data-user-id="821931008231342080" style="">Kanon</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 08:48 AM</span>
+
+            <div class="chatlog__message " data-message-id="822496841727606854" id="message-822496841727606854">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He waited.
+One second, gone in a blink of an eye.
+One minute, his vision goes dark.
+One hour, his mind goes blank.
+One month, his nerves shut down.
+One year, his body has nothing left to bleed.  
+One decade, his memories--
+One century, his heart--
+One life.
+
+How much longer did he need to wait?
+
+<em>How much longer did he need to wait?</em>
+Hiseyesshotopen,ashiscreakingbodyawakened.Hegetsup.Helooksaround,findingnoonehere.</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="https://cdn.discordapp.com/attachments/821650497605730334/822496841627205662/unknown.png">
+                                        <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/821650497605730334/822496841627205662/unknown.png" alt="Image attachment" title="Image: unknown.png (26.81 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822496948723908610" id="message-822496948723908610">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>How much longer did he need to wait?</em>
+Hiseyesshotopen,ashiscreakingbodyawakened.Hegetsup.Helooksaround,findingnoonehere.</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="https://cdn.discordapp.com/attachments/821650497605730334/822496948653129778/unknown.png">
+                                        <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/821650497605730334/822496948653129778/unknown.png" alt="Image attachment" title="Image: unknown.png (7.04 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822497211279343626" id="message-822497211279343626">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>How much longer did he need to wait?</em>
+Helooksaroundagain.they&#39;vegonethey&#39;veallgoneonlybloodremainsonthegroundonlyscarsonlybloodonlythingsthatwerenotenough</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="https://cdn.discordapp.com/attachments/821650497605730334/822497211124416533/unknown.png">
+                                        <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/821650497605730334/822497211124416533/unknown.png" alt="Image attachment" title="Image: unknown.png (26.01 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822497439474778173" id="message-822497439474778173">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>How much longer did he need to wait?</em>
+Theremustbesomethingtheremustbesomeonetheremustbeitcantendlikethisithastotheremustbeanendtoallofthis
+Somethingsomethingsomethingsomethingsomething</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822497550648475649" id="message-822497550648475649">
+
+                    <div class="chatlog__attachment">
+                        <div class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)">
+                            <div class="spoiler-image">
+                                    <a href="https://cdn.discordapp.com/attachments/821650497605730334/822497550724235324/SPOILER_unknown.png">
+                                        <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/821650497605730334/822497550724235324/SPOILER_unknown.png" alt="Image attachment" title="Image: SPOILER_unknown.png (72.05 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822497616762896395" id="message-822497616762896395">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>How much longer--</em>
+
+&quot;...&quot;
+
+Ah.
+He remembered.
+It can&#39;t end like this.
+He can&#39;t break that promise.
+
+The fishing spear in his hand dropped at his feet.
+Stumbling, body wavering from side to side, Kanon wandered out.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="LOOK" title="LOOK" src="https://cdn.discordapp.com/emojis/737072403037028423.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="kermityell" title="kermityell" src="https://cdn.discordapp.com/emojis/713972278525820959.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="weepingwillow" title="weepingwillow" src="https://cdn.discordapp.com/emojis/730891476917158032.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="shaketurt" title="shaketurt" src="https://cdn.discordapp.com/emojis/718684420294574191.gif">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="sops" title="sops" src="https://cdn.discordapp.com/emojis/493327830709436426.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="uglee" title="uglee" src="https://cdn.discordapp.com/emojis/808385619364413450.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="shakingturtle" title="shakingturtle" src="https://cdn.discordapp.com/emojis/752380875764924456.gif">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="soby" title="soby" src="https://cdn.discordapp.com/emojis/713974282828513300.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/212188937416867841/bda2d1d846f6001ff4d106b0e99080e3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="⚠ warning cyn ⚠#1803" data-user-id="212188937416867841" style="color: rgb(235,172,38)">cyfkfjvn | Circi | Kanon</span>
+
+
+        <span class="chatlog__timestamp">19-Mar-21 08:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="822497821936582686" id="message-822497821936582686">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 70 message(s)</div>
+</div>
+
+</body>
+
+</html>

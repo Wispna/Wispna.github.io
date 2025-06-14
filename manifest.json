@@ -1,12 +1,5 @@
 {
-  "_bootstrap.esm.7088dd46.js": {
-    "file": "assets/bootstrap.esm.7088dd46.js",
-    "css": [
-      "assets/bootstrap.esm.15a4abfb.css"
-    ],
-    "assets": [
-      "assets/bootstrap-icons.c874e14c.woff2",
-      "assets/bootstrap-icons.92f8082b.woff"
-    ]
+  "_main.e1f4214b.js": {
+    "file": "assets/main.e1f4214b.js"
   }
 }

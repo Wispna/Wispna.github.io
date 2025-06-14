@@ -1,0 +1,3979 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Curse of Raehn - champions-hunt</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/713174908011806753/3b890ca05f3258fa67d1add0304540a5.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Curse of Raehn</div>
+        <div class="preamble__entry">Feast of Champions / champions-hunt</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/228739411875987457/46e2a8a588695599d5f49346fd90b27f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="xhiro#7597" data-user-id="228739411875987457" style="color: rgb(151,119,218)">Chirp |DG|Cubus Mama|Holdy</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 12:48 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="821651245982547998" id="message-821651245982547998">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">In the outer edges of woods there are areas where light pools around, drawing out smaller game to bask in its warmth. The light green grass of these small pockets is speckled with vibrant wildflowers that make it easy to forget that this part of Raehn is technically still a prison. As you make it here however, it becomes clear to see why Kobe and Kim sent you here hidden around are countless holes nestled in between the roots of trees.
+
+<div class="pre pre--multiline nohighlight">Task: Small Game Hunters</div>
+<em>Roll either a Phys or Sorc Skill check. The number of successes is the number of small animals you hunt! You can do one check per hour. Please try to allow time for others to use these channels to interact and skill check!</em> 
+
+<em>Once you’ve finished your interactions, count up your success and report them to the tally channel!</em></span>
+
+                                <span class="chatlog__edited-timestamp" title="17-Mar-21 12:49 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127993;" title="&#127993;" src="https://twemoji.maxcdn.com/2/72x72/1f3f9.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 12:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="821830706405441576" id="message-821830706405441576">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well, hunting is part of bounty hunting....I suppose this isn&#39;t too far of a stretch.&quot; <em>Celesnia mutters as he walks into the clearing. He looks around the at the little holes and casts some of his stars into one, chasing out a small critter which he quickly grabs and offs. The other within skitter away.</em> &quot;W-Well...I tried...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/181814906763345920/273be44f73ca0b29c100494b1d49166b.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="glitteronin#0265" data-user-id="181814906763345920" style="color: rgb(235,172,38)">le | ✠ Leg-o-less ✠ ✦ &#128009; Ayame &#128009;</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 12:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="821833050324336702" id="message-821833050324336702">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>A small, fluffy, adorable rabbit hopped along the treeline, sniffing and hiding among the vegetation. One could argue it was a sight from a children&#39;s fairy tale book - the sunlight giving its pristine coat a glittery shine, the immense calm of the woodland singing of nature&#39;s wonders around it, the alive shine on the creatures black eyes. Was it on it&#39;s way to its family? or maybe finding roots and berries for them to eat tonight? What if it was an explorer, a joyful protagonist of a tale of discovery of that beyond the trees it called home?</em>
+
+<em>As it hopped over directly under a ray of light and sat on its hind legs, a curious, cute little nose sniffing the air - any of these options seemed possible. There was an air of child-like confidence and hope about the scene. You felt as if though you followed this rabbit, it would guide you to wonderland, to the fairy kingdom, or somewhere equally marvelous. The camera leaned in, as now there were sparkles and birds singing and dancing in a complex arrangement around, and-</em>
+
+<strong>SPLAT.</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 12:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="821834076074803230" id="message-821834076074803230">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Her red tendrils, as familiar to her as any of her limbs, dragged the second body over to her, her eyes not even on the forest.
+She was wearing a wide hat and red shades, as if she was allergic to the sun. She wasn&#39;t even sure of what was going on regards this &#39;feast&#39; or whatever yet, but she&#39;d found where she could kill things without being yelled at by the Animals Association and immediately went over.
+
+A vial full of red was handed over to her, as she kept writing on some of the much paper she&#39;d stole from around town. She squinted at it, and went over to the other samples she&#39;d brought over from the tower.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 01:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="821843146517774336" id="message-821843146517774336">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Celesnia&#39;s gaze shifts over too Ayame, who had just skewered a happy rabbit and another. That...well that was metal. Celesnia walks over too the woman who seemed to have a near omnipresent control over her magic, clearly amazed.
+
+It&#39;s only as he gets closer that he remembers meeting this lady before.</em> &quot;A-Ah! Miss Ayame, it is lovely to meet your acquaintance once more! Your outfit looks lovely today, I adore the hat. If you do not mind me asking though, how do you have such brilliant control over your magic? I&#39;ve never seen a display quite like this before.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 01:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="821845815693279302" id="message-821845815693279302">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hm?! What - her eyes leave her notes to look in the direction the sound is coming from - and she should have guessed it from the smell, its a <em>twink</em>. <img class="emoji " alt="tired" title="tired" src="https://cdn.discordapp.com/emojis/713973749484879973.png"><img class="emoji " alt="tired" title="tired" src="https://cdn.discordapp.com/emojis/713973749484879973.png">
+
+Only after he greets her, eyes curiously on him, does she remember his name. She puts her vials aside, grabbing her papers to arrange them.
+&quot;Why, thank you kindly, Celesnia. It exists thanks to you telling me about those fabulous fae capes.&quot; She touched the border of the wing absentmindedly. 
+Hm. She thought for a moment, looking back at the red crystals that grew out of her back. At that moment, a small group of creatures caught her eye some yards behind them, and the movement was but a flash. She dropped them onto the pile with the rest, which were covered by a crystal dome so not to invoke a bear or wolf looking for a meal.
+
+&quot;Practice. You get better the more you do something, do you not?&quot; Surely there was no underlying reasons. &quot;You have magic as well, hm? Could I get a demonstration?&quot;
+| 2 i forgot to note from the last roll + 4 this one|</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 01:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="821848001932558398" id="message-821848001932558398">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>It is a twink, but one dressed differently than their last meeting. Perhaps Ayame&#39;s perfect sense of fashion is rubbing off on Raehn. Or maybe this one had a breakdown after a bad break up.</em> &quot;Ah! I see, well, you&#39;ve managed to put together a simply delightful piece with them.&quot; 
+
+<em>He drifts his gaze over to the crystals at the back, then when he sees the flash of movement, to see the tail end of the animals being taken down.</em> &quot;True, practice does greatly help. Regardless, it takes a considerable amount of effort to produce such seamless movement.&quot; 
+
+<em>When the subject switches too his own magic he seems to be a touched embarrassed. Oh gosh, she&#39;s going to think this is so dumb. Whatever, may as well comply.</em> &quot;Oh! Of course!&quot;
+
+<em>He brings a hand up to the sky, and seems to pull down three star-like constructs from aboce. He focuses for a moment, and the stars shoot out of his hand, forming into arrows that strike three of the fleeing creatures he&#39;d lured out of their holes earlier. He collects them himself and brings them back. He&#39;s got four total kills on the board.</em> &quot;It&#39;s not nearly as impressive, but my magic comes from the stars.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 02:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="821851201002799114" id="message-821851201002799114">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yeah, you better praise her <img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png"><img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png"><img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png">. 
+Ah. He was really digging into her, wasn&#39;t he? Didn&#39;t he have anything better to do? she held her chin, pretending to be pensive.
+&quot;Well then, I guess it&#39;s because that&#39;s how I was raised. For seamless movement and artistic form.&quot; She gave a half shrug, looking as if she was surprised by her own answer.
+
+Ah - as she witnesses the successful hunt, her hand raises at her side. Similar to her own red dome, a transparent cyan box raises from the floor.
+&quot;There. So it&#39;s easier to carry this back.&quot; For the compliments. &quot;It&#39;s... true that the city is ours now, isn&#39;t it?&quot; She hadn&#39;t caught much, being comfortably in her room, sipping tea and reading the kinky letters while everyone else almost died.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 02:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="821854417988878357" id="message-821854417988878357">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;How you were raised.&quot; <em>He wonders on that. He&#39;d never thought about his magic being influenced by his developmental history. It&#39;s an interesting thought.</em> &quot;That is quite a useful note, thank you kindly for sharing.&quot;
+
+<em>He looks over at the box and smiles.</em> &quot;Thank you for this as well, it is quite kind of you Ayame.&quot; <em>He quickly deposits his spoils into the box and keeps a keen eye on the forest for more beasts.</em>
+
+&quot;It is indeed true, the city is ours. I was there myself actually. We managed to overwhelm the guards. Two are dead, the rest are imprisoned.&quot; <em>Celesnia brings a hand to his chest, where the large scar from Edgar&#39;s blade remains.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 02:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="821856077309542400" id="message-821856077309542400">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She remembered this one was a prude, so it was better to leave it as it is unless he <em>really</em> began to annoy her. However, it proved that just like last time, he was like her own personal Raehn newspaper! 
+
+&quot;No problem. We must all work together now, isn&#39;t that so?&quot; Since she was no longer working on her little project, not wanting to do so in front of this guy, she leaned back on her glittery seat and crossed her legs. &quot;I see, I see. Very brave from you all, if I may say so. Any other news to highlight from such an event?&quot; She&#39;d gotten some of it from Conrad, but Conrad did mention not being in the fight.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 02:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="821858149874532352" id="message-821858149874532352">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Well, it&#39;s fitting that Cel&#39;s a newspaper, seeing as he&#39;s so easy to read.</em> &quot;Indeed, we must work together. I suppose this feast is an example of that fact. We&#39;re all working together to create something new.&quot;
+
+<em>This delightful comparison brings a smile to Celesnia&#39;s face.</em> &quot;Oh yes, it was quite the eventful time. A group went up to the palace to try and find the priestess, but seem to have been unsuccessful. There was also a paritcularily interesting event...one of the guards that died was not at the hand of us, rather at the hand of someone else. They were found far from combat...drowned on land.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 03:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="821876541222682660" id="message-821876541222682660">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ah, yes yes, state the obvious after she <em>already</em> did it, twink.
+
+As he talked, her eyes diverted to the woods for a moment, a set of tendrils shooting out and three coming back with woodland creatures befitting of a Disney musical number. 
+
+&quot;Ah - that is...&quot; That was actually interesting. &quot;So we have... a murderer in the lose? Was there no signs of a fight? Nothing left behind?&quot;
+
+| +3 |</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 04:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="821894138365739028" id="message-821894138365739028">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I&#39;m not quite sure. It certainly had to be a water mage given the peculiar circumstances, but that really leaves only a few suspects, none of which I could ever see doing such a thing. And from what was reported, there was nothing left behind either.&quot; *Cel attempts the absent minded approach to magic, and a cute little shooting star falls from above, bisecting another of the fluffy forest beasts. He quickly retrieves the corpse before looking back to Ayame.&quot;
+
+&quot;I don&#39;t suppose that you have any insights you could offer up?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 06:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="821919904777109534" id="message-821919904777109534">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Shing! Stab!</em> 
+&quot;A water mage... unless they precisely wanted to throw us off, and used a sort of transmutation or similar device on the body. I know that if I wasn&#39;t sure the rebellion would be successful and I killed a guard, I&#39;d make sure to be the contrary of obvious.&quot; Things That Totally Don&#39;t Make You Sound Suspicious™️. 
+
+Hehe. It was funny watching the peasant run around instead of having magic do everything for him. 
+&quot;I guess I will think on it, Mr. Celesnia. It&#39;s a very tricky situation.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="821919942945406977" id="message-821919942945406977">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">| +2 |</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 06:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="821921886048092170" id="message-821921886048092170">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I suppose a transmutation device could work...It would need to be someone quite skilled in magical technologies to create something like that though.&quot; <em>Candor is friends with someone like that. Perhaps it would be a good idea to ask them about it? You know, if asking them didn&#39;t trigger a whole new trauma.</em>
+
+&quot;I appreciate your insight, it&#39;s always good to have many minds plucking away at tricky problems like this.&quot; <em>He attempts to use his magic as effortlessly as Ayame, but the light arrows summoned thunk into the trunks of trees, missing their marks entirely.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 06:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="821922391851532298" id="message-821922391851532298">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Sigh. It was just so hard to be so perfect and beautiful, did she have to do everything herself? Was the weight of being the pinnacle of class and elegantz on this world upon her shoulders alone? Of course she was, she thought as she watched Celesnia fail.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="fucker" title="fucker" src="https://cdn.discordapp.com/emojis/480836297196437505.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/96876d45b0908c9639e19254eb05e950.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Damien#0000" data-user-id="821830705176248332" style="">Damien</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 06:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="821923571436748830" id="message-821923571436748830">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">In the slight distance, small squeaks of critters could be heard as Damien stabbed cleanly into them. A bow an arrow would have been good for a time like this, but Damien manages to hunt two birds. Crouching down to pick them up, he ties them together. Ah.. He could hear voices nearby.. Was someone here? 
+
+Walking towards the voices, he was almost ready to cheerily greet them when he sees.. 
+
+<em>Her.</em> <img class="emoji " alt="thenperish" title="thenperish" src="https://cdn.discordapp.com/emojis/722370190788264057.png"> 
+
+For half as second, his face contorts into what was akin to a frown but he quickly wipes it away, replacing it with that good-ol-boy-next-door-who-meets-that-one-neighbour-he-doesnt-like smile, “I didn’t think you were one to enjoy hunting, Miss Ayame.” He calls her out, then smiles to her other companion, this time, what seems to be a genuine smile.
+
+“Hey Celesnia, I’m glad to see you’re doing good.”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821923707601682472" id="message-821923707601682472">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>2 Successes</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 06:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="821924198208503828" id="message-821924198208503828">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah!&quot; <em>He turns his attention away from Ayame briefly and over to Damien.</em> &quot;Ah! Hello Damien,it is lovely to see you again. I take it you are acquainted with Ayame. We were just discussing the murder of the guards and magic. How are you today?&quot;
+
+<em>He states those two things like it isn&#39;t at all a horrible jump in conversational tone. Who puts murder and someone&#39;s mood next together? Like what the actual fuck Celesnia. I your narrator and writer find that shit whack.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 06:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="821924732286533662" id="message-821924732286533662">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Two!??!!&#191;&#191;? PRUDES?!?!?</strong> Sigh. Ayame internally went like this:</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="EcksDeeKirbee" title="EcksDeeKirbee" src="https://cdn.discordapp.com/emojis/784268757270921267.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/181814906763345920/273be44f73ca0b29c100494b1d49166b.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="glitteronin#0265" data-user-id="181814906763345920" style="color: rgb(235,172,38)">le | ✠ Leg-o-less ✠ ✦ &#128009; Ayame &#128009;</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 06:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="821924751878127617" id="message-821924751878127617">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><a href="https://tenor.com/view/emma-roberts-tantrum-annoyed-complain-complaining-gif-4670692">https://tenor.com/view/emma-roberts-tantrum-annoyed-complain-complaining-gif-4670692</a></span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill chatlog__embed-color-pill--default"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="https://media.tenor.co/images/e9f1ab88025a832a7de7254dd20f0855/raw">
+                                            <img class="chatlog__embed-thumbnail" src="https://media.tenor.co/images/e9f1ab88025a832a7de7254dd20f0855/raw" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 06:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="821925451231395862" id="message-821925451231395862">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">But externally she gave a small, polite nod in greeting as the other approached. &quot;Ah, I must simply do my part, should I not? Can&#39;t leave all the work to you strong men.&quot; Ha. Ignore the sets of vials and notes around her. She hates these games, but she&#39;s the best player.
+
+&quot;Are you two planning on sharing any recipes for this... party we are meant to have?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/96876d45b0908c9639e19254eb05e950.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Damien#0000" data-user-id="821830705176248332" style="">Damien</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 07:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="821929049902415892" id="message-821929049902415892">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">”The-“ <img class="emoji " alt="Dummien" title="Dummien" src="https://cdn.discordapp.com/emojis/790004839307673641.png"> <img class="emoji " alt="Dummien" title="Dummien" src="https://cdn.discordapp.com/emojis/790004839307673641.png"> <img class="emoji " alt="Dummien" title="Dummien" src="https://cdn.discordapp.com/emojis/790004839307673641.png"> 
+
+You couldn’t phrase it in a way that’s not as bloodthirsty, Celesnia???
+
+“A-Ah.. Murder aside.. I think I’m doing pretty good,” he said as he sweats internally, “Trying to catch enough fowl to feed the kids but it’s a little hard to do when all you have is a sword,” Magic would be extremely useful at a time like this, but Damien has no aptitude of the sort.
+
+“Hmm.. As for recipes.. I have a few things in mind, but red meat’s hard to find,” he chuckles softly, “How many have you caught so far? I can help carry them, Celesnia.” Ayame didn’t look like the type to want to get her hands dirty, and he had a feeling that Cel was taking that load.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 07:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="821930857144254494" id="message-821930857144254494">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I&#39;m glad to hear your doing well! Though I beg to differ with you on that point. A sword is greatly effective for situations like these, but a bow would be better than both I suppose.&quot; <em>Gosh, it&#39;s been a while since he&#39;s thought deeply on weapons.</em> &quot;I myself prefer scythes.&quot;
+
+<em>He points over to the blue box loaded with 5 small critters all murdered with ease.</em> &quot;I&#39;ve caught five total, but don&#39;t worry about helping to carry them, Ayame made this wonderful box that will help me bring back all my spoils.&quot; 
+
+<em>Oh! Recipes!</em> &quot;Well, I would be cooking, but I actually have to work on the decorations. That Kobe fellow asked me to help with them. I suppose he thought my light magic would help make pretty lighting.&quot; <em>He smiles at that. It&#39;s nice to be appreciated.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 07:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="821931893129871410" id="message-821931893129871410">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He was doing good?? Cringe. Die. Do good when you respect women. 
+&quot;Indeed, I wonder if this forest can feed us all - though, possibly, if we have access to the guard&#39;s rations now, could there be red meat there?&quot;
+
+Ayame just. Yeah she&#39;s caught the double Celesnia has because she&#39;s the best - but <em>you</em> guys are definitely carrying them. She turned around and began to take some more blood samples for different animals before moving them from her hoard to Celesnia&#39;s. 
+
+&quot;Decorations? How elegant will this party be?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/96876d45b0908c9639e19254eb05e950.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Damien#0000" data-user-id="821830705176248332" style="">Damien</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 07:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="821934696547221544" id="message-821934696547221544">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">”Light magic to decorate the hall? That’d be beautiful,” he smiles, wondering how they’d pull it off. The subject of magic had many uses, but it wasn’t one Damien was very good at. “I assume the party will be a night thing then?”
+
+Damien looked over to the vials with.. Some internal concern that didn’t quite show on his face.. What were they for..? Perhaps Ayane wasn’t interested in the hunt for feeding others, it seemed. “Studying the fauna?” He asks her with a raised brow, “I didn’t know you were well versed in anatomy.” She did seem like an intellectual of sorts.. Just not the way he thought she’d be. 
+
+“Actually, Miss Ayame. How well versed are you on the topic of liquids and poisons?”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 07:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="821937341287497728" id="message-821937341287497728">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He takes a brief moment to focus on the forest before him, spotting three running beasts before firing off 3 light arrows. Their about to miss, but with his careful focus, he&#39;s able to veer the arrows to pierce the critters, giving them a swift and merciful end. He hurries over and collect them before running back over...Only to find that there are a lot more critters in with his equipment...</em>
+
+&quot;O-Oh...I m-may need your help after all Damien.&quot; <em>He says with a slight laugh.</em> &quot;The decorations are going to be lovely, and I&#39;m working quite hard to ensure that it will have a simple, yet delightful elegance to it.&quot; <em>So kind of laid-back by Ayame&#39;s standards, but not quite informal. He looks over to the blood Ayame was observing.</em>
+
+&quot;Oh? Have you been draining the animals yourself? What for?&quot; <em>8 Successes so far :D</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 08:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="821946996273315871" id="message-821946996273315871">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hmm, a night party... she&#39;s going to have to wrestle Lyra and Conrad into something nice. She actually found herself giddy for this - it would be nowhere near as elegant as what she was used to, but so long there was music and drinks she&#39;d welcome it.
+
+Ah... She gave these guys a whole new topic to discuss over and they had to ask about her project. Of course she was not telling, and specially not <em>them</em>.
+&quot;Ah - yes, I think I&#39;m closest to being an anatomist. I&#39;m currently working on aphrodisiac, to achieve longer-lasting erections.&quot; Fuck you two. She looked perfectly innocent and calm as she said this. &quot;I&#39;m not too knowledgeable, but let me know if you need help regard this - I am still a healer.&quot;
+
+And, once again, something caught the corner of her eye. 
+| + 3 |</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/181814906763345920/273be44f73ca0b29c100494b1d49166b.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="glitteronin#0265" data-user-id="181814906763345920" style="color: rgb(235,172,38)">le | ✠ Leg-o-less ✠ ✦ &#128009; Ayame &#128009;</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 08:24 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="821947096739348531" id="message-821947096739348531">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(DONTLOOK IF YOURE VIVI)</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment">
+                        <div class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)">
+                            <div class="spoiler-image">
+                                    <a href="https://cdn.discordapp.com/attachments/821650472514355200/821947096600412160/SPOILER_disneyprincess.gif">
+                                        <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/821650472514355200/821947096600412160/SPOILER_disneyprincess.gif" alt="Image attachment" title="Image: SPOILER_disneyprincess.gif (488.06 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="EcksDeeKirbee" title="EcksDeeKirbee" src="https://cdn.discordapp.com/emojis/784268757270921267.png">
+                                <span class="chatlog__reaction-count">11</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128514;" title="&#128514;" src="https://twemoji.maxcdn.com/2/72x72/1f602.png">
+                                <span class="chatlog__reaction-count">11</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="marge" title="marge" src="https://cdn.discordapp.com/emojis/756394615170662410.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="pepehands" title="pepehands" src="https://cdn.discordapp.com/emojis/713973979064565763.png">
+                                <span class="chatlog__reaction-count">10</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="cirnosee" title="cirnosee" src="https://cdn.discordapp.com/emojis/730848878609432727.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/181814906763345920/273be44f73ca0b29c100494b1d49166b.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="glitteronin#0265" style="color: rgb(235,172,38)">le | ✠ Leg-o-less ✠ ✦ &#128009; Ayame &#128009;</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;821947096739348531&#39;)">
+                    <span class="chatlog__reference-content">
+(DONTLOOK IF YOURE VIVI)                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/213403578025508878/a_02892cb18bbabdc3d4df2cf17f98c8ed.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="GraffitiNinja#1999" data-user-id="213403578025508878" style="color: rgb(235,172,38)">Ninja || Celesnia | Kobe</span>
+
+
+        <span class="chatlog__timestamp">17-Mar-21 08:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="821947227286929408" id="message-821947227286929408">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pinned a message.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/96876d45b0908c9639e19254eb05e950.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Damien#0000" data-user-id="821830705176248332" style="">Damien</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 08:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="821947686218498048" id="message-821947686218498048">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Damien is.. <img class="emoji " alt="Dummien" title="Dummien" src="https://cdn.discordapp.com/emojis/790004839307673641.png"> <img class="emoji " alt="Dummien" title="Dummien" src="https://cdn.discordapp.com/emojis/790004839307673641.png"> <img class="emoji " alt="Dummien" title="Dummien" src="https://cdn.discordapp.com/emojis/790004839307673641.png"> Kind of concerned. This lady.. Looks like she’s got some problems up in the head</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127486;" title="&#127486;" src="https://twemoji.maxcdn.com/2/72x72/1f1fe.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127466;" title="&#127466;" src="https://twemoji.maxcdn.com/2/72x72/1f1ea.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#127480;" title="&#127480;" src="https://twemoji.maxcdn.com/2/72x72/1f1f8.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/96876d45b0908c9639e19254eb05e950.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Damien#0000" data-user-id="821830705176248332" style="">Damien</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 08:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="821949536217989120" id="message-821949536217989120">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Her blast at least, startles the nearby animals, and Damien’s quick to work, cleanly slicing what seemed like three rodents that were running away from Ayame’s magic. 
+
+“You’re.. Quite skilled with magic too huh,” he threads his words carefully. He knows two things. 1) He doesn’t like her. And 2) She doesn’t like him. Which is frankly worse than (1). 
+
+“I think I can do without the aphrodisiac, thank you <img class="emoji " alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/713971662894268518.png"> <img class="emoji " alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/713971662894268518.png">” Dear Alorel, may this woman stray far away from the innocent who she’ll test that on. 
+
+Though he does wonder.. What if she could find something out about what happened to Eli? He considers it as he picks up the bodies Ayame quite literally dismembered and walked towards Celesnia, “With Miss Ayame around, maybe we’ll need more boxes, Celesnia.” 
+
++3 successes just to piss ayame off</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 09:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="821966251663425537" id="message-821966251663425537">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While Celesnia processed everything the rolls from 9pm and 10pm, +2 and +3 innocent animals gathered in the background, stabbed by Ayame.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="msn_blush" title="msn_blush" src="https://cdn.discordapp.com/emojis/778812706572206080.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 09:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="821966337537605703" id="message-821966337537605703">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Holy shit Ayame.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821966823045726231" id="message-821966823045726231">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ayame, your displays of magic continue to amaze. such nonchalance in your strikes.&quot; <em>Celesnia has yet to have a truly negative interaction with Ayame, but this is closely veering into one.</em> &quot;An aphrodisiac? Hmm... I think you&#39;d have better luck basing that off of various plants. There&#39;s actually one in the botanical gardens that can be used to create sensations of love. Perhaps that is the key you are looking for?&quot; 
+
+<em>He looks to Damian as five more animals enter onto the pile Celesnia skewers one more bringing his personal count up to 9.</em> &quot;Hmm. We may indeed need more boxes. Ayame&#39;s magic is in fact quite strong...but your own swordsman ship is helping things pile up as well!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 09:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="821970062695989269" id="message-821970062695989269">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Of course you bastards, of course. If she actually invented an aphrodisiac, none of you could ever afford it.
+
+&quot;Ah - thank you so much, dears - you flatter me. Simply years of practice.&quot; Hmm. And yet she did not see the men leaving yet. She&#39;d have to shoo them off more intensely.
+&quot;Are you sure you two wouldn&#39;t like to test it for me? It&#39;s perfectly safe. Of course there&#39;s that made by plants, but I&#39;ve already seen them all. I&#39;m looking for something groundbreaking, you know?&quot;
+
+And since they were being complaining bitches, another crystal, cyan box began to materialize next to the other.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/96876d45b0908c9639e19254eb05e950.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Damien#0000" data-user-id="821830705176248332" style="">Damien</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="821978732989906954" id="message-821978732989906954">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji " alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/713971662894268518.png"> <img class="emoji " alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/713971662894268518.png"> <img class="emoji " alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/713971662894268518.png"> <img class="emoji " alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/713971662894268518.png"> 
+
+Something tells Damien she doesn’t want him here. Lifting up the boxes, he stuffed the bodies inside, “I think I’ll have to pass on that. After all, gotta get these meat prepared for tonight,” he smiles while lifting the boxes. “Thanks for the offer though, Miss Ayame.” 
+
+“Wanna come with me or do you wanna stay and help her out, Celesnia?” Please say you want to leave. Damien is begging you to save yourself <img class="emoji " alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/713971662894268518.png"> <img class="emoji " alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/713971662894268518.png"> <img class="emoji " alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/713971662894268518.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Ipretendtonotseeitglam" title="Ipretendtonotseeitglam" src="https://cdn.discordapp.com/emojis/717847076989304913.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/98621335b12f125eb13cea38233b9f50.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Yuda#0000" data-user-id="821830705176248332" style="">Yuda</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="821979970695200808" id="message-821979970695200808">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;MOVEE MOVE MOVEE!!!!&quot; he yells to the crowd some meters away from him he&#39;s literally chocking a bear while riding it. Better this animal be dead before crashing all those people who little did he know was having an interesting conversation.
+
+[+3]</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="821980259292676107" id="message-821980259292676107">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>A FELLOW WHORE?!?! FINALLY</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="821830705176248332" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="821980332268978216" id="message-821980332268978216">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji emoji--large" alt="stonesong" title="stonesong" src="https://cdn.discordapp.com/emojis/734918702994292739.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="marge" title="marge" src="https://cdn.discordapp.com/emojis/756394615170662410.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/98621335b12f125eb13cea38233b9f50.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Yuda#0000" data-user-id="821830705176248332" style="">Yuda</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="821980486644793435" id="message-821980486644793435">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>YES A FELLOW WHORE. HAVE A BLAST FOR RIDIN A BIG JUICY MEAT</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="yuda" title="yuda" src="https://cdn.discordapp.com/emojis/731245959199195289.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="821981280233193494" id="message-821981280233193494">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Oh no. The whores.</em> &quot;I thin k I will m-&quot; <em>Celesnia was about to answer Damien, when he&#39;s fucking bodied by Yuda and the bear and just knocked out of the way. He had reactively fired off a shot before hitting the ground, but it misses the bear and instead hits two defenseless woodland critters who were probably about to go have a magical tea party.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/96876d45b0908c9639e19254eb05e950.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Damien#0000" data-user-id="821830705176248332" style="">Damien</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="821982532219699211" id="message-821982532219699211">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">”YOU BROUGHT A <strong>BEAR</strong>?! <img class="emoji " alt="kermityell" title="kermityell" src="https://cdn.discordapp.com/emojis/713972278525820959.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="821982739389612074" id="message-821982739389612074">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ehehehe<strong>hehehe.</strong> Not minding her job, she was both pleased by Damien&#39;s fear and Yuda&#39;s apparition and Celesnia&#39;s trampling - <em>get Damien too!!</em> 
+She didn&#39;t move from her seat - she knew it would not get to her. She just had that much confidence that not even her papers would be blown away. 
+&quot;Good morning, Yuda!&quot;
+| +1 |</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/4e3f1b04c191d9ddbf1d329acc0149e1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kobe#0000" data-user-id="821830705176248332" style="">Kobe</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="821982741766864906" id="message-821982741766864906">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Kobe feels threatened from a long distance away.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/96876d45b0908c9639e19254eb05e950.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Damien#0000" data-user-id="821830705176248332" style="">Damien</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="821983223092477952" id="message-821983223092477952">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Damien wastes no time, he picks up his sword and like swoosh swoosh swoosh pow pow pow at the bear. Just imagine hes doing some ala shounen stuff. It’s too early after my nap to be sexy. 
+<strong>+4 idk what rodents or bear meat you decide 
+Total of 8 successes</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="oklit" title="oklit" src="https://cdn.discordapp.com/emojis/450740994372141059.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="821830705176248332" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="821983958417145878" id="message-821983958417145878">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Song sidesteps out of the way very carefully without much motion where Yuda tramples over where he had been but only a second ago, carrying his collected plants back. Was that..a bear? What was happening here? <img class="emoji " alt="daggersad" title="daggersad" src="https://cdn.discordapp.com/emojis/742003253482487828.png"> 
+He stares blankly before he makes more quickened steps to where another crowd was. A hunting crowd... Ah, he had avoided volunteering here.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="headpat" title="headpat" src="https://cdn.discordapp.com/emojis/713973204955430974.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="821983975106805810" id="message-821983975106805810">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Bastard. He&#39;s so sexy, and for what. Hating women. Thot up, Damien.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 10:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="821985104237821974" id="message-821985104237821974">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He&#39;s just dead on the ground. That&#39;s it. Celesnia is over.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="scree" title="scree" src="https://cdn.discordapp.com/emojis/713974316441665598.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/98621335b12f125eb13cea38233b9f50.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Yuda#0000" data-user-id="821830705176248332" style="">Yuda</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="821986414450442240" id="message-821986414450442240">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yuda was <img class="emoji " alt="kermityell" title="kermityell" src="https://cdn.discordapp.com/emojis/713972278525820959.png"> at a body that got trampled beneath the bear&#39;s mighty step. Wait wasn&#39;t it the twink friend of his boob bro? Oh shit, but before he got to jump to help the poor elf, he got shocked with the sword guy wagging his sword to this way. Was he gonna kill Yuda as well if he stayed here???? Panic as he&#39;s he choked the bear harder to make it block Damien&#39;s sword. Alas, red blood gushing all over, and the bear roared in pain, last scream before it send to its not so peaceful eternal sleep, and because of that too Yuda managed to jump out from this horrid mess <img class="emoji " alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/713971662894268518.png"> 
+
+Also hey, a hottie is greeting you, go greet her back good boi, &quot;Good morning, lady&quot; <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/96876d45b0908c9639e19254eb05e950.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Damien#0000" data-user-id="821830705176248332" style="">Damien</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="821987704014372904" id="message-821987704014372904">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">”Where’d you get a <em>*bear?!</em> Damien asks, exasperated. Either it was terrorizing Yuda or the other way around, but if anything, Damien puts his bet on the other way around. Looking at the bloodied mess, Damien sighed, wondering if this was overkill but.. Hey, now he got the red meat he wanted. 
+
+“Aside the bear, are you alright, Yudhaswara?”</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="gtthblush" title="gtthblush" src="https://cdn.discordapp.com/emojis/504315219506495488.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="821988121611730974" id="message-821988121611730974">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Oh that was Song! another chair emerged from the floor next to her, and she patted it while waving at him. Come here.
+&quot;I&#39;ve seldom had bear meat before, do you know how to cook it?&quot; She already guessed Yuda had no idea, being a mermaid, but she&#39;d entertain herself.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="821989446504284180" id="message-821989446504284180">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He finally understands what Candor likes so much about death.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="meetyourcreator" title="meetyourcreator" src="https://cdn.discordapp.com/emojis/476459274743054357.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="gandalf_nodding" title="gandalf_nodding" src="https://cdn.discordapp.com/emojis/628435441498062849.gif">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="821830705176248332" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="821990111733612565" id="message-821990111733612565">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Song is baffled, watching Yuda riding the bear like he&#39;s at a rodeo. Song almost opens his mouth before blood sprays across his cheek just as he enters the clearing. He wipes it away with his sleeve in disgust. For a minute he stares blankly, and uncomfortable where the bear lays still at their feet. It&#39;s very much dead. 
+
+His normally composed expression turns into a half contorted grimace like he was still trying to control his face.
+Song turns towards Ayame before waving back slightly and as he approaches he politely bows to her. &quot;Ah. Miss Ayame, hello.&quot; He says blinking several times at the chair she conjures up. Song takes a few steps closer at her invitation before seating himself, hands folded over his lap. A quiet thank you is mumbled but he&#39;s still looking at the dead bear. 
+
+&quot;...Yuda are you cooking that?&quot; He asks hesitantly, very rattled at the bloody mess it leaves everywhere from Damien&#39;s sword and ...mystery meat on the ground. Song tries not to get ill.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="nooo" title="nooo" src="https://cdn.discordapp.com/emojis/728542152098971668.gif">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="orange" title="orange" src="https://cdn.discordapp.com/emojis/750412298870325489.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/98621335b12f125eb13cea38233b9f50.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Yuda#0000" data-user-id="821830705176248332" style="">Yuda</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="821993599373279262" id="message-821993599373279262">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;WHERE DID I GET THE BEAR?&quot; he repeated Damien&#39;s question, his arms opened widely as his body waving to the left and right, &quot;WE&#39;RE ON THE FOREST, MAN. THEY&#39;RE EVERYWHERE.&quot; he answered with his toothy grin before crouching down to check the fucking bear. His hands casually look at the slashing wounds and nodded to himself. &quot;I&#39;M VERY MUCH ALIVE, THANKS BRO.&quot; Damien so cool though, he might want to kiss that sweet mouth. ehe.
+
+How to cook, huh, &quot;I ONLY KNOW HOW TO FROST MEAT, LADY.&quot; <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"> &quot;BUT I HEARD PEOPLE LIKE TO MAKE STEW OF IT, WELL, NOT LIKE I KNOW HOW TO- OH.&quot; there Song goes, &quot;WHY ARE YOU ASKING ME? YA WANNA EAT MY ATTEMPTED COOKING, SONG?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="821993826746368010" id="message-821993826746368010">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Also where&#39;s the twink elf.... Did he got buried under the mess? <img class="emoji " alt="thonk" title="thonk" src="https://cdn.discordapp.com/emojis/713973933082279936.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="821994031592243221" id="message-821994031592243221">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>The twink elf is still laying on the ground. His vit is too low to take a hit like that...</em></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="pensivewobble" title="pensivewobble" src="https://cdn.discordapp.com/emojis/727680481247756328.gif">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/98621335b12f125eb13cea38233b9f50.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Yuda#0000" data-user-id="821830705176248332" style="">Yuda</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="821995604905426954" id="message-821995604905426954">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">I&#39;m sorry to say this brother Celesnia, Yuda couldn&#39;t spot where you are....</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">17-Mar-21 11:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="821996983005872141" id="message-821996983005872141">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>It&#39;s all good, Celesnia is better off dead than alive. Now I get to have a new character.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="kermit" title="kermit" src="https://cdn.discordapp.com/emojis/773535994141343754.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 01:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="822019086271119400" id="message-822019086271119400">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">While she watches the circus, and ensuring Tiny Baby Song doesn&#39;t see, two more Disney Princess Back Up Dancers go into the pile. :)
+| +2 |</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="821830705176248332" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 01:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="822025290838573067" id="message-822025290838573067">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Song does not see, thanks to Ayame&#39;s efforts. He is still instead too disturbed by the sight of the slaughter of the bear that was currently laying dead at both their feet. In fact, he&#39;s very distressed, but the only thing that expresses it is his skin turning into an ashen pale. Oh, someone was on the ground... mixed into the mystery meat of what Song is too afraid to ask what it once was.
+
+Plantlife curls around the body, seeking for open wounds and mending skin in its place without much notice. There&#39;s not much control, in fact the vines weave together thickly to create some sort of thick grassy net... ultimately becoming a cocoon...similar to one a butterfly uses when it wants to undergo metamorphosis. Sorry Celesnia. 
+
+[Cel is healed for 3 vit]
+
+&quot;...I&#39;ve never had bear before.&quot; Song says towards Yuda, as calmly as possible. His stomach wouldn&#39;t be able to withstand that, sensitive to anything too gamey in his diet. &quot;...I&#39;m sure others would be interested though...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="headpat" title="headpat" src="https://cdn.discordapp.com/emojis/713973204955430974.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/96876d45b0908c9639e19254eb05e950.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Damien#0000" data-user-id="821830705176248332" style="">Damien</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 04:11 AM</span>
+
+            <div class="chatlog__message " data-message-id="822064634995408978" id="message-822064634995408978">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“We could make stew too.. Or roast the meat. Though, stew might be the better option. Bear meat isn’t probably very soft,” he deduces. Bear meat had not been something he’s ever cooked before, but he’s willing to try. 
+
+Walking towards where Ayame’s game was, Damien noticed a burrow of.. Little friends.. While Song was occupied, he.. does the deed, and picks up the rest of the game along with Ayame’s and put them in a box.
+
+“So, how are we going to carry this back, Yuda?” They had <em>more</em> than enough, and Damien wasn’t going to overkill the game of the whole forest for the sake of one feast. “I’m about to head back, so you want me to take this with me?”
+
+“Uh.. somehow..”</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="scree" title="scree" src="https://cdn.discordapp.com/emojis/713974316441665598.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="822064736228999198" id="message-822064736228999198">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">+4 
+total successes: 12</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 06:25 AM</span>
+
+            <div class="chatlog__message " data-message-id="822098328258609243" id="message-822098328258609243">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Yooohooooo!!! Anyone findin&#39; anythin&#39; good out here??&quot; Besides telling people where to go, of course Kim would head out here too once she could!! She holds a <s>dead</s> rabbit in it&#39;s feet and raises it up, as if to show the meager hunt she had caught so far! She&#39;s a bit winded, but looks to be really happy <img class="emoji " alt="ureshi" title="ureshi" src="https://cdn.discordapp.com/emojis/733765296392765521.png"> this was fun!!
+
+|+1|</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129402;" title="&#129402;" src="https://twemoji.maxcdn.com/2/72x72/1f97a.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/98621335b12f125eb13cea38233b9f50.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Yuda#0000" data-user-id="821830705176248332" style="">Yuda</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 08:56 AM</span>
+
+            <div class="chatlog__message " data-message-id="822136318830051378" id="message-822136318830051378">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Stew, roast... the thought of them enough to make his mouth water.... or extra watery idk. &quot;BRO, YOU CAN COOK?&quot; his eyes sparkles, his finger pointed at Damien while his face facing Song, &quot;LOOK!! IF HE COOKS, YOU&#39;D TRUST THE FOOD MORE, RIGHT??&quot; wiggles eyebrows.
+
+Man, Damien is such a gentleman, bet he popular, Yuda mentally pointed and laugh at Damien. Look, he&#39;s even offered help. Bro... he want to kiss you, &quot;AWww BRO, AIN&#39;T YOU HAVE MORE THINGS ON YOUR HANDS? DON&#39;T NEED TO THINK BOUT ME, I CAN MANAGE IT SOMEHOW.&quot; he assured, pat himself on the shoulder. <span class="mention" title="Terraru#7787">@tiddy advocate | Damien, Feiona</span> <span class="mention" title="Evie &#127800;#9583">@Kitkat&#39;s Pumpkin&#129344; || Song</span> 
+
+Also he <img class="emoji " alt="LOOK" title="LOOK" src="https://cdn.discordapp.com/emojis/737072403037028423.png"> at the new comer, he waves at her vigorously, &quot;HEEEYYYYYYY, WE&#39;VE GOT BIG CATCH HERE? HOW&#39;S THERE?&quot; <span class="mention" title="VividWisp#1313">@Sleepy Baby | Albert / Kim</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 09:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="822138251640045648" id="message-822138251640045648">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;YOHOOOO~~&quot; She waves her hand and saunters over with a big grin! &quot;Well lookatchu!! That&#39;s a mighty catch ya got there!!!!!&quot;
+
+She grins brightly and just lifts her rabbit a bit <img class="emoji " alt="LOOK" title="LOOK" src="https://cdn.discordapp.com/emojis/737072403037028423.png">. &quot;This one is tinier, but I hope it&#39;ll do well on the feast!! I&#39;m sure Kobe knows how to cook it somehow, one way or another!&quot; <img class="emoji " alt="ureshi" title="ureshi" src="https://cdn.discordapp.com/emojis/733765296392765521.png"> <span class="mention" title="asahikaru#5505">@bottom feeder pissa&#127925;</span> 
+
+|+3, 4!|</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/98621335b12f125eb13cea38233b9f50.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Yuda#0000" data-user-id="821830705176248332" style="">Yuda</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 09:12 AM</span>
+
+            <div class="chatlog__message " data-message-id="822140525381550090" id="message-822140525381550090">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;NAY- I WAS JUST LUCKY!!!&quot; <img class="emoji " alt="tehe" title="tehe" src="https://cdn.discordapp.com/emojis/753740520689238086.png"> &quot;TINY CATCH ARE STILL A GOOD CATCH!!!&quot; he looks at poor critter in Kim&#39;s grip, a rabbit, good, &quot;AND THAT ONE IS GOOD FOR THE PICKY EATERS!! SO YOU&#39;RE PERFECT!!!&quot; <span class="mention" title="VividWisp#1313">@Sleepy Baby | Albert / Kim</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/710aa70da79517e0e73b8eceaa098383.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Maza#0000" data-user-id="821830705176248332" style="">Maza</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 09:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="822142020583161888" id="message-822142020583161888">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Maza wandered off from doing herb harvesting a while ago, he can tease Conrad again later. Now he&#39;s just like, hunting birds, and following the sound of people shouting.
+
+He wanders into the area, sees Yuda and a woman who looks like a Strong Butch Aunt, and knows he&#39;s among interesting company. Oh god is that she rabbit white- no it&#39;s not, all good.
+&quot;Hey y&#39;all, been catching anything good?&quot; He holds up a pheasant he found, a little ruffled but otherwise fine.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 09:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="822142818747285585" id="message-822142818747285585">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She looks at Yuda, and then starts laughing loudly! Sure, this would be good for the picky eaters! Kim then spots Maza, and smiles brightly as she waves at him with her free hand!
+
+&quot;Yohooooo!~~ Just this lil critter for now!! Ohh-- that&#39;s some good lookin&#39; ya have found there!! A bear, a rabbit and a birdie.. Hah!&quot; She cackles and grins widely. &quot;We&#39;ll have lots and lots to prepare at this rate-- this is good!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/98621335b12f125eb13cea38233b9f50.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Yuda#0000" data-user-id="821830705176248332" style="">Yuda</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 09:54 AM</span>
+
+            <div class="chatlog__message " data-message-id="822151099502559302" id="message-822151099502559302">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">His ear twitched to hear yet another familiar voice, yet he doesn&#39;t know whose voice belong to... like the name of the owner. Man, there&#39;s more of people in this hole, no wonder they can this place as their own. &quot;HEY, BRO- HAVEN&#39;T SEEN YOU IN AWHILE.&quot; he waves vigorously to the reptile feroxi and the he thumbs his big catch beneath his feet and proudly wink at him, &quot;I CAUGHT SOMETHIN HOT!!&quot;
+
+Yuda then face the feline feroxi, &quot;THERE&#39;S BUNCH OF TUMMY TO FEED AFTER ALL!!!&quot; he hahahaha very very loudly that it echoes in open space</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/96876d45b0908c9639e19254eb05e950.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Damien#0000" data-user-id="821830705176248332" style="">Damien</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 09:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="822151331330129960" id="message-822151331330129960">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Damien simply chuckles, “It’ll be edible for the feroxi at least. I’ll try to make something simple so everyone can swallow it,” Greens.. Proteins.. Maybe it’s not meant for vegetarians but at least most people would be able to eat it right?
+
+Lifting up the boxes, Damien let out a little grunt. “Well, I’ll see you soon then. Make sure to bring the bear over so we can..” he was about to say skin but remembered song’s here, “Prepare it for dinner.”
+
+“I’m counting on you, Yudhaswara.” <img class="emoji " alt="thenperish" title="thenperish" src="https://cdn.discordapp.com/emojis/722370190788264057.png"> He means it, don’t forget to bring it over. 
+
+Damien exit scene!!!</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/98621335b12f125eb13cea38233b9f50.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Yuda#0000" data-user-id="821830705176248332" style="">Yuda</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 09:58 AM</span>
+
+            <div class="chatlog__message " data-message-id="822151963692630077" id="message-822151963692630077">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Gotchuuuu!&quot; Yuda winks at Damien as if telling him <span class="pre pre--inline">pls meet me tonight, im lonely bro &lt;3</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/68f5d0e58bd21e56ea3b75de2568d256.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Cel#0000" data-user-id="821830705176248332" style="">Cel</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 10:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="822154865735893012" id="message-822154865735893012">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>He slowly pulls himself off from the ground, having been healed by Song earlier. He&#39;s had al ong day, and he has decorations to make.</em> &quot;C-Ciao for now...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="FrogPrayz" title="FrogPrayz" src="https://cdn.discordapp.com/emojis/753466199630676078.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="WavingPeepo" title="WavingPeepo" src="https://cdn.discordapp.com/emojis/754292572683370516.gif">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/710aa70da79517e0e73b8eceaa098383.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Maza#0000" data-user-id="821830705176248332" style="">Maza</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 10:10 AM</span>
+
+            <div class="chatlog__message " data-message-id="822155083906940978" id="message-822155083906940978">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“Good to see you’re still well after the whole uprising thing, Yuda.” Maza smiles, and then spots the godamn BEAR that Yuda brought to the party. “You... You certainly did.” He’s a little awestruck <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"> 
+
+“Ah, I don’t think we’ve met yet ma’am! I’m Maza, may I ask your name?” He looks towards Kim. Manners first!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="821830705176248332" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 10:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="822161905086758922" id="message-822161905086758922">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He tilts his head, and shakes it vehemently trying to ignore the bloody meat they&#39;ll probably have for the night. He&#39;s no vegetarian but somehow after looking at how it was caught...
+Song would end up swallowing it by force and then puking it all up somewhere. 
+
+&quot;Ah. It&#39;s not that I don&#39;t trust you...&quot; He tries to remedy, bit Yuda doesn&#39;t seem offended. Even though there was skepticism laced into his tone anyways. He doesn&#39;t know who can or can&#39;t cook anyways. 
+The bear was certainly big. Was he really going to carry it by himself? 
+
+<span class="mention" title="asahikaru#5505">@bottom feeder pissa&#127925;</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/98621335b12f125eb13cea38233b9f50.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Yuda#0000" data-user-id="821830705176248332" style="">Yuda</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 10:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="822165714747523182" id="message-822165714747523182">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I KNOW.&quot; he assures, which is weird to be said from his mouth, &quot;BUT TASTE WISE? I&#39;M NOT SURE MAN.&quot; <img class="emoji " alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png"> it&#39;s okay Song, Yuda won&#39;t get offended about such stuff and understand it. and yes he planned to carry it all by himself. <span class="mention" title="Evie &#127800;#9583">@Kitkat&#39;s Pumpkin&#129344; || Song</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="EcksDeeKirbee" title="EcksDeeKirbee" src="https://cdn.discordapp.com/emojis/784268757270921267.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="822167131147468830" id="message-822167131147468830">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He smiles back at the reptile feroxi. Deep down he questions himself why tf people knows his name? Did he shouted his own name somewhere and got broadcasted thru the nation? What if there&#39;s more people to get his ass down <img class="emoji " alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png"> (yuda is literally how to handle fame wikihow meme here). Anyway <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"> <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"> <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"> <span class="mention" title="OceanBirb#0491">@Peach Purveyor || Maza &#128010;</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 12:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="822191040911376405" id="message-822191040911376405">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Oh!! So many leaving!! She waves bye to Damien and Cel!! <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"> She hope they have a good day!!! But ah, she looks over to Maza and smiles brightly.
+
+&quot;Kim!! At ya service!!! Heya Maza!&quot; She walks over to shake his hand eagerly, wanting him to have a proper introduction when he asked so nicely! Ahh, the kids of today, being so well behaved. <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png">. <span class="mention" title="OceanBirb#0491">@Peach Purveyor || Maza &#128010;</span> 
+
+And curiously she keeps an eye on Yuda and Song,,,, and the bear. <img class="emoji " alt="look" title="look" src="https://cdn.discordapp.com/emojis/713972412055814145.png"> she&#39;d help if she knew Yuda planned to carry it all on his own!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822191224944721951" id="message-822191224944721951">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">|+4, 8!|</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 01:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="822211608126160947" id="message-822211608126160947">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The art of murdering while also distracting Song - <em>she&#39;s made matching shades for him and is offering them over</em> - will be interrupted solely as Ayame&#39;s butch senses go <img class="emoji " alt="WELLDIGATURBOTUNNEL" title="WELLDIGATURBOTUNNEL" src="https://cdn.discordapp.com/emojis/492900586988109824.png"> 
+<em>Who&#39;s that tiger?</em>
+| +3 |</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/710aa70da79517e0e73b8eceaa098383.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Maza#0000" data-user-id="821830705176248332" style="">Maza</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 02:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="822212998440812556" id="message-822212998440812556">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yuda you pretty much scream your name everywhere, of course Maza knows it vgdhjsab.
+
+&quot;Nice to meet you Ms Kim!&quot; He shakes her hand politely but with a firm grip. Butch Aunts have strong grips, and you have to match their strength if you want to please them. &quot;You&#39;re one of the coordinators of this feast, yes?&quot;
+
+Oh hey, there&#39;s Ayame. He waves! He&#39;ll come over and say &#39;hi&#39; once he&#39;s done with his conversation here, she seems to have interesting stuff set up.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 02:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="822227249334845490" id="message-822227249334845490">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>Slash splash in the background.</em> She waved back to Maza!<img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png"><img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png"><img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png">
+| +2 |</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 03:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="822237944106188881" id="message-822237944106188881">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Aha!! A firm handshake back to Maza!! And she grins widely at Mazas&#39; question!
+
+&quot;Aha! Yeah, it&#39;d be me!!! Ya gotta cheer up a bit yannow? Everyone has been through a lot!&quot; She giggles softly and nods. &quot;But Kobe is the master chef in this!! He can make anything taste good!!!&quot; There is another nod, and ah, as Maza waves to her, Kim joins and waves too!! But for now, she remains where she is <img class="emoji " alt="👀" title="👀" src="https://twemoji.maxcdn.com/2/72x72/1f440.png"> 
+|+2, 10! [reporting]|</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 03:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="822242607483846717" id="message-822242607483846717">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Yam cannot hear what the hunks are gossiping, which she considers a sin. She does the come closer finger motion at them.
+Animals die in her frustration and are dragged by tentacles into her pile.
+| +3 |</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="lamofried" title="lamofried" src="https://cdn.discordapp.com/emojis/682403223705092116.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/710aa70da79517e0e73b8eceaa098383.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Maza#0000" data-user-id="821830705176248332" style="">Maza</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 04:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="822246549606236220" id="message-822246549606236220">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I really appreciate the thought! I&#39;m glad we have an excellent cook for it too, though I hope we can bring something ourselves as well?&quot; He questions, tilting his head a little. His attention, however, is distracted by Ayame, who is making &#39;come hither&#39; motions, and considering the large pile of death around her, Maza picks the smart option and comes when called like an obedient hunk. &quot;Ah, we&#39;re being called, Ms Kim!&quot;
+
+Walking up to Ayame&#39;s setup, he gives her a toothy smile, looking at her pile of animals. &quot;Hello Ms Ayame! You seem to be making quick work of things.&quot; He is impressed, scared, and a little aroused. Gotta love hyper-competent women. &quot;I don&#39;t think even on a good day I could match this....&quot;
+<span class="mention" title="VividWisp#1313">@Sleepy Baby | Albert / Kim</span> <span class="mention" title="glitteronin#0265">@le | ✠ Leg-o-less ✠ ✦ &#128009; Ayame &#128009;</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 04:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="822248011941543956" id="message-822248011941543956">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ehehe Maza&#39;s croco-sharp-teeth grin <img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png"><img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png"><img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png">
+&quot;Oh, just doing what I can for the party - are you all excited? Inviting someone to iy?&quot; Give her gossip!!
+&quot;Also, Maza dear - mind introducing your cute friend to me?&quot; <img class="emoji " alt="handleft" title="handleft" src="https://cdn.discordapp.com/emojis/722539419802009691.png"> <img class="emoji " alt="🐯" title="🐯" src="https://twemoji.maxcdn.com/2/72x72/1f42f.png"> <img class="emoji " alt="handright" title="handright" src="https://cdn.discordapp.com/emojis/722539436881215488.png"> <img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png"><img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png"><img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 04:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="822249030850969661" id="message-822249030850969661">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Aha-- ya can bring stuff if ya wanna- oh!&quot; She blinks as Ayame makes some motions towards them-- a signal Maza decifers for her. She smiles and follows after, whistling impressed as yes, that, is a full food pyramid!! .. That is a food pyramid right??
+
+&#39;w&#39; but looks like Ayame want Maza to introduce her, so she just stands there next to him and grins!!! Might be some customs to be introduced. And she don&#39;t want to step on anyone toes!! <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/710aa70da79517e0e73b8eceaa098383.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Maza#0000" data-user-id="821830705176248332" style="">Maza</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 04:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="822250445509886023" id="message-822250445509886023">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Mm, definitely! Circi promised me roast spiced chicken, I haven&#39;t had that in forever and I can&#39;t wait to sink my teeth into it, you know? And Albert will be there too...&quot; He gets a bit of a dreamy look on his face, very obviously enamored with the idea of being so dang close to one of his favorite foods, and his favorite person.
+
+&quot;Ah! Where are my manners! This is Ms Kim! She&#39;s one of the people who arranged for this whole event!&quot; He claps Kim on the shoulder, grinning brightly. Just two hunks, smiling and having a good day.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="821830705176248332" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 04:31 PM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="822250843100151828" id="message-822250843100151828">
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="https://cdn.discordapp.com/attachments/821650472514355200/822250842920845362/FSHFKSFHKSKHFFS.jpg">
+                                        <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/821650472514355200/822250842920845362/FSHFKSFHKSKHFFS.jpg" alt="Image attachment" title="Image: FSHFKSFHKSKHFFS.jpg (288.98 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="soby" title="soby" src="https://cdn.discordapp.com/emojis/713974282828513300.png">
+                                <span class="chatlog__reaction-count">9</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128149;" title="&#128149;" src="https://twemoji.maxcdn.com/2/72x72/1f495.png">
+                                <span class="chatlog__reaction-count">9</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+                <span class="chatlog__reference-name" title="Song#0000" style="">Song</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;822250843100151828&#39;)">
+                    <span class="chatlog__reference-content">
+                            <em>Click to see original message</em>
+                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/198088120854380544/aa259d44cb9d3c4be80109f4151d4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Noel#8908" data-user-id="198088120854380544" style="color: rgb(151,119,218)">D!ck Diversity | Iwao | Tansom</span>
+
+
+        <span class="chatlog__timestamp">18-Mar-21 04:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="822252208329326644" id="message-822252208329326644">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pinned a message.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 04:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="822255196616392756" id="message-822255196616392756">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hallo!!&quot; Kim giggles and salutes as Maza introduces her! <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"> She&#39;s definitively having a good day!!!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822255319937056769" id="message-822255319937056769">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">|+2, total 2|</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 05:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="822259268354179103" id="message-822259268354179103">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Ayame <em>knew</em> what that face and words meant, and she was now looking forward spying on what the couple decided to do while in the feast.
+
+&quot;Ah - an organizer. Pleasure to meet you, Kim. Ayame Kiyohime.&quot; She bowed her head to her, and her usual shoujo pink filter appeared as she batted her eyelashes. &quot;Just a look at you and I can tel you&#39;re not the kind of person that belongs in prison.&quot;
+
+Behind her, another creature went down. It was like a nice and easy automatic hunting machine that targeted the adorable.
+| +1 |</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="lamofried" title="lamofried" src="https://cdn.discordapp.com/emojis/682403223705092116.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/710aa70da79517e0e73b8eceaa098383.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Maza#0000" data-user-id="821830705176248332" style="">Maza</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 05:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="822262935791468624" id="message-822262935791468624">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Please look forward to whatever those two dumbies end up doing <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"> 
+
+Maza fails at his roll, so he stands by Ayame and looks pretty, and enjoys her shojo show and the merciless death happening behind her. It&#39;s like watching a coin flip from good to evil, it makes him want to laugh, but he has manners, so he just nods and smiles along. Song isn&#39;t looking so good though....
+<span class="mention" title="VividWisp#1313">@Sleepy Baby | Albert / Kim</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 05:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="822263584062177331" id="message-822263584062177331">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Nice to meecha too, Ayame Kiyohime!!&quot; <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"> Kim smiles brightly and nods back, not quite sure if she should bow or not!! And she was about to answer but-- SWOOSH WOOSH Ayame just hits something!! Kim blinks as she had barely caught that, and then looks at Ayame with excitement in her voice.
+
+&quot;Oh!! You do magic too!!! That&#39;s pretty hecking incredible, Ayame!! Thank you!!&quot; She smiles brightly still and nods. &quot;Ehee, with this, we&#39;ll keep Kobe busy for the whole evening with all this food to prepare..! That&#39;s amazing! Thank you!&quot; <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"> ❤️ ❤️ ❤️ 
+
+Kim, however, is blind to Songs troubles <img class="emoji " alt="😔" title="😔" src="https://twemoji.maxcdn.com/2/72x72/1f614.png"> poor him,</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 05:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="822267744308559872" id="message-822267744308559872">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah, just a basic skill. I am glad to find how many here are magically inclined - helps one feel not so lonely, hmm?&quot; She looked over at the pile and then at Kim. &quot;Kobe... the other organizer, yes? What are they like?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 05:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="822269550174928946" id="message-822269550174928946">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Very friendly!! And never had food made better than what he have cooked for me, ma&#39;am!!&quot; Kim grins and crosses her arms. &quot;Energetic, too!! Been real fun hangin&#39; around that guy!!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="822269715736035388" id="message-822269715736035388">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She also just idk grabs a bird out of the sky as if it&#39;s nothing <img class="emoji " alt="burgersad" title="burgersad" src="https://cdn.discordapp.com/emojis/753994599621591130.png"> 
+|+5, total 7! [reporting]|</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="blurryeyes" title="blurryeyes" src="https://cdn.discordapp.com/emojis/713972460604751932.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="821830705176248332" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 06:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="822273329422401586" id="message-822273329422401586">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Impressive! we do have all sorts of talents gathered in this city, don&#39;t we?&quot; Ayame fabricates her fan from her sleeve, lowering her head a bit, as if she was asking a secret. &quot;What is <em>yours</em>, Kim?&quot;
+She doesn&#39;t seem phased by the bird, in fact she jots down another into her pile.
+| +1 and im cashing these here |</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 06:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="822274155486642177" id="message-822274155486642177">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Without a second of hesitation, and with a twinkle in her eye--
+
+<strong>&quot;Spearthrowing!&quot;</strong> She announces confidently, and poses to both flex, but also to show her impeccable form for spearthrowing. She giggles softly after, and moves to stand up straight.
+
+&quot;No magic, but hearing a stadium full of people cheering is kind of magical, I&#39;d say! Used to be well known for this.&quot; <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bbuh" title="bbuh" src="https://cdn.discordapp.com/emojis/713970885664440360.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/710aa70da79517e0e73b8eceaa098383.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Maza#0000" data-user-id="821830705176248332" style="">Maza</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 06:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="822276215339221033" id="message-822276215339221033">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">God, surrounded by hyper-competent women, is this actually a dream??? <img class="emoji " alt="gremlin" title="gremlin" src="https://cdn.discordapp.com/emojis/713972585729097790.png"> 
+
+&quot;You&#39;re a famous enough a spear thrower to be in stadiums?? You look the part, but it&#39;s always a surprise to actually meet someone like that!&quot; Maza wags his tail, eyes sparkling. A celebrity! Another, here!</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="heartmax" title="heartmax" src="https://cdn.discordapp.com/emojis/668942760052785175.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 06:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="822278393000099870" id="message-822278393000099870">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She looks to Maza, and grins as she strikes new poses to flex in!!!!! Totally not the first time she&#39;s doing this, and she&#39;s having lots of fun!!!
+
+&quot;Ayup!! Hehe! Once this is over i want to go back to it. I&#39;ll make sure you get front row seats, Maza!!&quot; She grins widely, and turns to Ayame!! &quot;You too, if you&#39;d wanna!! <img class="emoji " alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png">&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/710aa70da79517e0e73b8eceaa098383.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Maza#0000" data-user-id="821830705176248332" style="">Maza</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">18-Mar-21 06:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="822280051479412767" id="message-822280051479412767">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I&#39;d love to come!&quot; He clasps his hands together, bouncing up and down in place, tiddies doing a lil bounce with him. Her form! Her physique! Her obvious zest for life! Oh he&#39;d <em>love</em> to design an outfit for her, maybe now that he&#39;ll have access to paper and ink and maybe something to color with! &quot;Thank you so much!&quot; <img class="emoji " alt="betterblush" title="betterblush" src="https://cdn.discordapp.com/emojis/737209971552419850.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/821830705176248332/6cf567c6f8879b8663e3151d0928e2a9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Kim#0000" data-user-id="821830705176248332" style="">Kim</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 07:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="822658757799968769" id="message-822658757799968769">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><div class="pre pre--multiline nohighlight">And as such, they became good friends :look: </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 105 message(s)</div>
+</div>
+
+</body>
+
+</html>

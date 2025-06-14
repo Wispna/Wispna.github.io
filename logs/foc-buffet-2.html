@@ -1,0 +1,2976 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Curse of Raehn - buffet-2</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/713174908011806753/3b890ca05f3258fa67d1add0304540a5.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Curse of Raehn</div>
+        <div class="preamble__entry">Feast of Champions / buffet-2</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/213403578025508878/a_02892cb18bbabdc3d4df2cf17f98c8ed.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="GraffitiNinja#1999" data-user-id="213403578025508878" style="color: rgb(235,172,38)">Ninja || Celesnia | Kobe</span>
+
+
+        <span class="chatlog__timestamp">19-Mar-21 11:08 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="822531957048344596" id="message-822531957048344596">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>The center of the town is truly a sight to behold. Small magic-made stars light up the area, providing a soft, yet warm glow that makes it seem like the day remains. The structures surrounding it are lined with vines carefully grown around their frames. These vibrant and new vines are coated in flowers of all colours that give the town center a fresh and vibrant feel. Bright pinks, deep intoxicating reds, and blues the colour of the ocean’s depths somehow turn what was once a chipped and uncared for gathering point for the community into a truly dazzling display of light and nature.
+
+At the center of all of this, four rows of dazzling dishes stand created, creating an enticing aroma of gourmet foods. For some, these amazing and eloquent dishes are brand new, for others they’re lost treasures, the likes of which were given up on once they’d been thrown into Raehn. Best of all though, dishes from all over the continent are gathered. Comfort foods, home style meals, if you can imagine it, it&#39;s here! Best of all, the dishes everyone had worked on to create are here, waiting to be sampled by all! Behind each of these dazzling rows  is a small, outdoor kitchen, ready for use should something run low on. Perhaps there will even be a chance to enjoy a dish freshly prepared by Kobe and Kim!</em>
+
+<div class="pre pre--multiline nohighlight">Art Prompt: Mukbang? I hardly knew her!</div>
+<em>Draw a picture of your OC enjoying one of the many meals either created by another for the first art prompt, or another that they found lingering on one of these tables! Bonus event points can be counted for this when submitting it! Feel free to collaborate on this and make it fun!</em>
+
+<div class="pre pre--multiline nohighlight"> </div></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <img class="chatlog__reference-avatar" src="https://cdn.discordapp.com/avatars/213403578025508878/a_02892cb18bbabdc3d4df2cf17f98c8ed.gif" alt="Avatar">
+                <span class="chatlog__reference-name" title="GraffitiNinja#1999" style="color: rgb(235,172,38)">Ninja || Celesnia | Kobe</span>
+                <a class="chatlog__reference-link" href="#" onclick="scrollToMessage(event, &#39;822531957048344596&#39;)">
+                    <span class="chatlog__reference-content">
+<em>The center of the town is truly a sight to behold. Small magic-made stars light up the area, providing a soft, yet warm glow that makes it seem like the day remains. The structures surrounding it are lined with vines carefully grown around their frames. These vibrant and new vines are coated in flowers of all colours that give the town center a fresh and vibrant feel. Bright pinks, deep intoxicating reds, and blues the colour of the ocean’s depths somehow turn what was once a chipped and uncared for gathering point for the community into a truly dazzling display of light and nature.
+
+At the center of all of this, four rows of dazzling dishes stand created, creating an enticing aroma of gourmet foods. For some, these amazing and eloquent dishes are brand new, for others they’re lost treasures, the likes of which were given up on once they’d been thrown into Raehn. Best of all though, dishes from all over the continent are gathered. Comfort foods, home style meals, if you can imagine it, it&#39;s here! Best of all, the dishes everyone had worked on to create are here, waiting to be sampled by all! Behind each of these dazzling rows  is a small, outdoor kitchen, ready for use should something run low on. Perhaps there will even be a chance to enjoy a dish freshly prepared by Kobe and Kim!</em>
+
+<div class="pre pre--multiline nohighlight">Art Prompt: Mukbang? I hardly knew her!</div>
+<em>Draw a picture of your OC enjoying one of the many meals either created by another for the first art prompt, or another that they found lingering on one of these tables! Bonus event points can be counted for this when submitting it! Feel free to collaborate on this and make it fun!</em>
+
+<div class="pre pre--multiline nohighlight"> </div>                    </span>
+
+                </a>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/213403578025508878/a_02892cb18bbabdc3d4df2cf17f98c8ed.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="GraffitiNinja#1999" data-user-id="213403578025508878" style="color: rgb(235,172,38)">Ninja || Celesnia | Kobe</span>
+
+
+        <span class="chatlog__timestamp">19-Mar-21 01:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="822561562799243284" id="message-822561562799243284">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pinned a message.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 03:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="822590533976719419" id="message-822590533976719419">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He idly swings their intertwined hands. “That one’s mine,” he says, pointing to a bowl of charred candied hazelnuts. He looks at Rowan, waiting for the other to show him his.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="jeluwu" title="jeluwu" src="https://cdn.discordapp.com/emojis/716725840712302593.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="headpat" title="headpat" src="https://cdn.discordapp.com/emojis/713973204955430974.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 03:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="822594502903988264" id="message-822594502903988264">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji " alt="daggersad" title="daggersad" src="https://cdn.discordapp.com/emojis/742003253482487828.png"> They look a little dark. Maybe Raehn hazelnuts are darker than normal ones? Still, he picks up a few, popping them back as he looks around for his and Rue&#39;s stew. They&#39;re a little on the crunchy side but—not bad. &quot;These are good,&quot; he says, still scanning the table. &quot;Nice &#39;n sweet.&quot; 
+
+Finally he spots a familiar looking ceramic. &quot;Look, right over there—c&#39;mon, it&#39;s good, I promise.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 03:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="822603964796502017" id="message-822603964796502017">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji emoji--large" alt="bbuh" title="bbuh" src="https://cdn.discordapp.com/emojis/713970885664440360.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="eve" title="eve" src="https://cdn.discordapp.com/emojis/782250048343113758.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="822605099352195132" id="message-822605099352195132">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He smiles happily, giddy at the praise. &quot;Really?&quot; he presses, wanting to hear more from Rowan. 
+
+&quot;Oh!&quot; he moves over to Rowan&#39;s dish. He sniffs lightly. &quot;It smells good!&quot; Now where were the bowls and utensils... He looks around for them, head jerking left to right.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/240979167900991488/b75da64fcecbe0e790637e6ea5b3d673.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wispna#7109" data-user-id="240979167900991488" style="color: rgb(151,119,218)">NEW BORN POET | eamon | value</span>
+
+
+        <span class="chatlog__timestamp">19-Mar-21 09:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="822695718510133259" id="message-822695718510133259">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Satchel hobbled in. He definitely didn&#39;t help harvest any of this food, but he was definitely going to help eat it. Two familiar faces were instantly recognized, but his jovial smile remained. &quot;Oh hello you two! Wonderful little feast we have here.&quot;
+
+He grabbed a plate, and began stacking it full of food. A lot of food. Could one person really eat all that? &quot;You aren&#39;t in an apologetic mood are you?&quot; he asked. &quot;This is mostly directed at the dark haired one.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="beyonce" title="beyonce" src="https://cdn.discordapp.com/emojis/752381040063938601.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="eyeflail" title="eyeflail" src="https://cdn.discordapp.com/emojis/617966824805367808.gif">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="822697885065936916" id="message-822697885065936916">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Where did those two wander off now? The last, he had seen them, he&#39;d quietly been able to coax them away from eating more weeds and plants. Though Song would do his best to monitor the two of them so they didn&#39;t accidentally get poisoned, the two somehow eluded his sights the minute they returned back to the picnic areas. 
+
+With golden eyes wandering here and there, he finally spots the two reptile Feroxi that have slithered away from sight, accompanied by another figure. Song recognizes Satchel, and he inclines his head politely to do a bow in greeting before walking over to the other two. 
+This was a feast, but he&#39;s not sure if everything here is edible and that concerns him. Rowan and Pythius seem to be glancing over a bowl of hearty stew. There&#39;s a pleasant smell that wafts over the area from it.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 10:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="822698744017453067" id="message-822698744017453067">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Yeah, really,&quot; Rowan&#39;s quick to reassure, still smiling.....at least until he sees Satchel, and then his smile sort of freezes. &quot;H-hiiiiiiii, Satchelllll...........&quot; He still feels guilty.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 10:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="822703714719498290" id="message-822703714719498290">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;S-Satchel!&quot; He&#39;s surprised to see the old man, even if he really shouldn&#39;t be. Satchel lives here like the rest of them, after all. 
+
+Satchel&#39;s comment puts him on guard. This is why he had been avoiding the old man... But it&#39;s not like Pythius can just pretend to not have seen him at this point. Guess it&#39;s time for plan B. 
+
+&quot;Sir, are you still angry?&quot; he asks, slipping out of Rowan&#39;s grip. He carefully scoops some of his candied hazelnuts onto Satchel&#39;s plate. &quot;Y&#39;know, old people shouldn&#39;t stay angry for too long. I heard that it&#39;s bad for your health. Here. Sweet things usually make people feel better.&quot; 
+
+His attention goes towards Song. &quot;Ah! Song!&quot; he greets with a bright smile. He shows Song a bundle of various herbs and some berries. &quot;Look, look, here&#39;s everything we found earlier! Nothing&#39;s dangerous, yeah?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="kermityell" title="kermityell" src="https://cdn.discordapp.com/emojis/713972278525820959.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="marge" title="marge" src="https://cdn.discordapp.com/emojis/756394615170662410.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/240979167900991488/b75da64fcecbe0e790637e6ea5b3d673.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wispna#7109" data-user-id="240979167900991488" style="color: rgb(151,119,218)">NEW BORN POET | eamon | value</span>
+
+
+        <span class="chatlog__timestamp">19-Mar-21 10:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="822704825056624640" id="message-822704825056624640">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh no I&#39;m not angry. Not anymore.&quot; Satchel balanced his heaping plate of food on one hand, and reached to ruffle Rowan&#39;s hair like a dog with the other. &quot;But!&quot; he said, peering at Pythius. &quot;That doesn&#39;t mean you&#39;ll get away without your apology! I expect such things.&quot; He drew his hand back, and popped a candied hazlenut into his mouth. &quot;Oooh! That is quite an interesting taste!&quot; 
+
+He smiled at Song. &quot;And hello! I&#39;m glad a polite young man such as yourself is hanging around these two. You&#39;re certain to be a good influence.&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="19-Mar-21 10:35 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 10:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="822705111749885974" id="message-822705111749885974">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji emoji--large" alt="pika" title="pika" src="https://cdn.discordapp.com/emojis/713973898076487830.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png">
+                                <span class="chatlog__reaction-count">8</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 10:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="822709146817658890" id="message-822709146817658890">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Song looks between the three of them, suddenly feeling this uncomfortable sense of atmosphere hovering over them. Now <em>he&#39;s</em> also feeling awkward, fingers feeling restless under sleeves. Rowan has withdrawn into himself, his sudden smiling demeanor stiffening, while Pythius begins to stutter. Did something unsavory happen between them? Song&#39;s never thought of Satchel as anything but kind, someone worthy of respect when he&#39;s been helping them over and over again. 
+
+He knows the other two, from the interactions that they&#39;ve had with one another tend to be a little on the reckless side, Pythius especially having no filter. What he hears still manages to baffle him for a moment and his eyes look incredulously at the snake Feroxi.
+
+Though it wasn&#39;t his intention to, he overhears the conversation they exchange and Song stops. What exactly did these two do while he wasn&#39;t here?
+Song steps in, a hand placed atop Pythius&#39; shoulder and shakes his head gently. &quot;You shouldn&#39;t say things like that.&quot; His tone is firm, and almost takes on one of scolding, clear and cohesive for once.
+
+&quot;Hello, Satchel.&quot; He says softly. &quot;I hope we aren&#39;t intruding on your time.&quot; They&#39;ve done nothing but seem to disturb the other in his home. He glances over at the other two wondering if he should ask what they did.
+
+He pauses again, voice quiet and slow. &quot;...I&#39;m sorry, I wasn&#39;t watching them clearly.&quot; He bows again apologetically.
+
+Song brings his attention back to Pythius who immediately turns his attention to him, and though Song is normally clueless, he too knows this is a distraction. Carefully, he takes the plants in hand and examines them, but really he&#39;s attentive to what&#39;s happening in the conversation. The leaves are surprisingly fine, the berries though... Pokeweed? Song immediately tosses those out.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128591;" title="&#128591;" src="https://twemoji.maxcdn.com/2/72x72/1f64f.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 11:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="822715935814189087" id="message-822715935814189087">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">His eyebrows knit together as he&#39;s reprimanded by Song. What&#39;s wrong with what he said? &quot;But-&quot; He wants to argue back, explain himself, but Song&#39;s firm tone makes it hard to do so. 
+
+He notices that Rowan gets a hair ruffle, but he doesn&#39;t. Doesn&#39;t that mean Satchel is still a bit angry with him? Satchel&#39;s hasn&#39;t let up on that apology thing either... He avoids Satchel&#39;s gaze, head lowered. He... He doesn&#39;t want to apologize! Apologies are just... <em>urk</em>. He has goosebumps just thinking about it. Why couldn&#39;t Satchel just forget the whole incident?! 
+
+Feeling upset, he goes back to Rowan and stands behind him, pulling the other into a hug. He&#39;s kinda happy that Satchel thinks his hazelnuts taste good, but his dampened mood keeps him from enjoying the moment. He sulks silently.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bbuh" title="bbuh" src="https://cdn.discordapp.com/emojis/713970885664440360.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/240979167900991488/b75da64fcecbe0e790637e6ea5b3d673.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wispna#7109" data-user-id="240979167900991488" style="color: rgb(151,119,218)">NEW BORN POET | eamon | value</span>
+
+
+        <span class="chatlog__timestamp">19-Mar-21 11:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="822716913812504629" id="message-822716913812504629">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Satchel laughed. &quot;Watch them? Oh no don&#39;t worry about that. You have your own life to live after all. Lead by example, Song! I will not blame you for their wrongdoings. Besides, we have a deal. Pythius will apologize, and I will forgive him. Rowan has already earned my forgiveness so I have no idea why he&#39;s looking so guilty over there. As for my time, well, isn&#39;t it best spent in the company of others in a party like this?&quot; He took a bite, closing his eyes at the heavenly taste, and chewing and swallowing before speaking again. &quot;How have all of you been enjoying your newly liberated lives? Does it feel much different?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 11:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="822719675417755648" id="message-822719675417755648">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well I still feel bad! I still miss my family every day, so, it&#39;s like—I dunno.&quot; It&#39;s sort of gratifying that Pyth is using him as a teddy bear but at the same time he feels a little bit like a shield and that&#39;s just kind of awkward, considering the circumstances, and he nudges his elbow backward. He&#39;s <em>pretty</em> sure Pyth feels bad about it. 
+
+&quot;But uh, well. It&#39;s...... it&#39;s better. But I wish—&quot; He should be more grateful. &quot;Nevermind. It&#39;s been good so far.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="weepingwillow" title="weepingwillow" src="https://cdn.discordapp.com/emojis/730891476917158032.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">19-Mar-21 11:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="822721089515159572" id="message-822721089515159572">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Song&#39;s own brows furrow at Satchel&#39;s explanation. What exactly did they do that warranted the two of them to apologize? He glances towards the two Reptile Feroxi, a single brow raised with cornflower blue crossing over normally golden eyes. It&#39;s an unspoken question, but if Rowan was feeling so guilty, perhaps they did manage to wrong the elf. Pythius seems unwilling to speak with the way things are now as he hides behind Rowan, and Song sighs inwardly. 
+
+&quot;...You can&#39;t always run from your problems.&quot; He says gently, in hopes it&#39;ll coax Pythius to be less guarded and defensive from behind Rowan. &quot;It&#39;ll be alright.&quot; 
+
+&quot;...I suppose so.&quot; Song says softly in understanding. The Kestrel Feroxi&#39;s eyes flicker towards the candied Hazelnuts on Satchel&#39;s plate that he&#39;s seemingly enjoying. &quot;It&#39;s....strange.&quot; He settles on, unsure of how to properly describe it. Though they weren&#39;t completely free, still closed off from the rest of the continent, the air had felt different. There&#39;s no ominous pressure or the feeling of one needing to look over their back out of cautiousness lest they step on a guard&#39;s nerve on a bad day.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Mar-21 12:03 AM</span>
+
+            <div class="chatlog__message " data-message-id="822727115865980938" id="message-822727115865980938">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He lets out a soft whine when Rowan elbows him, expressing his discontent, but ultimately releases Rowan from the hug. He reaches for Rowan&#39;s hand instead. That much contact should be okay, right?!  
+
+Song&#39;s words don&#39;t do much to bring him out from behind Rowan&#39;s shadow though. From personal experience, running is a perfectly good solution. He turns his head the other way, as if he hadn&#39;t heard Song speak. 
+
+Pythius silently considers Satchel&#39;s question. To him, it feels the same. Maybe the atmosphere&#39;s been less stressful since the guards weren&#39;t looming over them anymore, but he&#39;s still a prisoner. It didn&#39;t matter what they did the guards. Society still considered them criminals, and so they were. Even with no one keeping them here, they still weren&#39;t free to go anywhere. 
+
+He keeps these thoughts to himself though, because 1. most people here didn&#39;t seem to like being called criminals and 2. he isn&#39;t done sulking yet.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/240979167900991488/b75da64fcecbe0e790637e6ea5b3d673.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wispna#7109" data-user-id="240979167900991488" style="color: rgb(151,119,218)">NEW BORN POET | eamon | value</span>
+
+
+        <span class="chatlog__timestamp">20-Mar-21 12:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="822727929385320468" id="message-822727929385320468">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You wish what?&quot; Satchel asked Rowan sharply. &quot;Speak with confidence. Nobody admires someone that tiptoes around their own words.&quot;
+
+He nodded in agreement as Song spoke. &quot;I suppose it is. Strange that is. You&#39;re still imprisoned due to your mark, but its only fear of retribution, and a dangerous journey keeping you here, and you&#39;re now on equal footing with everyone here. No more tyrants to tell you what to do.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="uhu" title="uhu" src="https://cdn.discordapp.com/emojis/725280609315848213.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Mar-21 12:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="822730026680188959" id="message-822730026680188959">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Rowan startles, not having expected such a change in time directed at him, and it&#39;s enough so that he speaks candidly. &quot;I wish it could have happened without people getting hurt.&quot; But that had been an impossibility from the start, hadn&#39;t it? Boo use in wishing something like that. &quot;And I wish I had been brave enough to fight.&quot; Because maybe if he&#39;d been there, maybe Candor wouldn&#39;t have lost their leg, and maybe others wouldn&#39;t have gotten so badly injured either. 
+
+But he feels guilty saying that too, because Pyth had just gotten upset with him over the very same thing and he&#39;s not even hugging him anymore, though their hands are still joined. 
+
+And while it seems Satchel is preoccupied with Song&#39;s questions, Rowan whispers up at Pyth. &quot;Song&#39;s right, y&#39;know. It&#39;s not that hard, &#39;n I bet if you ask he&#39;ll let you keep the ring anyway.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Mar-21 12:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="822731131786362891" id="message-822731131786362891">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The Bird Feroxi listens to Rowan speak, even when Pythius falls short of words which he feels is uncharacteristic for the time he&#39;s known him. The snake Feroxi always had words around him if only to fill in the gaps Song would have trouble with otherwise. He nods in agreement, remembering the events of the raid not even that long ago. He could have done more, <em>should have</em> done more. Song never forgets how very helpless he is when things really matter.
+
+&quot;...It&#39;s become a little like home.&quot; He says towards Satchel, words feeling strange. Song had never really had attachment to Andaras nor Raehn, but the little interactions here have made it more bearable, almost likable. It&#39;s at least somewhere he&#39;s acknowledging is his home now.
+
+Song sighs again outwardly this time, but it&#39;s clear it takes on the sound of disappointment at Pythius&#39; avoidance. He moves into the other&#39;s vision, keeping steady eye contact while his expression is as unfathomable as ever. Flat and indifferent.
+
+&quot;...One day when you need to catch your breath, what then?&quot; He asks quietly. Would Pythius prefer to suffocate, be so out of breath when things eventually catch up to him, consequences ready to tear the other apart? Song&#39;s voice lowers to take on a even more sharper tone but still with the same gentle edge. &quot;Apologies can sometimes be worth more than something priceless. It&#39;s only right to say sorry if you&#39;ve done something wrong.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Mar-21 01:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="822931944135983134" id="message-822931944135983134">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He thinks about what Satchel says. The old man makes a lot of sense, but Pythius isn&#39;t sure if he agrees... How is everyone equal footing? They might all be prisoners, but that didn&#39;t mean they were the same. It didn&#39;t mean that they wouldn&#39;t hurt each other. 
+
+And Satchel... He sneaks a glance at the old man, eyes narrowed with wariness. Satchel has a lot of power. He knows things they don&#39;t. And he&#39;s strong too. And there&#39;s something the old man wants, Pythius is sure of it. That&#39;s the thing. The guards might have been cruel, but at least their motives were transparent. He can&#39;t say the same for Satchel, or for that Ferrum guy who incited them. 
+
+He squeezes Rowan&#39;s hand. Rowan&#39;s saying it&#39;s not that hard, but it really is that hard. He keeps stubbornly looking at the other way, though his expression visibly sours at Song&#39;s words. 
+
+The more he thinks about it, the more he feels irritated. He didn&#39;t <em>really</em> do anything wrong so why does he have to apologize?! He might have broken something Satchel found important, but he didn&#39;t know! If it was so precious, why did Satchel leave them scattered around a dilapidated city for years and years?! He does feel bad for making Satchel upset, but... but...! It just isn&#39;t fair that he&#39;s being blamed for something that couldn&#39;t be helped!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/240979167900991488/b75da64fcecbe0e790637e6ea5b3d673.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Wispna#7109" data-user-id="240979167900991488" style="color: rgb(151,119,218)">NEW BORN POET | eamon | value</span>
+
+
+        <span class="chatlog__timestamp">20-Mar-21 03:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="822961869480394774" id="message-822961869480394774">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Satchel nodded at Rowan. &quot;A noble wish, even if it&#39;s not a realistic one. Perhaps you can consider how peace can be achieved in the future, or you can learn from this and choose to fight for what you want in the future. Either option would be interesting.&quot; He took another bite, humming happily at the taste of the food. 
+
+&quot;Home... It does feel more like a home, doesn&#39;t it? A good place for outcasts to gather and make their own.&quot; He nodded at Song.
+
+Finally, he smiled back at Pythius as Pythius narrowed his eyes at him, somehow noticing the distrust. With that, he pops another candied hazlenut into his mouth. &quot;Well, I plan to take advantage of this nice little stage you have set up later. I want to tell a story, so I should get prepared for that. Enjoy this festival all of you. Perhaps you should remember the date, and give a name to it, so that it may go down in Raehn&#39;s history.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="look" title="look" src="https://cdn.discordapp.com/emojis/768544336526049292.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Mar-21 04:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="822980260752130068" id="message-822980260752130068">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Talking with Satchel had always been kind of strange for Rowan, in the sense it made him <em>think</em>. Now was no different; as he watched the old man retreat the expression he wore was uncharacteristically somber, eyes unfocused. 
+
+This place..... it <em>does</em> feel like home now. And Rowan doesn&#39;t know what to think about that. It is frustrating to be stuck here. At the same time, it&#39;s a relief not to have to do anything but just....live. And then yet again, as long as they&#39;re stuck in Raehn.... it&#39;s only so big of a place. They can only entertain themselves for so long. And there&#39;s <em>people</em> outside Raehn, people he cares about.
+
+What <em>does</em> he want in the future.....?
+
+He doesn&#39;t <em>know</em>.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="scree" title="scree" src="https://cdn.discordapp.com/emojis/713974316441665598.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="sobyblush" title="sobyblush" src="https://cdn.discordapp.com/emojis/785743975075151908.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Mar-21 08:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="823396475819261952" id="message-823396475819261952">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There&#39;s still little response from Pythius, and even Rowan has become quiet at Satchel&#39;s words. It&#39;s slow, but he might understand why Pythius wanted those birds now.
+&quot;He didn&#39;t seem that mad.&quot; Song says softly, he wasn&#39;t going to force it out of the other. It mattered little even if he did, where Pythius was clearly unwilling to apologize if at all. Perhaps to someone like him, apologies came easy even when nothing was his fault, but he&#39;s long spent all his years growing up apologizing for faults he could not control. 
+
+Song gives Satchel a nod, as if letting the man know he&#39;ll be stopping by to listen. The Kestrel Feroxi then moves to look between the two other Reptile Feroxi and the way Pythius holds onto Rowan like a barrier in between them. &quot;Even when you upset someone unintentionally, it&#39;s still nice and appreciated to say sorry.&quot; Song moves fingers to ruffle the darker haired Feroxi&#39;s hair.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="smadlove" title="smadlove" src="https://cdn.discordapp.com/emojis/764667923389349908.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Mar-21 11:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="823444995984851005" id="message-823444995984851005">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">His eyes narrow further when Satchel smiles at him, but he perks up at the mention of a story. Satchel&#39;s stories are always very interesting. Despite his feelings towards Satchel or Satchel&#39;s feelings towards him, he definitely doesn&#39;t want to miss it. 
+
+His muscles tense, grip tightening around Rowan&#39;s hand, when Song approaches him. Song isn&#39;t a violent person so he&#39;s not sure what he expected, but he sure didn&#39;t expect a gentle hair ruffle. He was pretty sure that Song had been mad at him? The space between his eyebrows wrinkle further. 
+
+He finally looks at Song properly. &quot;Why?&quot; he mumbles, &quot;Why should I say sorry when it&#39;s not my fault? How was I supposed to know that it would upset him when he doesn&#39;t tell us anything? And- And even if I did say sorry, it&#39;s not like words will be able to fix it so what&#39;s the point?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Mar-21 11:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="823450019562127367" id="message-823450019562127367">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Rowan <em>frowns</em>. Really? <em>Really?</em> He pulls Pyth&#39;s hand perhaps a but more roughly than he needs to, catching his attention because he has something to <em>say</em>. &quot;Pyth, look. I told you I&#39;d be here for you, yeah? But if you really want this to work out you gotta <em>help</em>. And that means sometimes doing things you think are stupid.&quot; Even though apologizing isn&#39;t stupid. Not in the least.
+
+&quot;And it doesn&#39;t matter whose fault it is we still hurt his feelings so it&#39;s on us to apologize for that, got it? Cause even if it doesn&#39;t fix the problem, well, Satchel knows we learned, and won&#39;t do it again. Like a deal. And what was he supposed to tell us, anyway? We&#39;re just a bunch of weirdos stuck here. How was he supposed to know we&#39;d go burn some of them?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Mar-21 02:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="823485665588150312" id="message-823485665588150312">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The strength in the tug is unexpected, causing him to take a few steps to rebalance himself. He winces, but the slight pain in his arm is soon forgotten as Rowan launches into a lecture. 
+
+A part of him is indignant, frustrated, because he had asked his questions sincerely. But it&#39;s overshadowed by an overwhelming sense of dread and panic. &quot;I do want it to work!&quot; he interjects quickly, gripping Rowan&#39;s hand with both of his. 
+
+With each of Rowan&#39;s sentence, Pythius&#39; gaze sinks lower and lower until he&#39;s staring at the floor. It still doesn&#39;t make sense to have to apologize for something he didn&#39;t even intend to do, but... &quot;Got it,&quot; he replies in a defeated tone. 
+
+Because so what if he thinks it isn&#39;t fair? So what if it&#39;s hard for him? Is what he feels important? Isn&#39;t it more important what people feel about him? That&#39;s what he decided back in Dreto, when he started to hide his scales. So what&#39;s one more concession, yeah?</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/760364599912169544.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Mar-21 06:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="823550875268022284" id="message-823550875268022284">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He might be a bit of a blockhead sometimes, but he&#39;s not so clueless that he doesn&#39;t hear how listless Pyth&#39;s voice becomes. Curses. He hadn&#39;t meant to <em>hurt</em> him....
+
+Rowan softens, rising up on his toes to kiss Pyth&#39;s cheek. &quot;It&#39;s really not so hard as you think. Satchel is a good man, he won&#39;t mock or hurt you for it.&quot; Not like a lot of people would; after all, whoever heard of a <em>reptile feroxi</em> being honest?</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="look" title="look" src="https://cdn.discordapp.com/emojis/713972412055814145.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="blush_sadcat" title="blush_sadcat" src="https://cdn.discordapp.com/emojis/736504476508356628.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bbuh" title="bbuh" src="https://cdn.discordapp.com/emojis/752380807221477406.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Mar-21 09:59 AM</span>
+
+            <div class="chatlog__message " data-message-id="823601763599908884" id="message-823601763599908884">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">His sullen expression is swept away, replaced by relief and a dust of pink. The corners of his lips curve into a shy smile. &quot;Mmhm,&quot; he replies. He might not be able to hide his fear if he says more. The thought of explicitly admitting his faults makes his stomach twist, but he doesn&#39;t want Rowan to notice it, to think that he&#39;s unwilling.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="headpat" title="headpat" src="https://cdn.discordapp.com/emojis/713973204955430974.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Mar-21 10:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="823789529017352203" id="message-823789529017352203">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;We can even practice if you want. &#39;Course, we don&#39;t have to, but it makes it easier.&quot; Rowan pauses, and taps a finger to Pyth&#39;s mouth. &quot;I can make it worth your while, too.&quot; Two reasons for that, really; for one, Rowan&#39;s noticed—Pyth likes to be appreciated, to have positive action recognized. Which, really, who didn&#39;t; and second, well, maybe Rowan did want to celebrate a little, forget for a while about the craziness that had happened recently.
+
+Pyth&#39;s smile brings a similar expression to Rowan&#39;s face, too, and fingers go down to poke his stomach, instead. &quot;But first we gotta feed your metalbowlism, yeah?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Mar-21 10:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="823791326805884978" id="message-823791326805884978">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He gazes between the two, if only to feel that he&#39;s intruding before dropping his hand only to pat them both on the back once. It had worried him when he heard Rowan&#39;s voice rise, not quite sure if force would have been the answer, but Pythius takes to it seemingly well. &quot;...It&#39;ll be alright.&quot; He says softly in encouragement. 
+
+Song&#39;s brow only momentarily raises where Rowan&#39;s pronunciation of the word is quite odd even to his own ears but says nothing. Instead, Song turns his attention away from the two to leave them to their conversation and bring back food to fill their stomachs. Uneasy conversations leave a person hungry and he&#39;s sure the two of them would be too.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Mar-21 11:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="823811913120612372" id="message-823811913120612372">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Practice? He hesitates to say no, fearing that Rowan would disapprove. But he can&#39;t bring himself to say yes either. At an impasse, he doesn&#39;t say anything. He freezes when Song suddenly pats them on the back, but relaxes at the soft reassurance. 
+
+He jumps on the change of subject. &quot;Oh, I wanna try the fish soup!&quot; he says. He sees Song quietly move away from them. If it weren&#39;t for Song&#39;s previous words, he would have worried that he drove the bird off somehow. He wonders what important business came up that Song had to leave to deal with. 
+
+His attention goes back to Rowan. &quot;I think the bowls are over there. Should we?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">22-Mar-21 11:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="823812918973693973" id="message-823812918973693973">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Don&#39;t ask how fast he came back. Like a cryptid, he just comes back with skewers of mystery meat balanced on plates and just hands it to the two, completely unprompted. &quot;...It&#39;s good to get your energy up.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bbuh" title="bbuh" src="https://cdn.discordapp.com/emojis/752380807221477406.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Mar-21 12:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="823814912589430794" id="message-823814912589430794">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He follows Pyth&#39;s gaze toward where the bowls supposedly are but then there&#39;s...Song? With food? Which, a bit strange, but.... nice, banishing the faint disappointment Rowan feels at Pyth&#39;s definite non-answer. It seemed a very socially awkward sort of way to make friends, but Rowan appreciates it nonetheless. &quot;Oh! Thanks.&quot; 
+
+And then he actually <em>tries</em> it and it&#39;s <em>delicious</em>. &quot;Like, really thanks, this is good. You&#39;re eating too, right?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="headpat" title="headpat" src="https://cdn.discordapp.com/emojis/713973204955430974.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Mar-21 12:15 AM</span>
+
+            <div class="chatlog__message " data-message-id="823817131857674260" id="message-823817131857674260">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">His expression brightens at the sight of meat. He takes a skewer and sinks his teeth into it. The rich taste flows into his mouth, intricate favours of spice dancing across his palette. &quot;It&#39;s good!&quot; he exclaims. 
+
+&quot;Did you make this?&quot; he asks Song while taking another bite. He suddenly starts coughing as it goes down the wrong pipe, but it&#39;s short-lived and he soon resumes putting more food in his mouth.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="kermit" title="kermit" src="https://cdn.discordapp.com/emojis/773535994141343754.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="headpat" title="headpat" src="https://cdn.discordapp.com/emojis/785912058420002846.gif">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Mar-21 12:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="824007166267621426" id="message-824007166267621426">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Song&#39;s lips curve slightly, but it might have only been a trick of the lighting around the festival, as it is gone in less than a second. &quot;Ah, I&#39;m alright.&quot; He says, shaking his head. His eyes watch the two Reptile Feroxi eagerly eat, and he feels as though tensions have lightened making himself feel more relieved. It&#39;s always nice to share a good meal.
+
+Song wonders what they even cooked, perhaps it&#39;s the bear that Yuda and Damien had contributed to violently murdering and he tries not to think about that. 
+&quot;No. One of the event holders were grilling meat.&quot; He says honestly, eyes flickering to an overtly decorated roll cake placed on the side. &quot;...I made that one.&quot; Song sighs, pointing over to where his matcha roll cake lays, strawberries and oranges mixed into cream. The Kestrel Feroxi pats Pythius on the back when he hears him choke. &quot;...You shouldn&#39;t talk when you eat.&quot; He says, some amusement coloring his tone.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Mar-21 01:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="824012377937674240" id="message-824012377937674240">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He shrugs. If Song says he&#39;s fine, Rowan will trust it—and it&#39;s not like the guards are there to take the food away anytime soon; if Song gets hungry he can always eat later. 
+
+The event holders? He&#39;d have to thank them doubly, then. Kim already had his undying love—she was his <em>aunty</em>, how could she not—and Kobe had been super nice before too. 
+
+&quot;Wait, you made <em>cake?</em>&quot; A cake with the facilities Raehn had? Nothing short of incredible. Especially one presented so well as that.... maybe some birds really <em>were</em> as talented as they claimed. &quot;That&#39;s amazing!&quot; 
+
+Concern wars with laughter a moment later; Song sounds like his stuffy older brother exactly. &quot;You alright, Pyth?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">23-Mar-21 05:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="824073470136680459" id="message-824073470136680459">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Kobe!&quot; he guesses between bites. He doesn&#39;t know about the other lady&#39;s skills, but Kobe makes a pretty mean stew. It would make sense if that guy grilled this meat too. 
+
+He looks to where Song is pointing. &quot;Oh, we should take a few slices before it&#39;s all gone!&quot; Such a good-looking cake is bound to disappear quickly, and he really wants to try it. 
+
+He looks a little sheepish when he&#39;s called out on his manners, face turning pink. &quot;I&#39;m fine,&quot; he replies with a pout. He makes an attempt to eat a little slower, chew a little more.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Mar-21 09:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="824505545922052106" id="message-824505545922052106">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Song muses over his thoughts, trying to recall which of them were which. Though he didn&#39;t introduce himself personally, he does recall a tiger Feroxi introducing herself, so he can only assume the one he had just saw was Kobe. The Kestrel Feroxi gives an uncertain nod, slow and paced. 
+
+&quot;...Yes.&quot; It&#39;s muted and apathetic in response. Song isn&#39;t even sure if he baked it properly. It appeared decent on the outside but he&#39;s remembering his failed attempts at properly creating the cream to be consistent. It might come off too heavy and thick... He stares at the two of them worriedly as Pyth immediately declares he wants to eat his cake. &quot;I don&#39;t know if it&#39;s good.&quot; He says quite seriously.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="headpat" title="headpat" src="https://cdn.discordapp.com/emojis/713973204955430974.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Mar-21 10:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="824511773679812609" id="message-824511773679812609">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He blinks. How do you not know if your own food is good? Didn&#39;t everyone taste test when they cooked? &quot;I bet it is good,&quot; he counters, and goes to take a piece—it&#39;s on the table, so it&#39;s free to take, right? 
+
+And maybe it&#39;s cause they&#39;ve not really had any proper <em>sweets</em> here really for such a long time but this cake is his new favorite dessert, probably. &quot;It&#39;s really good,&quot; he says, mimicking Song&#39;s serious tone, and holds up a piece for Pyth to try as well.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="sobbing" title="sobbing" src="https://cdn.discordapp.com/emojis/814180271800188939.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Mar-21 10:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="824522640935878668" id="message-824522640935878668">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“I bet it’s good too!” He finishes off his skewer before following after Rowan. 
+
+He leans down and eats the offered piece, careful not to bite Rowan’s fingers. He quickly turns to look at Song, “It <em>is</em> good! Really really good!” The cake is moist and spongy, setting the stage for the bittersweet taste of green tea. The rich cream offers a cool and soothing touch, while the fruits are a fresh twist that makes him crave more. 
+
+He turns back to Rowan. <img class="emoji " alt="🥺" title="🥺" src="https://twemoji.maxcdn.com/2/72x72/1f97a.png"> Another piece please.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bbuh" title="bbuh" src="https://cdn.discordapp.com/emojis/713970885664440360.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="sob" title="sob" src="https://cdn.discordapp.com/emojis/818013733611503656.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">24-Mar-21 11:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="824528338504646676" id="message-824528338504646676">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji " alt="bbuh" title="bbuh" src="https://cdn.discordapp.com/emojis/713970885664440360.png"> Who is he to deny puppy eyes like that? He is but a simple worm <img class="emoji " alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png"> .</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bbuh" title="bbuh" src="https://cdn.discordapp.com/emojis/752380807221477406.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">25-Mar-21 09:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="824856530725503027" id="message-824856530725503027">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He watches, hovering worriedly because really he&#39;s absolutely not sure how it tastes. Song doesn&#39;t know if he cooks it right, and he&#39;s made it far sweeter than he had meant to. The two of them much away without a care, and Song can only wait and hope that neither of them gag.
+Rowan&#39;s the first to speak, praise on tongue but imitating his own tone. Was...that supposed to be a joke? He stares for a long moment. Pythius does the same, and he even asks for seconds...
+
+For some reason, the air is getting warm and Song turns his head away, averting gaze as he stares down at the innocuous looking cake. &quot;Oh.&quot; He says. &quot;That&#39;s...good.&quot; He says.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bbuh" title="bbuh" src="https://cdn.discordapp.com/emojis/713970885664440360.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="flooshed" title="flooshed" src="https://cdn.discordapp.com/emojis/811541528840896522.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Mar-21 12:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="824914823681671168" id="message-824914823681671168">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He happily munches on Song&#39;s cake. He doesn&#39;t notice Song&#39;s behaviour, too busy staring at Rowan with big eyes so the other snake Feroxi would feed him another piece. 
+
+&quot;You could sell this in a store,&quot; he says, &quot;It&#39;s like... seriously good.&quot; He wonders if Song would be willing to bake more of it. But like... secretly. There are too many prisoners in Raehn. The remaining cake slices are quickly dwindling in number, and he hasn&#39;t had nearly enough.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="wheeze" title="wheeze" src="https://cdn.discordapp.com/emojis/760364599912169544.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="kermityell" title="kermityell" src="https://cdn.discordapp.com/emojis/713972278525820959.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">26-Mar-21 05:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="824989963291721750" id="message-824989963291721750">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It&#39;s.....actually a little impressive, how much of the cake has already disappeared, considering Pyth&#39;s appetite has been so much lower since the ring. Rowan takes another bite of the cake himself, chewing thoughtfully before agreeing. 
+
+&quot;You probably could, especially here. Dunno about health codes or anything in Andaras though, they&#39;re probably pretty strict.&quot; Of course, that was assuming they got out of here, and also assuming food was something Song was interested in. &quot;Not sure if my opinion&#39;s any good but I did grow up working with food.&quot;
+
+He turns back to Pyth, facing that imploring stare once more, and in return employed his own pleading expression. What does he get for feeding you, hmm? <img class="emoji " alt="🥺" title="🥺" src="https://twemoji.maxcdn.com/2/72x72/1f97a.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="EcksDeeKirbee" title="EcksDeeKirbee" src="https://cdn.discordapp.com/emojis/784268757270921267.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bbuh" title="bbuh" src="https://cdn.discordapp.com/emojis/752380807221477406.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">27-Mar-21 06:57 AM</span>
+
+            <div class="chatlog__message " data-message-id="825367893839052821" id="message-825367893839052821">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">“You grew up working with food?” he asks. His stomach is getting full, but his mouth hasn’t had enough. 
+
+He blinks in surprise when Rowan’s expression mirrors his. Did Rowan also want to be fed? Or something else? He takes a piece of cake and lifts it to Rowan’s mouth, carefully watching the other’s expression to see if he had guessed correctly.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="Hewwo" title="Hewwo" src="https://cdn.discordapp.com/emojis/727118391214866453.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 12:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="825634941755850762" id="message-825634941755850762">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well, dunno if you remember, but my dad owns a restaurant, see? So I used to help out there sometimes, though it was mostly cleaning and getting supplies. I&#39;d help cook at home, too, and.....&quot;
+
+And then there was cake in front of his face. He blinks once, in surprise—not <em>exactly</em> what he&#39;d been going for, but appreciated nonetheless; it <em>was</em> good cake, after all. And a cute gesture. Definitely not something he&#39;d turn down. So he ate it, carefully, and then smiled, close-mouthed but genuine. &quot;Ah, thanks~&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 02:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="825851200300646431" id="message-825851200300646431">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Wow! So you&#39;re probably a master at cooking!&quot; he exclaims. He wonders if he can convince Rowan to make food for him too. 
+
+He&#39;s relieved that he made the right decision. Rowan&#39;s thanks makes him feel giddy. It was probably just a casual thanks, something Rowan didn&#39;t think too hard about, but paired with that smile... it feels good. Like his efforts have been noticed. Like he&#39;s done something right for once. &quot;Is it tastier than eating it yourself?&quot; he asks in a lighthearted tone, a bright smile on his face.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/134804879347548160/704fccd7db96c015373227a6152b50c8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="matcha#9543" data-user-id="134804879347548160" style="color: rgb(235,172,38)">GenerallyDocileCabbage | Pythius</span>
+
+
+        <span class="chatlog__timestamp">28-Mar-21 02:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="825851356492464218" id="message-825851356492464218">
+
+                    <div class="chatlog__attachment">
+                        <div class="" onclick="">
+                            <div class="">
+                                    <a href="https://cdn.discordapp.com/attachments/822530524606103682/825851355863580752/image0.png">
+                                        <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/822530524606103682/825851355863580752/image0.png" alt="Image attachment" title="Image: image0.png (587.46 KB)">
+                                    </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#129402;" title="&#129402;" src="https://twemoji.maxcdn.com/2/72x72/1f97a.png">
+                                <span class="chatlog__reaction-count">12</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="&#128064;" title="&#128064;" src="https://twemoji.maxcdn.com/2/72x72/1f440.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 05:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="825883250819072060" id="message-825883250819072060">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Nah, I might be pretty close but I&#39;m nowhere near a master, that&#39;s my dad &#39;n sister....&quot; He trails off, seeing the rare <em>joy</em> lighting up Pyth&#39;s face.  It was just cake, wasn&#39;t it? But at the same time.....
+
+&quot;Yeah. Yeah, I guess it is.&quot; Unbidden, his smile widens. He knows what Pyth means; it doesn&#39;t have anything to do with the taste, necessarily, but the <em>feeling</em>. &quot;Food always tastes better with good company.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 06:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="825902410841063484" id="message-825902410841063484">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Rowan is right. And maybe what’s whetting his appetite isn’t just the taste, but the atmosphere. “Yeah... Yeah!” It makes a lot of sense. Things were only a quarter as fun when he’s doing it alone. 
+
+“Um...” For a moment, he feels emboldened. “Do... Do you usually eat with someone? I’m- well, the pets and me, we... Um, what I mean is, if you want- well, it’s also what I- we- want, but if, um.” His nervousness rises, making his throat itch. He shouldn’t have opened his mouth so hastily. Now that he thinks about it, isn’t it presumptuous to assume that he’s good company? Things between them are a bit... “Um, n... nevermind.”</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="headpat" title="headpat" src="https://cdn.discordapp.com/emojis/713973204955430974.png">
+                                <span class="chatlog__reaction-count">1</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 06:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="825910057324904528" id="message-825910057324904528">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well, I do usually eat with Rue.....&quot; That was weird. He was stuttering almost as much as Rue did when she got nervous. 
+
+&quot;Hey, hey, no neverminds.&quot; He poked Pyth, frowning. &quot;You&#39;re my friend, aren&#39;tcha?&quot; The frown dropped, a little smile returning. &quot;I&#39;ll eat with you too, if you want, y&#39;know.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 08:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="825935299954999336" id="message-825935299954999336">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Oh right, with Rue... Twins sure are close, huh? Resentment starts leaking into his thoughts, but he quickly buries those negative feelings. 
+
+Friend... He meekly turns his eyes away from Rowan. He doesn’t really want to have to share Rowan’s attention, but he shouldn’t be greedy. Isn’t it already good enough that Rowan’s willing to have him there? “If you’re okay with it, then...” His gaze returns to Rowan as he gives a little nod and a small smile.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 08:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="825941796420190230" id="message-825941796420190230">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Wouldn&#39;t be here right now if I wasn&#39;t,&quot; he stated simply. They were, after all, eating food together already. Feeding each other, even. &quot;You&#39;re welcome to come by me and Rue&#39;s place too. Maybe Cyra and your birdie can meet Rue&#39;s pets! Think they&#39;d be friends?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 10:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="825959377508237322" id="message-825959377508237322">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>&#39;This and that are different things,&#39;</em> he thinks to himself in response to Rowan&#39;s answer. The dynamics of a small group differ from big festivities like the feast. But he&#39;s not about to argue against Rowan&#39;s words right now. 
+
+&quot;Cyra and Pincy are good girls,&quot; he says with confidence. Cyra might be a bit shy around strangers and has strange habits, but she&#39;s smart. Pincy is overly excitable sometimes, but she&#39;s friendly. He&#39;s sure they&#39;ll both behave, no matter how Rue&#39;s pets are like.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 11:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="825985255839236126" id="message-825985255839236126">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I believe you,&quot; Rowan says easily. He knows Cyra&#39;s good already, and though he hasn&#39;t actually met Pincy yet, Pyth only has had good things to say about her too. &quot;Hey, hey, how d&#39;you feel about dancing?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/255873629580034051/bcaffb5c1da143eadea0940f0cb8ce25.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jelw#6488" data-user-id="255873629580034051" style="color: rgb(151,119,218)">court jester | id fraud albert</span>
+
+
+        <span class="chatlog__timestamp">28-Mar-21 11:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="825987200596181083" id="message-825987200596181083">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">There&#39;s a ruckus of laughter from a suit of armor that clamors to the brainworms and the rowan.</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/367563888486645760/6cbc77ad07fb5a80b92f6903abbdc4e3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="quasi-bot#0849" data-user-id="367563888486645760" style="color: rgb(230,126,34)">quasi-bot</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">28-Mar-21 11:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="825987403855560754" id="message-825987403855560754">
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill" style="background-color: rgba(173,116,206,255)"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+
+                                        <div class="chatlog__embed-title">
+                                                <div class="markdown preserve-whitespace">???</div>
+                                        </div>
+
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown preserve-whitespace">&quot;HARK?! THE NIGHT IS TOO YOUNG, YOUR SHOULD BE SPENDING YOUR YOUTH IN THE GLORIOUS MUSIC OF THE NIGHT!&quot;</div>
+                                        </div>
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="https://i.imgur.com/bhGHpma.png">
+                                            <img class="chatlog__embed-thumbnail" src="https://i.imgur.com/bhGHpma.png" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="rolf" title="rolf" src="https://cdn.discordapp.com/emojis/713971307414421535.png">
+                                <span class="chatlog__reaction-count">6</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/255873629580034051/bcaffb5c1da143eadea0940f0cb8ce25.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="jelw#6488" data-user-id="255873629580034051" style="color: rgb(151,119,218)">court jester | id fraud albert</span>
+
+
+        <span class="chatlog__timestamp">29-Mar-21 12:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="825987783930675230" id="message-825987783930675230">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">This idiot armor is slurring its words like a verbal typo. Too much mead??</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Mar-21 12:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="825988190741463040" id="message-825988190741463040">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><img class="emoji emoji--large" alt="stonesong" title="stonesong" src="https://cdn.discordapp.com/emojis/734918702994292739.png"></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="EcksDeeKirbee" title="EcksDeeKirbee" src="https://cdn.discordapp.com/emojis/784268757270921267.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Mar-21 12:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="825989163849351198" id="message-825989163849351198">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Rowan’s inviting him to dance? The giddy feeling is back. He’s about to reply, when knight man barges in. 
+
+“Oh, are you dancing too?” He wonders how the poor knight’s unrequited love is going. He doesn’t see Selzia or Lucaille, so maybe that’s why the knight has been drinking. 
+
+He turns back to Rowan and holds out a hand- yes, he would like to dance. He takes a moment to look at Song. Is the bird coming too?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Mar-21 12:07 AM</span>
+
+            <div class="chatlog__message " data-message-id="825989522172149830" id="message-825989522172149830">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He shakes his head, knowing his presence would only be in the way. Song offers them only a tilt of his head. They should enjoy themselves, it was clear they had something going on that he had no business to intrude on. 
+
+&quot;Have fun.&quot; He says softly.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/6cae78ec946705e99f1989a84b8fd3e8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="RowanA#0000" data-user-id="822590533050171392" style="">RowanA</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Mar-21 12:13 AM</span>
+
+            <div class="chatlog__message " data-message-id="825990933186871306" id="message-825990933186871306">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You have fun too, Song! And you.....&quot; Curses, he&#39;d given the armor person a nickname before hadn&#39;t he? What was it..... oh yeah! &quot;And you, Sage!&quot; 
+
+He turned to Pyth, grin mischievous, hand outstretched. &quot;Ready to- &#39;spend our youth in the glorious music of the night&#39;?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/68864adf0de7e117f52ef6f9479a4a3a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Pythius#0000" data-user-id="822590533050171392" style="">Pythius</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Mar-21 12:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="825992210268553236" id="message-825992210268553236">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">If he had any social delicacy, he wouldn’t just ditch Song. However, Pyth is just a simple worm so he hesitates for a split second before nodding, “‘Kay!” 
+
+He takes Rowan’s hand. “Lead the way~”</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Mar-21 12:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="825993092263182416" id="message-825993092263182416">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He waves goodbye to his two growing ...kids? and watches them walk away before he too decides to find an isolated area of the festival alone.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="ehe" title="ehe" src="https://cdn.discordapp.com/emojis/725278671845457970.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/887b6fbc50dd71ed1f9fcd471564bc6a.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="yam#0000" data-user-id="822590533050171392" style="">yam</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Mar-21 12:22 AM</span>
+
+            <div class="chatlog__message " data-message-id="825993391120711701" id="message-825993391120711701">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Would be a shame if he was sniped 2 dance off camera</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="EcksDeeKirbee" title="EcksDeeKirbee" src="https://cdn.discordapp.com/emojis/784268757270921267.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="flat" title="flat" src="https://cdn.discordapp.com/emojis/798068504191959060.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="bolb" title="bolb" src="https://cdn.discordapp.com/emojis/453933426555486208.png">
+                                <span class="chatlog__reaction-count">5</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/822590533050171392/8b50f9af24873c202344cfd91fcd1e65.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Song#0000" data-user-id="822590533050171392" style="">Song</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">29-Mar-21 12:23 AM</span>
+
+            <div class="chatlog__message " data-message-id="825993610197205013" id="message-825993610197205013">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><span class="pre pre--inline">He was sniped off screen to dance with the beauty queen.</span></span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="uwu" title="uwu" src="https://cdn.discordapp.com/emojis/713972121482559538.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="GRAB" title="GRAB" src="https://cdn.discordapp.com/emojis/805222554460880966.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 68 message(s)</div>
+</div>
+
+</body>
+
+</html>
